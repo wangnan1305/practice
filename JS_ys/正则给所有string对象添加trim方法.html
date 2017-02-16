@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    String.prototype.trim = function () {
+
+        return this.replace(/(^\s*)|(\s*$)/g, "");
+
+    };
+    //console.log("aaBBBBcc".replace(/b+/gi,"1"))
+    name = "Doe John";
+    name.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1");
+    console.log(name.replace(/(\w+\s*) (\s*\w+)/, "$2 $1"));
+
+    name2 = '"a", "b"';
+    console.log(name2.replace(/"([^"]*)"/g, "'$1'"));
+
+    name3 = 'aaa bbb ccc';
+    uw = name3.replace(/\b\w+\b/g, function (word) {
+                console.log(word.length)
+                return word.substring(0, 1).toUpperCase() + word.substring(1);
+            }
+    );
+</script>
+</body>
+</html>

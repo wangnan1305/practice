@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas></canvas>
+<script>
+    var arr=[1,2,3];
+    var o=0;
+    console.log(arr[o++])
+
+    window.onload=function(){
+        var drawing=document.querySelector("canvas");
+        var ctx=document.querySelector("canvas").getContext("2d");
+        drawing.width=1500;
+        drawing.height=500;
+        var path={
+            pointX:20,
+            pointY:20,
+            R:10,
+            x:5,
+            y:0,
+            g:2
+        }
+
+
+        setInterval(function(){
+            updata();
+            render();
+        },50)
+
+        function updata(){
+            var i=0;
+            path.pointX+=path.x;
+            path.pointY+=path.y;
+            path.y+=path.g;
+
+            if(path.pointY>=500-path.R){
+                //console.log(path.y)
+                path.pointY=500-path.R;
+                path.y=-(path.y-7*(++i)*2);
+                if(Math.abs(path.y)<=0){
+                    path.y=0;
+                }
+            }
+        }
+        function render(){
+            ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
+            ctx.beginPath();
+            ctx.arc(path.pointX,path.pointY,path.R,0,2*Math.PI,false);
+            ctx.closePath();
+            ctx.fillStyle="blue";
+            ctx.fill();
+
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <header>
+      <h1><%= title %></h1>
+      <ul class="type" id="type">
+          <li data-type="dot">Dot</li>
+          <li class="selected2" data-type="column">Column</li>
+      </ul>
+      <p>
+          Volume <input id="volum" type="range" min="0" max="100" value="40"/>
+      </p>
+  </header>
+  <article>
+      <div class="right">
+          <div class="canvans" id="canvans"></div>
+      </div>
+      <div class="left">
+          <ul class="ul1" id="list">
+              <% music.forEach(function(name){ %>
+                 <li title="<%= name %>"><%= name %></li>
+              <% })%>
+          </ul>
+      </div>
+  </article>
+  <script src="/javascripts/music.js"></script>
+  <script src="/javascripts/index.js"></script>
+  </body>
+</html>

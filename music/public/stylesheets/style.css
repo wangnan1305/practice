@@ -1,0 +1,112 @@
+*{padding:0;margin:0;box-sizing: border-box}
+html,body {
+    height:100%;
+}
+body{
+    background: #000;
+    color: #fff;
+    text-align: center;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+li{
+    list-style: none;
+}
+a {
+  color: #00B7FF;
+}
+header{
+    height: 150px;
+    border:1px solid #fff;
+    margin:10px;
+}
+header .type{
+    width:142px;
+    margin:5px auto;
+    border-radius: 5px;
+    overflow: hidden;
+    border:1px solid #fff;
+}
+header .type li{
+    float: left;
+    font-size: 16px;
+    font-family:"微软雅黑", Arial, Helvetica, sans-serif;
+    width:70px;
+    height:26px;
+    line-height: 26px;
+    background: #000;
+    color:#fff;
+}
+header .type li:hover{
+    cursor: pointer;
+}
+header .type .selected2{
+    background:#fff ;
+    color:#000;
+}
+header p{
+    clear:both;
+}
+article{
+    overflow: hidden;
+    margin:0 10px 0 10px;
+}
+article .left,article .right {
+    padding-bottom: 5000px;
+    margin-bottom: -5000px;
+
+}
+article .left{
+    width:230px;
+    float:left;
+    margin-left: -100%;
+}
+article .left ul{
+    border:1px solid #fff;
+    height:460px;
+    overflow: auto;
+}
+article .left ul li{
+    padding:5px;
+}
+article .left ul li:hover{
+    cursor:pointer;
+}
+article .right{
+    width:100%;
+    float:left;
+}
+article .right .canvans{
+    margin-left: 240px;
+    height:460px;
+    border:1px solid #fff;
+}
+.selected{
+    color:green;
+}
+input[type="range"]{
+    -webkit-appearance:none;
+    height:8px;
+    background: #999;
+    border-radius: 10px;
+    outline:none;
+}
+input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    height:12px;
+    width:12px;
+    background: #fff;
+    border-radius: 100%;
+}
+input[type="range"]::-moz-range-track{
+    height:8px;
+    background: #999;
+    border-radius: 10px;
+    border:none;
+}
+input[type="range"]::-moz-slider-thumb{
+    -webkit-appearance:none;
+    height:12px;
+    width:12px;
+    background: #fff;
+    border-radius: 100%;
+}

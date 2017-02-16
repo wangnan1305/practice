@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>3D移动</title>
+    <style>
+        .a{perspective:1000px;}
+        #div{
+            width:200px;
+            height:100px;
+            background: yellowgreen;
+            /*transform:rotateZ(60deg)*/
+        }
+    </style>
+</head>
+<body>
+<div class="a">
+    <div id="div">示例文字</div>
+</div>
+<input type="button" value="绕X轴旋转" onclick="rotateX()"/>
+<input type="button" value="绕Y轴旋转" onclick="rotateY()"/>
+<input type="button" value="绕Z轴旋转" onclick="rotateZ()"/>
+
+</body>
+<script>
+    var n=0,
+            oDiv=document.querySelector("#div"),
+            timer;
+    function rotateX(){
+        clearInterval(timer);
+        timer=setInterval("stratXrotate()",10);
+    }
+    function stratXrotate(){
+        n=n+1;
+        oDiv.style.transform="translateX("+n+"px)";
+        if(n==50){
+            clearInterval(timer);
+            n=0;
+        }
+    }
+    function rotateY(){
+        clearInterval(timer);
+        timer=setInterval("stratYrotate()",10);
+    }
+    function stratYrotate(){
+        n=n+1;
+        oDiv.style.transform="translateY("+n+"px)";
+        if(n==50){
+            clearInterval(timer);
+            n=0;
+        }
+    }
+    function rotateZ(){
+        clearInterval(timer);
+        timer=setInterval("stratZrotate()",10);
+    }
+    function stratZrotate(){
+        n=n+1;
+        oDiv.style.transform="translateZ("+n+"px)";
+        if(n==50){
+            clearInterval(timer);
+            n=0;
+        }
+    }
+
+</script>
+</html>

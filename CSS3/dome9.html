@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>网易云-淡入效果</title>
+    <link rel="stylesheet" href="index.css"/>
+
+    <style>
+        #music{
+            border:1px solid red;
+        }
+        p{width: 200px;margin-bottom: 10px;}
+        .user{float: left; color: #fff;}
+    </style>
+</head>
+<body>
+<div id="music">网易云音乐</div>
+<input id="userName">
+<button id="ok" disabled>确定</button>
+<div>
+    <h3>
+        <a href="#">乔丹</a>
+    </h3>
+    <p>
+        NBA
+        <em>最伟大</em>
+        的球员
+    </p>
+</div>
+<div>
+    欢迎
+    <span id="x">你</span>
+    ，来到
+    <span id="y">网易云课堂</span>
+</div>
+<div class="test"></div>
+</body>
+<script>
+    var music=document.getElementById("music");
+var ele=document.getElementsByTagName('style')[0];
+var link=document.getElementsByTagName('link')[0];
+    function fadeout(element){
+        //设置元素透明度,透明度值按IE规则计,即0~100
+        function setOpacity(ele,v){
+            ele.filters ? ele.style.filter = 'alpha(opacity='+ v + ')' : ele.style.opacity= v / 100;
+        }
+
+        var val=100;
+        setOpacity(element,100);//设置初始透明度为100
+
+        var step=function(){
+            val-=1;
+            if(val>=0){
+                setOpacity(element,val);
+            }else if(val<0){
+                clearInterval(intervalID);   //清除定时器，并且将元素设置为display：none
+                element.style.display='none';
+            }
+        }
+        var intervalID=setInterval(step,10);   //每10毫秒执行一次，动画时间为1秒，即需要执行100次,即val值每次减1
+    }
+
+    var oT=document.querySelector(".test");
+    console.log(oT);
+    fadeout(oT)
+</script>
+</html>

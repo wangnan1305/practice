@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    console.log(/\d\d\d/.test("123"));
+    console.log(/\d\d\d/.test("abc"));
+    console.log(/.../.test("@%$#^%$&%$&^"));
+    console.log(/\D/.test("@"));
+    console.log(/\w\w\w\w/.test("a3_w"));
+    console.log(/\s\s/.test(" "))
+    console.log(/\S\S/.test("   "))
+    console.log(/[0-9a-zA-Z]/.test("045EDSS6"))
+    console.log(/[abc]/.test("acb"))
+    console.log(/[abc]/.test("aabbccccaaa"));
+    console.log(/^Hi/.test("Hi desdsef"))
+    console.log(/^Hi/.test("desdsefHi"))
+    console.log(/\^Hi/.test("^Hi"))
+    console.log(/abc+/.test("ab"))
+    console.log(/(abc)*/.test("")+'    abc*')
+    console.log(/abc+?/.test("abc"))
+    console.log(/abc*?/.test("abcccccc"))
+    console.log(/ab|cd|ef/.test("ab"))
+    console.log(/ab|cd|ef/.test("abcd"))
+    console.log(/ab|cd|ef/.test("abcdef"))
+    console.log(/abc/gim.test("ABC"))
+    console.log(RegExp("abc","mgi").test("ABC"));
+    console.log("aabbbbccbbaa".match(/b+/g))
+    console.log("aabbbbcc".match(/b+/g))
+    console.log("aabbbbccbbaa".split(/b+/))
+    console.log("aabbbbccbbaa".split(/b+/g))
+    console.log(~2016)
+</script>
+<body>
+
+</body>
+</html>

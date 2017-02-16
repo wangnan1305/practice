@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas>
+
+</canvas>
+<script>
+    window.onload=function(){
+        var drawing=document.querySelector("canvas");
+        var ctx=drawing.getContext("2d");
+        var R=300,r=150,pathX=400,pathY=400;
+        var shape=8;//几边形
+        var stratFiveBig=18,startFiveSmall=54,startFive=72;  //五角星
+        var startSix=60,startSixBig=0;  //六边形
+
+        drawing.width=800;
+        drawing.height=800;
+        ctx.beginPath();
+        if(shape==6){
+
+            for(var i=0;i<6;i++){
+                ctx.lineTo(Math.cos((startSixBig + i * startSix) / 180 * Math.PI) * R + pathX, -Math.sin((startSixBig + i * startSix) / 180 * Math.PI) * R + pathY);
+            }
+
+        }else if(shape==5){
+            for(var i=0;i<5;i++) {
+                ctx.lineTo(Math.cos((stratFiveBig + i * startFive) / 180 * Math.PI) * R + pathX, -Math.sin((stratFiveBig + i * startFive) / 180 * Math.PI) * R + pathY);
+                ctx.lineTo(Math.cos((startFiveSmall + i * startFive) / 180 * Math.PI) * r + pathX, -Math.sin((startFiveSmall + i * startFive) / 180 * Math.PI) * r + pathY);
+            }
+        }else if(shape==8){
+            for(var i=0;i<8;i++){
+                ctx.lineTo(Math.cos((22.5 + i * 45) / 180 * Math.PI) * R + pathX, -Math.sin((22.5 + i * 45) / 180 * Math.PI) * R + pathY);
+            }
+        }
+        ctx.closePath();
+        ctx.lineWidth=5;
+        ctx.stroke();
+    }
+</script>
+</body>
+</html>

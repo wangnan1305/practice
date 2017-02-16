@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../js/shBrush.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/shcore.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/shthemedefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/base.css">
+    <link type="text/css" rel="stylesheet" href="../css/content.css">
+    <link type="text/css" rel="stylesheet" href="../css/calendar.css">
+    <title>JS面向对象入门——淘宝轮播图</title>
+
+</head>
+<body onLoad="checkCookie()">
+<div id="header">
+    <a href=""><img src="../images/logo.png"/></a>
+
+    <div id="list_left">
+        <ul>
+            <li><a href="../index.html" id="list_left_one">首页</a></li>
+            <li><a href="">关于我</a></li>
+            <li><a href="">文章</a></li>
+            <li><a href="../picshow.html">相册</a></li>
+            <li><a href="">音乐</a></li>
+            <li><a href="">留言</a></li>
+        </ul>
+    </div>
+</div>
+<div class="main">
+    <div class="main_left">
+        <div class="title">
+            <h2>JS面向对象入门——淘宝轮播图</h2>
+
+            <div class="w">
+                <span class="a">2015-9-18</span>
+                <span class="b">王楠</span>
+                <span class="c">网站</span>
+                <span class="d"></span>
+            </div>
+        </div>
+        <div class="article">
+            <p>　　最近刚刚学习了JS面向对象编程，算是入门了吧，写了个小程序，模仿淘宝的轮播图。</p>
+            <p>　　关于面向对象呢，我的感觉是写起来确实比较麻烦（仅对于新手），但是写好了以后就发现面向对象的复用性和通用性确实很好，尤其是复杂效果相比于面向过程要精简很多，下面说下我自己学习的一点心得以及难点：</p>
+            <p>　　第一点：当调用一个对象的属性时，首先会先在实例中搜索该属性，在没找到的情况下才回继续搜索原型，因此实例会屏蔽掉原型，但是不会修改原型。</p>
+            <p>　　第二点：要尽可能确保没有函数嵌套函数的形式，并保证所有全局变量（提取参数，可修改）都在构造函数中，所有固定的不可修改的方法放到原型中。</p>
+            <p>　　第三点：也是最头疼的一点，修改this指向，以前就听前辈们说过，搞懂this指向就相当于学好了一半的面向对象，这句话在今天看来真是不假，总之不会就查资料吧，一句两句也说不清。</p>
+            <p>　　第四点：有event事件的时候，修改event赋值的地方，只有在有事件的地方才可以用event。</p>
+            <p>下面附上代码：</p>
+            <p>HTML+CSS部分：</p>
+            <pre class="brush:php; toolbar: true; auto-links: false;" style="font-size:12px">
+<div class="out">
+    <div id="div1" class="div1">
+        <ul id="ul1" class="ul1">
+            <li><img src="../images/taobao1.png" title="1png" alt="一一"/></li>
+            <li><img src="../images/taobao1.png" title="2png" alt="二二"/></li>
+            <li><img src="../images/taobao1.png" title="3png" alt="三三"/></li>
+            <li><img src="../images/taobao1.png" title="4png" alt="四四"/></li>
+            <li><img src="../images/taobao1.png" title="5png" alt="五五"/></li>
+            <li><img src="../images/taobao1.png" title="6png" alt="六六"/></li>
+        </ul>
+        <div id="a1" class="a1"></div>
+        <div id="bg" class="bg"></div>
+        <a href="javascript:" id="left" class="left"><</a>
+        <a href="javascript:" id="right" class="right">></a>
+        <ul id="ul2" class="ul2">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+</div>
+
+<div class="out">
+    <div id="div2" class="div1">
+        <ul id="ul3" class="ul1">
+            <li><img src="../images/taobao1.png" title="1png" alt="一一"/></li>
+            <li><img src="../images/taobao2.png" title="2png" alt="二二"/></li>
+            <li><img src="../images/taobao3.png" title="3png" alt="三三"/></li>
+            <li><img src="../images/taobao4.png" title="4png" alt="四四"/></li>
+            <li><img src="../images/taobao5.png" title="5png" alt="五五"/></li>
+            <li><img src="../images/taobao6.png" title="6png" alt="六六"/></li>
+        </ul>
+        <div id="a2" class="a1"></div>
+        <div id="bg1" class="bg"></div>
+        <a href="javascript:" id="left1" class="left"><</a>
+        <a href="javascript:" id="right1" class="right">></a>
+        <ul id="ul4" class="ul2">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+</div>
+            </pre>
+            <p>JS部分（测试）：</p>
+            <pre class="brush:php; toolbar: true; auto-links: false;" style="font-size:12px">
+function $(id){
+    return document.getElementById(id);
+}
+//构造函数
+function Slider(id1,id2,id3){
+    this.oUl=$(id1);
+    this.oUl2=$(id2);
+    this.oDiv1=$(id3);
+    this.oAlt=this.oDiv1.getElementsByClassName("a1")[0];
+    this.oLeft=this.oDiv1.getElementsByClassName("left")[0];
+    this.oRight=this.oDiv1.getElementsByClassName("right")[0];
+    this.aLi=this.oUl.getElementsByTagName("li");
+    this.aLi2=this.oUl2.getElementsByTagName("li");
+    this.len=this.aLi.length;
+    this.iWidth=this.aLi[0].offsetWidth;
+    this.iNow=0;
+    this.timer=null;
+}
+//原型
+Slider.prototype={
+    constructor: Slider,
+    //初始化函数
+    init:function(){
+        var This=this;
+        this.oUl.style.width=this.len*this.iWidth+'px';
+        for (var i=0;i<6;i++){
+            this.aLi2[i].index=i;
+            this.oAlt.innerHTML=this.aLi[0].children[0].alt;
+            this.aLi2[i].onclick=function(){T
+                for(var i=0;i<6;i++){
+                    This.aLi2[i].className='';
+                }
+                this.className='active';
+                This.oAlt.innerHTML=This.aLi[this.index].children[0].alt;
+                startMove(This.oUl,{
+                    left:-this.index*This.iWidth
+                })
+                This.iNow=this.index;
+                console.log(This.iNow);
+            };
+        }
+    },
+    //左滚动
+    sliderLeft:function(){
+        if(this.iNow==5){
+            this.iNow=-1;
+        }
+        for(var i=0;i<6;i++){
+            this.aLi2[i].className='';
+        }
+        this.aLi2[this.iNow+1].className='active';
+
+        this.oAlt.innerHTML=this.aLi[this.iNow+1].children[0].alt;
+        startMove(this.oUl,{
+            left:-(++this.iNow)*this.iWidth
+        })
+    },
+    //右滚动
+    sliderRight:function(){
+        if(this.iNow<=0){
+            this.iNow=this.len;
+        }
+        for(var i=0;i<6;i++){
+            this.aLi2[i].className='';
+        }
+        this.aLi2[this.iNow-1].className='active';
+
+        this.oAlt.innerHTML=this.aLi[this.iNow-1].children[0].alt;
+        startMove(this.oUl,{
+            left:-(--this.iNow)*this.iWidth
+        })
+    },
+    //两边按钮绑定事件
+    scrollAll: function () {
+        var This = this;
+        EventUtil.addHandler(this.oDiv1, "click", function (event) {
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+            switch (target.className) {
+                case "left":
+                    function leftClick(){
+                        This.sliderRight();
+                        console.log(This.iNow);
+                    }
+                    leftClick();
+                    break;
+                case "right":
+                    function rightClick(){
+                        This.sliderLeft();
+                        console.log(This.iNow);
+                    }
+                    rightClick();
+                    break;
+            };
+        })
+    },
+    //左滚动定时；绑定mouseover和mouseout事件
+    startTimerLeft:function(){
+        var This=this;
+        console.log(This);
+        This.timer=setInterval(function(){
+            This.sliderLeft();
+        },2000);
+        this.oDiv1.onmouseout=function() {
+            This.timer = setInterval(function(){
+                This.sliderLeft();
+            }, 2000);
+        }
+        this.oDiv1.onmouseover=function() {
+            clearInterval(This.timer);
+        }
+    },
+    //右滚动定时；绑定mouseover和mouseout事件
+    startTimerRight:function(){
+        var This=this;
+
+        This.timer=setInterval(function(){
+            This.sliderRight();
+        },2000);
+        this.oDiv1.onmouseout=function() {
+            This.timer = setInterval(function(){
+                This.sliderRight();
+            }, 2000);
+        }
+        this.oDiv1.onmouseover=function() {
+            clearInterval(This.timer);
+        }
+    }
+    window.onload=function(){
+        var lunbo=new Slider("ul1","ul2","div1");
+        lunbo.init();
+        lunbo.scrollAll();
+        lunbo.startTimerLeft();
+
+        var lunbo2=new Slider("ul3","ul4","div2");
+        lunbo2.init();
+        lunbo2.scrollAll();
+        lunbo2.startTimerRight();
+    }
+            </pre>
+            <p>为了让这个代码光亮插件不报错，把JS代码中的this.len改为了数字，这个有点蛋疼，不知道为什么。另外startMove()函数封装在这个<a href="../js/move.js">库</a>里</p>
+        </div>
+    </div>
+    <div class="main_right">
+        <embed src="http://www.liuyuyao.com/flash2261.swf" quality="high"
+               pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"
+               width="300" height="87"/>
+            <div class="Calendar">
+                <div id="idCalendarPre">&lt;&lt;</div>
+                <div id="idCalendarNext">&gt;&gt;</div>
+                <span id="idCalendarYear"></span>年 <span id="idCalendarMonth"></span>月
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <td>日</td>
+                        <td>一</td>
+                        <td>二</td>
+                        <td>三</td>
+                        <td>四</td>
+                        <td>五</td>
+                        <td>六</td>
+                    </tr>
+                    </thead>
+                    <tbody id="idCalendar">
+                    </tbody>
+                </table>
+            </div>
+            <input id="idCalendarPreYear" type="button" value="上一年" />
+            <input id="idCalendarNow" type="button" value="当前月" />
+            <input id="idCalendarNextYear" type="button" value="下一年" />
+            <div class="tab" id="tab">
+                <h3 class="active">最新文章</h3>
+                <h3>站长推荐</h3>
+                <hr style="height:1px;border:none;border-bottom:1px solid #EAEAEA;"/>
+                <div style="display: block" class="tab_con">
+                    <ul>
+                        <li><a href="">幽灵按钮的实现</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                    </ul>
+                </div>
+                <div class="tab_con">
+                    <ul>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="footer">
+    <p>Copyright wcxtn.cn WebSite. All Rights Reserved.|鄂ICP备1500</p>
+</div>
+<a style="display: none" href="javascript:;" class="btn_top" id="btn_top"></a>
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/calendar.js"></script>
+<script type="text/javascript">
+    var tab=new changeTab();
+    tab.init("tab","h3","tab_con");
+
+    SyntaxHighlighter.all();
+
+        //日历初始化
+        var getId = function (id) {
+            return "string" == typeof id ? document.getElementById(id) : id;
+        };
+        var cale = new Calendar("idCalendar", {
+            SelectDay: new Date().setDate(10),
+            onSelectDay: function(o){ o.className = "onSelect"; },
+            onToday: function(o){ o.className = "onToday"; },
+            onFinish: function(){
+                getId("idCalendarYear").innerHTML = this.Year; getId("idCalendarMonth").innerHTML = this.Month;
+                var flag = [10,15,20];
+                for(var i = 0, len = flag.length; i < len; i++){
+                    this.Days[flag[i]].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:"+this.Year+"/"+this.Month+"/"+flag[i]+"');return false;\">" + flag[i] + "</a>";
+                }
+            }
+        });
+        getId("idCalendarPre").onclick = function(){ cale.PreMonth(); }
+        getId("idCalendarNext").onclick = function(){ cale.NextMonth(); }
+
+        getId("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
+        getId("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
+
+        getId("idCalendarNow").onclick = function(){ cale.NowMonth(); }
+
+</script>
+</body>
+</html>

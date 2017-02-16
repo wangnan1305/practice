@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <style>
+        *{margin:0;padding:0;border:0}
+        .n{margin:10px 0 0 20px}
+        #q {width: 300px; height: 28px; padding: 1px; border:1px solid #f90; font-size: 16px;}
+        #btn{width:100px;height: 30px;letter-spacing: 1px;color:#ffffff;background: #3385ff;font-size: 14px;border-bottom: 1px solid #3385ff;border-top: 1px solid #3385ff}
+        #ul1 {border:1px solid #f90; width: 302px; margin: 0 0 0 20px;padding: 0; display: none;}
+        li{list-style: none}
+        li a { line-height: 30px; padding: 5px; text-decoration: none; color: black; display: block;}
+        li a:hover{ background: #f90; color: white; }
+    </style>
+
+    <script>
+        function $(id){
+            return document.getElementById(id);
+        }
+
+        function miaov(data) {
+            var oQ = $('q');
+            var oUl = $('ul1');
+            var oBtn=$('btn');
+            var html = '';
+            if (data.s.length) {
+                oUl.style.display = 'block';
+                for (var i=0; i<data.s.length; i++) {
+                    html += '<li><a target="_blank" href="https://www.baidu.com/s?ie=utf-8&wd='+data.s[i]+'">'+ data.s[i] +'</a></li>';
+                }
+                oUl.innerHTML = html;
+            } else {
+                oUl.style.display = 'none';
+            }
+            document.body.onkeydown=function(e){
+                if(e.keyCode==13){
+                    oBtn.click();
+                }
+            }
+
+            oBtn.onclick=function(){
+                if(data.s.length) {
+                    window.location.href = 'https://www.baidu.com/s?ie=utf-8&wd=' + oQ.value + '';
+                }
+                else{
+                    window.location.href = '';
+                }
+            }
+
+        }
+        window.onload = function() {
+            var oQ = $('q');
+            var oUl = $('ul1');
+            oQ.onkeyup = function() {
+                if ( this.value != '' ) {
+                    var oScript = document.createElement('script');
+                    oScript.src ='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.value+'&json=1&cb=miaov';
+                    document.body.appendChild(oScript);
+                } else {
+                    oUl.style.display = 'none';
+                }
+
+            }
+            document.body.onclick=function(){
+                var oUl = $('ul1');
+                oUl.style.display='none';
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+<div class="n">
+    <input type="text" id="q"/>
+    <input type="button" id="btn" value="百度一下"/>
+</div>
+<ul id="ul1"></ul>
+
+</body>
+</html>

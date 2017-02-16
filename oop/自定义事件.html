@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<script>
+    window.onload=function(){
+        var oDiv=document.getElementById("div1");
+        var oSpan=document.getElementById("span1");
+        EventUtil.addHandler(oDiv,"click",function(){
+            console.log(1);
+        });
+        EventUtil.addHandler(oDiv,"click",function(){
+            console.log(2);
+        });
+        EventUtil.addHandler(oSpan,"show",function(){
+            console.log(3);
+        });
+        fireExent(oSpan,"show");
+        EventUtil.addHandler(oSpan,"show",function(){
+            console.log(4);
+        });
+    }
+    function fireExent(){
+
+    }
+</script>
+<body>
+<div style="font-size: 30px;"id="div1">div</div>
+<span style="font-size: 30px;" id="spqn1">span</span>
+</body>
+<script src="js/index.js"></script>
+</html>

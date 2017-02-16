@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    window.onload=function(){
+        /*var arr1=[1,2,3];
+        Array.prototype.push=function(){
+            for(var i=0;i<arguments.length;i++){
+                this[this.length]=arguments[i];
+            }
+            return this.length;
+        }
+        var arr2=arr1.push(4,5,6);  //arr2等于返回值数组的长度，是数字
+        console.log(arr1)*/
+       /* var str=new String('hello');
+        String.prototype.lastValue=function(){
+            return this.charAt(this.length-1);
+        }
+        str.lastValue();
+        console.log(str.lastValue());
+
+        str.name='red';
+        console.log(str.name);*/
+
+        /*function A(){
+            this.num=20;
+        }
+        A.prototype.num=10;
+        Object.prototype.num=30;
+        var a1=new A();
+        console.log(a1.num);*/
+
+        /*var str=new String("hello");
+        console.log(str.constructor);
+        var arr=[];
+        console.log(arr.constructor)*/
+
+        /*function A(){
+        }
+        var a1=new A();
+        console.log(a1.hasOwnProperty==Object.prototype.hasOwnProperty)*/
+        /*var A={
+            name:"ad",
+            age:16
+        }
+        for(var attr in A){
+            console.log(attr)
+        }
+        var arr=[];
+        console.log(arr.constructor)
+
+        //toString 方法   系统对象都是自带的，自定义的方法在Object之下
+//作用：：：把对象转换成字符串,转换进制
+/*        function A(){};
+        var a=new A();
+        console.log(a.toString==Object.prototype.toString);  //true
+
+        var a1=[];
+        console.log(a1.toString==Object.prototype.toString);  //false
+
+        var json=['name','age']
+        var obj=json.toString();
+        console.log(json)
+        console.log(obj)
+        for (var i=0;i<obj.length;i++){
+            console.log(obj[i]);
+        }
+        var num=255;
+        console.log(num.toString(16))  //接受一个进制作为参数
+
+        //利用toSting做类型判断
+
+        var arr=[];
+        //var arr={};
+        //var arr=null;
+        //var arr=new Date;
+        console.log(Object.prototype.toString.call(arr)=='[object Array]');*/
+       /* var arr=[];
+        console.log(arr.constructor==Array)
+        console.log(arr instanceof Array)*/
+    }
+</script>
+<body>
+
+</body>
+</html>

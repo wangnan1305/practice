@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Backbone</title>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+
+</head>
+
+<body>
+<script type="text/template" id="template">
+		<h3 class="section-h3">男生爱看<a class="all nav" href="#books/men/男生爱看/3/0/10">更多<span class="bg"></span></a>
+		</h3>
+		<ol>
+			<% for(var i=0;i<4;i++){ %>
+			<% if(i==0){ %>
+			<li class="fig-word">
+				<a data-title="<%=data[i]['title']%>" data-bookid="<%=data[i]['bookid']%>" data-completed="<%=data[i]['completed']%>" class="read" href="<%=data[i]['url']%>"><img src="<%=data[i]['imgUrl']%>" alt="小说封面" width="75" height="100"><h4><%=data[i]['title']%></h4><p><span class="portrait"></span><span class="author"><%=data[i]['author']%></span><span class="type"><%=data[i]['completed']%></span> <span class="readers"><em><%=data[i]['readCountFormated']%></em>人阅读</span></p><p class="description"><%=data[i]['description']%></p></a>
+			</li>
+			<% }else{ %>
+			<li class="word">
+				<a data-title="<%=data[i]['title']%>" data-bookid="<%=data[i]['bookid']%>" data-completed="<%=data[i]['completed']%>" class="read" href="<%=data[i]['url']%>"><span class="type"></span><span class="book"><%=data[i]['title']%></span><span class="status">[<%=data[i]['completed']%>]</span><span class="readers"><em><%=data[i]['readCountFormated']%></em>人阅读</span></a>
+			</li>
+			<% }} %>
+		</ol>
+</script>
+
+<script>
+
+
+
+
+$(function(){
+
+	var M = Backbone.Model.extend({
+		defaults : {
+			cateId: 0,
+			imgUrl: "",
+			url: "",
+			isFromWeb: false,
+			completed: "",
+			catename: "",
+			title: "",
+			bookid: 0,
+			author: "",
+			readCount: 0,
+			readCountFormated:0,
+			wordCount: 0,
+			score: 0,
+			isContinue: 0,
+			description: "",
+			shortRecommend: "",
+			bigCoverLogo: "",
+			isfromweb: 0
+		}
+	});
+	
+	var V = Backbone.View.extend({
+		el:$('body'),
+		
+		template: _.template($('#template').html()),	
+		initialize : function(){
+			
+			//this.listenTo( this.model , 'change' , this.show );
+			this.render();
+		},
+		render:function(){
+			$.ajax({
+				url:'http://book.rdtuijian.com/index',
+				method:"get",
+				data:null,
+				dataType:"json",
+				context:this
+			}).done(function(result){
+
+				this.model.set("data",result["men"]);
+				console.log(this.model.get('data'))
+				this.show();
+
+			}).error(function(error){
+				alert(error)
+			});
+			return this;
+		},
+		show : function(){/*
+			var list = this.model.get('data')["men"];
+			this.model.set({
+				data:list
+			});*/
+			this.$el.append( this.template(this.model.toJSON()) );
+			console.log(this.model.get("data"))
+		}
+	});
+	
+	
+	var m = new M;
+	var v = new V({model:m});
+
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<pre>
+
+</pre>
+
+<script>
+
+
+</script>
+<script>
+    var arr1 = ['a'];
+
+    var arr2 = ['b', 'c'];
+/*function ggg(arr2){
+    console.log(arguments.length)
+}
+    ggg(arr1)*/
+    function sli(arr){
+        console.log(arr.slice())
+    }
+    //sli(arr2,arr1)
+    var arr3 = ['c', 'd', 'e', undefined, null];
+
+    var concat = (function(){
+
+        var concat_ = function(arr1, arr2) {
+
+            for (var i=arr2.length-1;i>=0;i--) {
+
+                arr1.indexOf(arr2[i]) === -1 ? arr1.push(arr2[i]) : 0;
+
+            }
+
+        };
+
+        return function(arr) {
+
+            var result = arr.slice();
+
+            for (var i=arguments.length-1;i>=1;i--) {
+
+                concat_(result, arguments[i]);
+
+            }
+
+            return result;
+
+        };
+
+    }());
+    console.log(concat(arr1,arr2,arr3))
+</script>
+</body>
+</html>

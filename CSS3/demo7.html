@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    *{padding:0}
+    .all{width:300px;margin:200px 500px 0 500px;text-align: center;perspective:2000px;}
+    .common{
+        width: 300px;
+        height: 300px;
+        font-size: 100px;
+    }
+    .con{
+        background: #ccc;
+    }
+    .con1{
+        width: 300px;
+        height: 300px;
+        position:absolute;
+        opacity: 0.8;
+        background: #66dd66;
+        transform:rotateX(45deg);
+        transform-style:preserve-3d;
+    }
+    .con1 .con2{
+        width: 300px;
+        height: 300px;
+        background: #66dd66;
+        opacity:0.8;
+        transform:rotateY(45deg);
+    }
+
+</style>
+<body>
+<div class="all">
+    <div class="con1 common">
+        <div class="con2"></div>
+    </div>
+    <div class="con common"></div>
+</div>
+</body>
+</html>

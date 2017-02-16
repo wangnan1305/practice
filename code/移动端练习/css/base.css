@@ -1,0 +1,58 @@
+/* reset css */
+*,
+::before,
+::after{
+	margin: 0;
+	padding: 0;
+	-webkit-tap-highlight-color:transparent;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body{
+	font-size: 16px;
+	font-family: PingFangSC-Regular,Helvetica,"Droid Sans",Arial,sans-serif;
+	color:#333;
+}
+
+a{
+	color:#333;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+ul,li{
+	list-style: none;
+}
+
+input{
+	border:none;
+	outline: none;
+	/*清楚移动端默认的样式*/
+	-webkit-appearance:none;
+}
+/* common css */
+.f-left{
+	float: left;
+}
+
+.f-right{
+	float: right;
+}
+
+.clearfix::before,
+.clearfix::after{
+	content: "";
+	height: 0;
+	line-height: 0;
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+
+[class=^="icon_"]{
+	background: url('') no-repeat;
+	background-size: 一半的尺寸
+}
+/*^ 开头 $ 结尾  * 包含*/

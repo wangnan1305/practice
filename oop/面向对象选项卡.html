@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 div,#div2 div{
+            border: 1px solid #37A703;
+            width: 200px;
+            height: 200px;
+            display: none;
+        }
+
+        .active {
+            background: red;
+            color: #ffffff;
+        }
+    </style>
+    <script>
+        /*var aInput = null;
+        var aDiv = null;
+        window.onload = function () {
+
+            aInput = document.getElementsByTagName("input");
+            aDiv = document.getElementsByTagName("div");
+            init();
+        }
+        function init() {
+            for (var i = 0; i < aInput.length; i++) {
+                aInput[i].index = i;
+                aInput[i].onclick = tab;
+            }
+        }
+        function tab() {
+            for (var i = 0; i < aInput.length; i++) {
+                aInput[i].className = '';
+                aDiv[i].style.display = 'none';
+            }
+            this.className = 'active';
+            aDiv[this.index].style.display = 'block';
+        }*/
+//////////////////////////////////////////////////////////////////////改成面向对象
+        window.onload = function () {
+
+            var tab=new Tab("div1");
+            tab.init();
+            tab.autoPlay();
+            var tab2=new Tab("div2");
+            tab2.init();
+            tab2.autoPlay();
+        }
+        function Tab(id){
+            this.oParent=document.getElementById(id)
+            this.aInput=document.getElementById(id).getElementsByTagName("input");
+            this.aDiv=this.oParent.getElementsByTagName("div");
+            this.iNow=0;
+        }
+        Tab.prototype={
+            init:function(){
+                var This=this;
+                for (var i = 0; i < this.aInput.length; i++) {
+                    this.aInput[i].index = i;
+                    this.aInput[i].onclick = function(){
+                        This.change(this);
+                    };
+                }
+            },
+            change:function(obj){
+                for (var i = 0; i < this.aInput.length; i++) {
+                    this.aInput[i].className = '';
+                    this.aDiv[i].style.display = 'none';
+                }
+                obj.className = 'active';
+                this.aDiv[obj.index].style.display = 'block';
+            },
+            autoPlay:function(){
+                var This=this;
+                //alert(typeof This);
+                //console.log(This);  //Tab
+                setInterval(function(){
+                    //var This2=this;
+                    //alert(typeof This2);
+                    //console.log(This2);  //window
+                    if(This.iNow==This.aInput.length-1){
+                        This.iNow=0;
+                    }else{
+                        This.iNow++;
+                    }
+                    for (var i = 0; i < This.aInput.length; i++) {
+                        This.aInput[i].className = '';
+                        This.aDiv[i].style.display = 'none';
+                    }
+                    This.aInput[This.iNow].className = 'active';
+                    This.aDiv[This.iNow].style.display = 'block';
+
+                },2000)
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <input value="1" type="button" class="active"/>
+    <input value="2" type="button"/>
+    <input value="3" type="button"/>
+
+    <div style="display: block">111111</div>
+    <div>222222</div>
+    <div>333333</div>
+</div>
+
+<div id="div2">
+    <input value="1" type="button" class="active"/>
+    <input value="2" type="button"/>
+    <input value="3" type="button"/>
+
+    <div style="display: block">111111</div>
+    <div>222222</div>
+    <div>333333</div>
+</div>
+</body>
+</html>

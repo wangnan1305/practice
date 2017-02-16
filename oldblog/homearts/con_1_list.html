@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.10.2.js"></script>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background-color: #333;
+        }
+        .box{
+            width:1000px;
+            height:280px;
+            margin:50px auto;
+
+        }
+        .box_s{
+            width:205px;
+            height:280px;
+            margin:0 20px;
+            float:left;
+            position:relative;
+        }
+        /*span属性需要制定宽度高度，以及inline-block*/
+        /*
+      Transition
+
+      •定义和用法
+      •transition 属性是一个简写属性，用于设置四个过渡属性：
+      •transition-property
+      •transition-duration
+      •transition-timing-function
+      •transition-delay
+      •语法
+      •transition: property duration timing-function delay;
+      •值描述
+      •transition-property规定设置过渡效果的 CSS 属性的名称。
+      •transition-duration规定完成过渡效果需要多少秒或毫秒。
+      •transition-timing-function规定速度效果的速度曲线。
+      •transition-delay定义过渡效果何时开始(延时执行时间)。
+
+      •浏览器支持
+      •Internet Explorer 10、Firefox、Opera 和 Chrome 支持 transition 属性。
+      •Safari 支持替代的 -webkit-transition 属性。
+      •注释：Internet Explorer 9 以及更早版本的浏览器不支持 transition 属性。*/
+      /*span*/
+        .box_s .icon{
+            width:100%;
+            height:190px;
+            display: inline-block;
+            transition:all 0.2s linear;
+            -moz-transition:all 0.2s linear;
+            -webkit-transition:all 0.2s linear;
+            -o-transition:all 0.2s linear;
+            -ms-transition:all 0.2s linear;
+        }
+        .box1 .icon{
+           background:  url("../images/mission.png") no-repeat center center;
+        }
+        .box2 .icon{
+            background: url("../images/play.png") no-repeat center center;
+        }
+        .box3 .icon{
+            background: url("../images/touch.png") no-repeat center center;
+        }
+        /*Transform
+
+        •定义和用法
+        •transform 属性向元素应用 2D 或 3D 转换。该属性允许我们对元素进行旋转、缩放、移动或倾斜
+        •rotate(angle )定义 2D 旋转，在参数中规定角度
+        •rotateX(angle)定义沿着 X 轴的 3D 旋转。
+        •rotateY(angle)定义沿着 Y 轴的 3D 旋转。
+        •rotateZ(angle)定义沿着 Z 轴的 3D 旋转。
+        •scale(x,y)定义 2D 缩放转换。
+        •scale3d(x,y,z)定义 3D 缩放转换。
+        •scaleX(x)通过设置 X 轴的值来定义缩放转换。
+        •scaleY(y)通过设置 Y 轴的值来定义缩放转换。
+        •scaleZ(z)通过设置 Z 轴的值来定义 3D 缩放转换。
+
+        •浏览器支持
+        •Internet Explorer 10、Firefox、Opera 支持 transform 属性。
+        •Internet Explorer 9 支持替代的 -ms-transform 属性（仅适用于 2D 转换）。
+        •Safari 和 Chrome 支持替代的 -webkit-transform 属性（3D 和 2D 转换）。
+        •Opera 只支持 2D 转换。
+
+        */
+        /*.link:hover .icon*/
+        .box_s .icon:hover{
+            transform:rotate(360deg) scale(1.2);
+            -ms-transform:rotate(360deg) scale(1.2);
+            -webkit-transform:rotate(360deg) scale(1.2);
+            -o-transform:rotate(360deg) scale(1.2);
+            -moz-transform:rotate(360deg) scale(1.2);
+        }
+        /*
+        •box-sizing
+        •定义和用法
+        •box-sizing 属性允许以特定的方式定义匹配某个区域的特定元素。
+        •语法
+        •box-sizing: content-box|border-box|inherit
+        •值描述
+        •content-box
+        •宽度和高度分别应用到元素的内容框。
+        •在宽度和高度之外绘制元素的内边距和边框。
+        •border-box
+        •为元素设定的宽度和高度决定了元素的边框盒。
+        •就是说，为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制。
+        •通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度。
+        •inherit  规定应从父元素继承 box-sizing 属性的值。
+
+        •浏览器支持
+        •Internet Explorer、Opera 以及 Chrome 支持 box-sizing 属性。
+        •Firefox 支持替代的 -moz-box-sizing 属性。*/
+        .box_s a{
+            display: block;
+            text-decoration: none;
+            color:#28B167;
+            border:2px solid rgba(255,255,255,0.7);
+            width:175px;
+            height:50px;
+            line-height: 50px;
+            font-weight: bold;
+            font-family: "微软雅黑";
+            padding-left:20px;
+            margin:0 auto;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            background: url("../images/allow.png") no-repeat 120px 13px;
+            position:relative;
+            transition:all 0.4s easer;
+            -moz-transition:all 0.4s easer;
+            -webkit-transition:all 0.4s ease;
+            -o-transition:all 0.4s ease;
+            -ms-transition:all 0.4s ease;
+        }
+        .box_s a:hover{
+            border:2px solid rgba(255,255,255,1.0);
+            background-position: 130px ;
+        }
+        /*高度不变，宽度变化，位置变化*/
+        .button .line{
+            display: inline-block;
+            position:absolute;
+        }
+        .button:hover .line{
+            background-color:#fff;
+            transition:all 0.4s ease;
+            -moz-transition:all 0.4s ease;
+            -webkit-transition:all 0.4s ease;
+            -o-transition:all 0.4s ease;
+            -ms-transition:all 0.4s ease;
+        }
+        .button:hover .line-top{
+            width:100%;
+            left:-2px;
+        }
+        .button .line-top{
+            width:0;
+            height:2px;
+            left:-200%;
+            top:-2px;
+        }
+        .button:hover .line-bottom{
+            width:100%;
+            right:-2px;
+        }
+        .button .line-bottom{
+            width:0;
+            height:2px;
+            right:-200%;
+            top:46px;
+        }
+        .button:hover .line-left{
+            height:100%;
+            top:-2px;
+        }
+        .button .line-left{
+            width:2px;
+            height:0;
+            left:-2px;
+            top:210%;
+        }
+        .button:hover .line-right{
+            height:100%;
+            top:2px;
+        }
+        .button .line-right{
+            width:2px;
+            height:0px;
+            right:-2px;
+            top:-110%;
+        }
+
+
+        .box .tip{
+            position:absolute;
+            height: 35px;
+            line-height: 35px;
+            background-color: #28B167;
+            color:#fff;
+            padding:0 14px;
+            top:160px;
+            margin:0 auto;
+            font-weight: normal;
+            font-size: 16px;
+            border-radius: 3px;
+            opacity: 0;
+        }
+
+        .tip em{
+            font-style: normal;
+        }
+        .tip span{
+            position: absolute;
+            width:0;
+            height: 0;
+            border:7px solid transparent;
+            overflow: hidden;
+            left:50%;
+            margin-left:-6px;
+            border-top-color:#28B167;
+            bottom:-14px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="box_s box1">
+        <span class="icon"></span>
+        <a href="#" class="button" data-title="Lets do something together">
+            <span class="line line-top"></span>
+            <span class="line line-right"></span>
+            <span class="line line-bottom"></span>
+            <span class="line line-left"></span>
+            MISSION
+        </a>
+    </div>
+    <div class="box_s box2">
+        <span class="icon"></span>
+        <a href="#" class="button" data-title="Lets do something together">
+            <span class="line line-top"></span>
+            <span class="line line-right"></span>
+            <span class="line line-bottom"></span>
+            <span class="line line-left"></span>
+            MISSION
+        </a>
+    </div>
+    <div class="box_s box3">
+        <span class="icon"></span>
+        <a href="#" class="button" data-title="Lets do something together">
+            <span class="line line-top"></span>
+            <span class="line line-right"></span>
+            <span class="line line-bottom"></span>
+            <span class="line line-left"></span>
+            MISSION
+        </a>
+    </div>
+    <div class="tip">
+        <em></em>
+        <span></span>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        $(".box_s .button").hover(function(){
+            var title=$(this).attr("data-title");
+            $(".tip em").text(title);
+            var pos=$(this).offset().left;
+
+            var dis=($(".box .tip").outerWidth()-$(this).outerWidth())/2;
+
+            var f=pos-dis;
+
+            $(".tip").css({"left":f+"px"}).animate({"top":195+"px","opacity":1},300);
+        },function(){
+            $(".tip").animate({"top":160+"px","opacity":0},300);
+        })
+    })
+</script>

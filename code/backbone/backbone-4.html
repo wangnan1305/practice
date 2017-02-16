@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>the5fire-backbone-model</title>
+</head>
+<body>
+<a href="#123465">testActions</a>
+<a href="#/posts/120">Post 120</a>
+<a href="#/download/user/images/hey.gif">download path</a>
+<a href="#/dashboard/graph">loadView</a>
+<a href="#/manual">manual</a>
+</body>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+<script type="text/javascript">
+	var workspace = Backbone.Router.extend({
+		routes: {
+			"posts/:id": "getPost",
+			"download/*path": "download",
+			":route/:action": "loadView",
+			"manual": "manual",
+			"*actions": "defaultRoute"
+		},
+		defaultRoute: function(actions) {
+			alert(actions);
+		},
+		getPost: function(id) {
+			alert(id);
+		},
+		download: function(path) {
+			alert(path)
+		},
+		loadView: function(route, action) {
+			alert(route + "_" + action);
+		},
+		manual: function () {
+			alert("call_manual");
+			app_router.navigate("/post/"+404,{trigger:true,replace:true})
+		}
+	});
+
+	var app_router = new workspace;
+
+	Backbone.history.start();
+</script>
+</html>

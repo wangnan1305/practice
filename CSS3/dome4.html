@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>网易云课堂</title>
+    <!--<style>
+        .menu{
+            color:#000;
+            font:12px "宋体";
+        }
+        .menu .btn{
+            width:50px;
+            height:28px;
+            background-color: #eee;
+            border:1px solid #ddd;
+            margin:0 0 1px 0;
+        }
+        .menu .submenu{
+            width:60px;
+            height:30px;
+            line-height: 30px;
+            background-color: #fff;
+            border:1px solid #ddd;
+            padding:0 10px;
+            margin-bottom: -1px;
+        }
+        .menu .submenu:hover{
+            background-color: #ddd;
+        }
+    </style>-->
+    <style>
+
+        h2.title {
+            font: bold 14px/16px "微软雅黑";
+            margin-bottom: 15px;
+        }
+        div.name,div.pwd{margin-bottom: 15px;}
+        div label{
+            width:60px;
+            font:12px "宋体";
+            vertical-align: middle;
+        }
+        div input{
+            width:198px;
+            height:18px;
+            border:1px solid #ddd;
+        }
+        input.submit{
+            width:40px;
+            height:20px;
+            background: #54AEDE;
+            color:#fff;
+            font:12px/20px "宋体";
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="menu">
+    <input class="btn" type="button" value="按钮"/>
+    <div class="submenu">下拉菜单项</div>
+    <div class="submenu">下拉菜单项</div>
+    <div class="submenu">下拉菜单项</div>
+    <div class="submenu">下拉菜单项</div>
+</div>
+
+
+<form action="/login">
+    <h2 class="title">登录网易通行证</h2>
+    <div class="name">
+        <label for="name">用户名：</label>
+        <input type="text"/>
+    </div>
+    <div class="pwd">
+        <label for="pwd">密码：　</label>
+        <input type="password"/>
+    </div>
+    <input class="submit" type="submit" value="登陆"/>
+</form>
+
+
+
+
+
+
+
+<a href="mailto:453261940@qq.com?subject=建议">发送邮件</a>
+<ol type="A" start="2">
+    <li>实例一</li>
+    <li>实例二</li>
+    <li>实例三</li>
+</ol>
+<dl>
+    <dt>作者</dt>
+    <dd>作者1</dd>
+    <dd>作者2</dd>
+    <dt>出版社</dt>
+    <dd>清华大学</dd>
+</dl>
+<pre>
+    <code>
+        function say()
+        {
+            alert("HELLO　WORLD")
+        }
+    </code>
+</pre>
+<h2>图书畅销榜</h2>
+<ol>
+    <li>
+        <span>1</span>
+        <a href="">当我足够好，才会遇见你</a>
+    </li>
+    <li>
+        <span>2</span>
+        <a href="">皮囊</a>
+    </li>
+    <li>
+        <span>3</span>
+        <a href="">李光耀论中国与世界</a>
+    </li>
+    <li>
+        <span>4</span>
+        <a href="">乖，摸摸头</a>
+    </li>
+    <li>
+        <span>5</span>
+        <a href="">男女内参</a>
+    </li>
+</ol>
+
+
+<table>
+    <caption>运费详情</caption>
+    <thead>
+    <tr>
+        <th>区域</th>
+        <th>寄达地</th>
+        <th>首重（元/1000g）</th>
+        <th>续重（元/1000g）</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th rowspan="2">一区</th>
+        <td>浙江，上海，苏州</td>
+        <td>6</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>江西，安徽</td>
+        <td>7</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <th>二区</th>
+        <td>吉林，黑龙江，云南</td>
+        <td>10</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <th>三区</th>
+        <td>新疆，西藏</td>
+        <td>15</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="login.php" method="post">
+    <div>
+        <label for="show">头像</label>
+        <input type="file" value="选择文件"/>
+    </div>
+    <div>
+        <label for="name">昵称</label>
+        <input type="text"/>
+    </div>
+    <div>
+        <label for="edu">学历</label>
+        <select name="edu" id="edu">
+            <option value="0">大专</option>
+            <option value="1">本科</option>
+        </select>
+    </div>
+    <div>
+        <label for="sex">性别</label>
+        <input class="sex" type="radio" name="sex" id="sex_0" value="男"><label for="sex_0" >男</label>
+        <input class="sex" type="radio" name="sex" id="sex_1" value="女"><label for="sex_1" >女</label>
+    </div>
+    <div>
+        <label for="habit">爱好</label>
+        <input class="habit" type="checkbox" name="movie" id="cb_0" value="电影"><label for="cb_0" selected = "selected" >电影</label>
+        <input class="habit" type="checkbox" name="photo" id="cb_1" value="摄影"><label for="cb_1">摄影</label>
+        <input class="habit" type="checkbox" name="music" id="cb_2" value="音乐"><label for="cb_2">电影</label>
+        <input class="habit" type="checkbox" name="read" id="cb_3" value="阅读"><label for="cb_3" selected = "selected" >摄影</label>
+    </div>
+    <div>
+        <label for="sign">签名</label>
+        <textarea name="sign" id="sign" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+        <button value="保存" id="save" name="save">保存</button>
+    </div>
+</form>
+
+<form action="/login">
+    <h2 class="title">登录网易通行证</h2>
+    <div>
+        <label for="name">用户名：</label>
+        <input type="text"/>
+    </div>
+    <div>
+        <label for="pwd">密码：　</label>
+        <input type="password"/>
+    </div>
+    <input type="submit" value="登陆"/>
+</form>
+
+
+<table>
+    <caption>照片冲印价格详情</caption>
+    <thead>
+    <tr>
+        <th rowspan="2">相片尺寸</th>
+        <th colspan="2">相纸（元/张）</th>
+    </tr>
+    <tr>
+        <th>富士</th>
+        <th>柯达</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>6寸</th>
+        <td>0.45</td>
+        <td>0.6</td>
+    </tr>
+    <tr>
+        <th>10寸</th>
+        <td>3.89</td>
+        <td>5</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="3">运费8元/单，满99元免运费</td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+<script>
+    /*使用范例如下：
+     var date = new Date(2001, 8, 11, 8, 26, 8);
+     formatDate(date, "yyyy");		返回值： "2001"
+     formatDate(date, "yyyy-MM-dd");	    返回值： "2001-09-11"
+     formatDate(date, "yyyy-MM-dd HH");		返回值： "2001-09-11 08"
+     formatDate(date, "yyyy-MM-dd HH:mm:ss");    返回值： "2001-09-11 08:26:08"
+     请写出函数formatDate的实现代码。*/
+    function formatDate(data,pattern){
+        var len=pattern.length;
+        switch(len)
+        {
+            case 4:
+                return date.getFullYear();
+                break;
+            case 10:
+                return date.getFullYear()+'-'
+                    +padding(data.getMonth()+1)+'-'
+                    +padding(date.getDate());
+                break;
+            case 13:
+                return date.getFullYear()+'-'
+                    +padding(data.getMonth()+1)+'-'
+                    +padding(date.getDate())+' '
+                    +padding(date.getHours());
+                break;
+            case 19:
+                return date.getFullYear()+'-'
+                    +padding(data.getMonth()+1)+'-'
+                    +padding(date.getDate())+' '
+                    +padding(date.getHours())+':'
+                    +padding(date.getMinutes())+':'
+                    +padding(date.getSeconds());
+                break;
+            default :
+                alert("请输入正确的格式");
+
+        }
+
+        function padding(num){
+            return num < 10 ? '0' + num : '' + num;
+        }
+    }
+</script>
+<script>
+
+
+
+    Function.prototype.bind = function (obj) {
+        var _self = this, args = arguments;
+        return function () {
+            _self.apply(obj, Array.prototype.slice.call(args, 1));
+        }
+    }
+
+
+    (function A(){})();
+    function A(){};
+    (function B(){
+        B=1;
+        alert(B)
+    })();
+    console.log(A)
+</script>
+<script>
+    var foo = "abc";
+    with ({
+        foo: "bar"
+    }) {
+        function f() {
+            //console.log(this)
+        };
+        (function () {
+            //alert(foo);
+            //console.log(this)
+        })();
+        f();
+    }
+</script>
+<script>
+    function setName(obj){
+        obj.name = "obama";
+        obj = {name:"clinton"};
+    }
+    var president = {name:"bush"};
+    setName(president);
+
+
+    function random(){
+        return Math.floor(Math.random()*999);
+    }
+    var num=random();
+    //console.log(num);
+
+    //第一部再把等号右边的字符加上双引号，没有等号自动忽略
+    //第二步先把&替换为,
+    //第三部等号替换为：号
+
+    var query="name=jerry&age=1";
+
+    function parseQuery(query){
+        var arr=query.split('&');
+
+        for(var i=0;i<arr.length;i++){
+
+            arr[i]=arr[i].replace(/=([^&]+)+,?/g,':\"$1\"')
+
+        }
+
+        return arr.join(',')
+
+    }
+    //console.log(parseQuery(query))
+
+    function multiply(){
+        var count=1;
+        for(var i=0;i<arguments.length;i++){
+
+            count*=arguments[i];
+
+        }
+        return count;
+    }
+    //console.log(multiply(2,3))
+
+    function Person(name, age){
+        this.name=name;
+        this.age=age;
+
+    }
+    Person.prototype.introduce=function(){
+        var str='I am '+this.name+' , I am '+this.age+' years old';
+        return str;
+        console.log(str) ;
+    }
+    var jerry = new Person("Jerry", 2);
+
+    jerry.introduce()
+
+
+    function escapeHTML(str){
+        str=str.replace(/[<>"&]/g,function(m){
+            switch(m){
+                case '<':
+                    return '&lt;';
+                case '>':
+                    return '&gt;';
+                case '"':
+                    return '&quot;';
+                case '&':
+                    return '&amp;';
+            }
+        });
+        return str;
+        console.log(str)
+    }
+    escapeHTML('<div>Tom&Jerry</div> ');
+</script>
+</html>

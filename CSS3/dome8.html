@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+<body>
+<p id="pom"style="line-height: 200px;">网易一线资深工程师</p>
+<div id="ko">
+    欢迎
+    <a href="/profile">Jerry</a>
+    同学!
+</div>
+<div id="test">
+    <div class="sb">a</div>
+    <div class="sb">b</div>
+    <div class="sb">c</div>
+</div>
+<div id="p">
+    <ul id="dom">
+        <li>1</li>
+        <li>2</li>
+    </ul>
+    <input type="button" value="添加节点" id="add"/>
+</div>
+<select id="chapter"><option value="0">文档树</option></select>
+<script>
+    document.createElement()
+    var chapter=document.getElementById("chapter");
+    //chapter.options.add(new Option("节点",1));
+    //chapter.add(new Option("节点2",2));
+    chapter.appendChild(new Option("节点3",3));
+    //new Option();
+    //age.options.create()
+    //age.add();
+    document.createElement("option")
+    var go=document.querySelector("#user");
+
+    var dom=$('dom'),count=2;
+
+    var liveNodeList=dom.getElementsByTagName('li');
+    var notLiveNodeList=dom.querySelectorAll('li');
+
+    $('add').onclick=function(){
+        var li=document.createElement('li');
+        li.innerHTML=++count;
+        dom.appendChild(li);
+        console.log('liveNodeList:'+liveNodeList.length);
+        console.log('notliveNodeList:'+notLiveNodeList.length);
+    }
+
+    function $(id){
+        return document.getElementById(id);
+    }
+
+</script>
+<script>
+
+    var oId=document.getElementById("test");
+    getElementsByClassNa(oId,'sb')[0].onclick=function(){
+        alert('sad')
+    };
+
+    function getElementsByClassNa(ele,clazz){
+
+        if(ele.getElementsByClassName){
+
+            return ele.getElementsByClassName(clazz);
+
+        }else{
+            var list=ele.getElementsByTagName('*'),result=[];
+            for(var i=0;i<list.length;i++){
+                if((' '+list[i].className+' ').indexOf(' '+clazz+' ')!=-1){
+                    result.push(list[i]);
+                }
+            }
+            return result;
+        }
+    }
+</script>
+</body>
+</html>

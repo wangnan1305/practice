@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    window.onload = function () {
+        var oDiv = document.querySelectorAll("div")[0];
+
+        deleteClassName(oDiv,"user content")
+       /* var name = oDiv.className.split(/\s+/);
+        var pos = -1, i, len;
+        for (var i = 0; i < name.length; i++) {
+            if (name[i] == "user") {
+                pos = i;
+                break;
+            }
+        }
+        name.splice(pos,1);
+        oDiv.className=name.join(" ");
+        console.log(oDiv.className);*/
+        function deleteClassName(e,strClass) {
+            var str = strClass.split(/\s+/);
+            //取得类名字符串并拆分成数组
+            var aNames = e.className.split(/\s+/);
+            var pos = [], i, j, len, bool = false;
+            //判断是否存在要删的类名，存在的话找到要删的类名
+            for (var j = 0, len2 = str.length; j < len2; j++) {
+                for (var i = 0, l = aNames.length; i < l; i++) {
+                    if (aNames[i] == str[j]) {
+                        bool = true;
+                        pos.push(i);
+                        break;
+                    }
+                }
+            };
+            if (bool) {
+
+                for (var i = 0; i < pos.length; i++) {
+                    aNames.splice(pos[i], 1);
+                }
+                oDiv.className = aNames.join(" ");
+            }
+        }
+    }
+</script>
+<body>
+
+<h1>删除类名</h1>
+<div class="bd content user"></div>
+</body>
+</html>

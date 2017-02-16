@@ -1,0 +1,44 @@
+
+@media screen and (min-width: 1205px) {
+    /*顶部提示栏*/
+    .top-advertise{
+        width: 1200px;
+    }
+    /*展示图片响应式*/
+    .show{
+        width:1616px;
+        margin:0 auto;
+    }
+    /*大的栏目，两栏布局*/
+
+    /*宽度响应式*/
+    .column{
+        width:1216px;
+    }
+
+    .column .shop{
+        width:970px;
+    }
+}
+
+@media screen and (max-width: 1205px) {
+    /*顶部提示栏*/
+    .top-advertise{
+        width: 960px;
+    }
+    /*展示图片响应式*/
+    .show{
+        width:1364px;
+        overflow: hidden;
+    }
+    /*大的栏目，两栏布局*/
+
+    /*宽度响应式*/
+    .column{
+        width:980px;
+    }
+
+    .column .shop{
+        width:734px;
+    }
+}

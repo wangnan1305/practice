@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>旋转木马</title>
+    <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <link href="css/rotate.css" type="text/css" rel="stylesheet">
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/rotate.js"></script>
+</head>
+<body>
+<div class="J_Poster poster-main" data-setting='{
+                                 "width":1000,
+                                "height":270,
+                                "posterWidth":640,
+                                "posterHeight":270,
+                                "vertical":"middle",
+                                "scale":0.9,
+                                "speed":500,
+                                "autoPlay":true,
+                                "delay":1000
+                                                }'>
+    <div class="poster-btn poster-prev-btn"></div>
+    <ul class="poster-list">
+        <li class="poster-item"><a href="#"><img src="images/1.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/2.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/3.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/4.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/5.jpg" width="100%;"/></a></li>
+
+    </ul>
+    <div class="poster-btn poster-next-btn"></div>
+</div>
+<div class="J_Poster poster-main" data-setting='{
+                                 "width":1200,
+                                "height":270,
+                                "posterWidth":640,
+                                "posterHeight":270,
+                                "vertical":"down",
+                                "scale":0.8,
+                                "speed":500,
+                                "autoPlay":true,
+                                "delay":5000
+                                                }'>
+    <div class="poster-btn poster-prev-btn"></div>
+    <ul class="poster-list">
+        <li class="poster-item"><a href="#"><img src="images/1.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/2.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/3.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/4.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/5.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/4.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/5.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/4.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/5.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/4.jpg" width="100%;"/></a></li>
+        <li class="poster-item"><a href="#"><img src="images/5.jpg" width="100%;"/></a></li>
+
+    </ul>
+    <div class="poster-btn poster-next-btn"></div>
+</div>
+<script>
+    $(function(){
+        Carousel.init($(".J_Poster"));
+    })
+</script>
+</body>
+</html>

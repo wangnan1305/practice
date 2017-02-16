@@ -1,0 +1,147 @@
+*{
+    padding:0;
+    margin:0;
+    border:0;
+}
+body,button, input, select, textarea {
+    font: 12px/1.5 Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+
+/*导航栏*/
+#header{
+    width:1000px;
+    height:50px;
+    margin:20px auto;
+}
+#header a img{
+    float:left;
+}
+
+#list_left{
+    float:right;
+    width:610px;
+    height:50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: #48AE15;
+    border-radius: 46px;
+}
+#list_left ul{
+    margin-left:55px;
+    list-style: none;
+}
+#list_left ul li{
+    float:left;
+
+}
+#list_left ul li a{
+    text-decoration: none;
+    display: inline-block;
+    color:#ffffff;
+    font-size: 20px;
+    font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+    padding:0 20px;
+}
+#list_left ul li a:hover{
+    background-color:#ffffff;
+    color:#000;
+}
+#list_left_one {
+    color: #000 !important;
+    background-color: #F3FF41;
+}
+/*尾部备案*/
+.footer{
+    clear:both;
+    width:1340px;
+    height: 50px;
+    margin:0 auto;
+    text-align: center;
+}
+.footer p{
+    font-size: 8px;
+    padding-top:30px;
+}
+
+/*右边列表*/
+.main{
+    width:1000px;
+    margin:0 auto;
+}
+.main .main_right{
+    width:300px;
+    float:right;
+    margin-left:30px;
+}
+.main .main_right .tab{
+    margin-top: 20px;
+    margin-left: 25px;
+    width: 250px;
+}
+.main .main_right .tab hr{
+    width:250px;
+}
+.main .main_right .tab h3{
+    float:left;
+    font-weight: normal;
+    font-size: 14px;
+    color:#666;
+    width:75px;
+    padding:5px;
+    cursor:pointer;
+    text-align: center;
+    height:22px;
+    line-height:22px;
+}
+.main .main_right .tab .active{
+    color:#ffffff;
+    background-color: #F77825;
+}
+.main .main_right .tab .tab_con{
+    clear:both;
+    height:150px;
+    display:none;
+    font-size:14px;
+}
+.main .main_right .tab .tab_con ul{
+    background:url(../images/ph2.png) no-repeat 1px 27px;
+    padding:10px 0 0 0;
+}
+.main .main_right .tab .tab_con li{
+    list-style: none;
+    border-bottom: solid 1px #EAEAEA;
+    line-height: 30px;
+    height: 30px;
+    overflow: hidden;
+    font-size: 14px;
+    padding: 10px 0 0 30px;
+}
+.main .main_right .tab .tab_con li:hover{
+    border-bottom:solid 1px #000000;
+}
+.tab .tab_con li a{
+    color:#666;
+    text-decoration: none;
+}
+.tab .tab_con li a:hover{
+    color:black;
+}
+
+.btn_top{
+    width:50px;
+    height:56px;
+    background:url("../images/icons.png") no-repeat 10px 8px #000000;
+    opacity:0.6;
+    border-radius: 5px;
+    position:fixed;
+    left:50%;
+    margin-left:580px;
+    bottom:30px;
+    cursor: pointer;
+}
+
+.btn_top:hover{
+    opacity:0.9;
+}

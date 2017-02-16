@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>多层选项卡</title>
+    <script src=""></script>
+    <style>
+        *{padding:0;margin:0;}
+        .all{
+            width:320px;
+            height: 200px;
+            margin:50px auto;
+            border:1px solid #666666;
+        }
+        .all .titles{
+            width:320px;
+            height: 29px;
+            border-bottom: 1px solid #666;
+        }
+        .all .titles a{
+            text-decoration: none;
+            display: inline-block;
+            width:79px;
+            height: 30px;
+            line-height: 29px;
+            text-align: center;
+            color: #000000;
+            border-right:1px solid #666666;
+        }
+        .all .titles a:nth-child(4){
+            border:0;
+        }
+        .all .titles .last{
+            color: red;
+            text-decoration: underline;
+            background:#ffffff;
+        }
+        .cons .con2 .con2_tit{
+            width:50px;
+            overflow: hidden;
+            float: left;
+        }
+        .cons .con2 .con2_tit a{
+            display: inline-block;
+            width:50px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #000;
+            text-decoration: none;
+
+        }
+        .cons .con2 .con2_tit a:hover{
+            background:#ccc;
+        }
+        .active{
+            background: #ccc;
+        }
+        .cons .con2 .con2_cons{
+            float:left;
+        }
+
+    </style>
+    <script>
+        window.onload=function(){
+            var oTitle=document.querySelector("#titles"),
+                    aA=oTitle.querySelectorAll("a"),
+                    oCons=document.querySelector("#cons"),
+                    aList=oCons.querySelectorAll(".list"),
+                    aCon2=document.querySelector("#list_con2").querySelectorAll("a"),
+                    aCons=document.querySelector("#con2_cons").querySelectorAll(".con2_con");
+            for(var i= 0,len=aA.length;i<len;i++){
+                aA[i].index=i;
+                aA[i].onclick=function(){
+                    for(var j= 0,len2=aA.length;j<len2;j++){
+                        aA[j].className="";
+                        aList[j].style.display="none";
+                    };
+                    this.className="last";
+                    aList[this.index].style.display="block";
+                }
+            };
+            for(var i= 0,len=aCon2.length;i<len;i++){
+                aCon2[i].index=i;
+                aCon2[i].onclick=function(){
+                    for(var j= 0,len2=aCon2.length;j<len2;j++){
+                        aCon2[j].className="";
+                        aCons[j].style.display="none";
+                    };
+                    this.className="active";
+                    aCons[this.index].style.display="block";
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+<div class="all">
+
+    <div class="titles" id="titles">
+        <a href="#">话费</a
+        ><a href="#" class="last">旅行</a
+        ><a href="#">彩票</a
+        ><a href="#">游戏</a>
+    </div>
+    <div class="cons" id="cons">
+        <!--第一个内容-->
+        <div  style="display: none" class="list con1">
+            <h1>one</h1>
+        </div>
+        <!--第二个内容-->
+        <div class="list con2">
+            <div class="con2_tit"  id="list_con2">
+                <a href="#">机票</a>
+                <a href="#">酒店</a>
+                <a href="#">旅游</a>
+                <a href="#">签证</a>
+                <a href="#" class="active">租车</a>
+            </div>
+            <div class="con2_cons" id="con2_cons">
+                <div class="con2_con">111</div>
+                <div class="con2_con">222</div>
+                <div class="con2_con">333</div>
+                <div class="con2_con">444</div>
+                <div class="con2_con">555</div>
+            </div>
+        </div>
+        <!--第三个内容-->
+        <div style="display: none" class="list con3">
+            <h1>three</h1>
+        </div>
+        <!--第四个内容-->
+        <div style="display: none" class="list con4">
+            <h1>four</h1>
+        </div>
+    </div>
+</div>
+</body>
+</html>

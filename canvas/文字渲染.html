@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>文字渲染</title>
+</head>
+<body>
+<canvas></canvas>
+<script>
+    window.onload= function () {
+        var drawing=document.querySelector("canvas");
+        drawing.width=1500;
+        drawing.height=1500;
+        var cxt=drawing.getContext("2d");
+
+        cxt.font="bold 40px Arial";
+        cxt.fillText("欢迎大家学习",40,100);
+        cxt.font="italic bold 40px Arial";
+        cxt.strokeText("武汉理工",40,200) ; //文字描片
+        cxt.font="oblique bold 40px Arial";
+        cxt.strokeText("武汉理工",40,400,100);
+
+        var linear=cxt.createLinearGradient(0,0,400,0);
+        linear.addColorStop(0,"red");
+        linear.addColorStop(0.5,"green");
+        linear.addColorStop(1,"yellow");
+        cxt.fillStyle=linear;
+        cxt.fillText("欢迎大家学习",40,300);
+        
+        var pImage=new Image();
+        pImage.src="01.jpg";
+        pImage.onload= function () {
+            var pattern=cxt.createPattern(pImage,"repeat");
+            cxt.fillStyle=pattern;
+            cxt.strokeStyle="blue";
+            cxt.font="bold 40px Arial";
+            cxt.fillText("Canvas",40,650)
+            cxt.strokeText("Canvas",40,650)
+
+        }
+
+    }
+</script>
+</body>
+</html>

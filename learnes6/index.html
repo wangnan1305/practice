@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+    </head>
+    <body>
+        <button id='btnLoadImg'>加载图片</button>
+        <br>
+        <div id='imgContainer'>
+        </div>
+        <br>
+        <script src="jquery.js"></script>
+        <script type='text/javascript'>
+
+            var imgSrcs = [
+                'http://img.wanchezhijia.com/A/2015/3/20/17/11/de63f77c-f74f-413a-951b-5390101a7d74.jpg',
+                'http://www.newbridgemotorsport.com/files/6413/9945/0406/IMG_3630.jpg',
+                'http://www.carsceneuk.com/wp-content/uploads/2015/03/88y9989.jpg',
+                'http://mfiles.sohu.com/20130223/5ff_403b2e7a_7a1f_7f24_66eb_79e3f27d58cf_1.jpg',
+                'http://img1.imgtn.bdimg.com/it/u=2678963350,1378052193&fm=21&gp=0.jpg'
+            ];
+
+            $(document).ready(function(){
+                $('#btnLoadImg').bind('click', function(){
+                    doLoadImgs(imgSrcs);
+                });
+            });
+
+            //创建img标签
+            //这里用自执行函数加一个闭包，是为了可以创建多个id不同的img标签。
+            var createImgElement = (function(){
+                var index = 0;
+
+                return function() {
+                    var eleImg = document.createElement('img');
+                    eleImg.setAttribute('width', '200');
+                    eleImg.setAttribute('heght', '150');
+                    eleImg.setAttribute('id', 'img' + index++);
+                    return eleImg;
+                };
+            })();
+
+            function loadImg(img, src) {
+                img.src = src;
+            }
+
+            function createLoadImgProxy(){
+                var imgCache = new Image();
+                var dfd = $.Deferred();
+                var timeoutTimer;
+
+                //开始加载超时监控，超时后进行reject操作
+                function beginTimeoutWatcher(){
+                    timeoutTimer = setTimeout(function(){
+                        dfd.reject('timeout');
+                    }, 10000);
+                }
+
+                //结束加载超时监控
+                function endTimeoutWatcher(){
+                    if(!timeoutTimer){
+                        return;
+                    }
+
+                    clearTimeout(timeoutTimer);
+                }
+
+                //加载完成事件处理，加载完成后进行resolve操作
+                imgCache.onload = function(){
+                    dfd.resolve(this.src);
+                };
+
+                //加载终止事件处理，终止后进行reject操作
+                imgCache.onabort = function(){
+                    dfd.reject("aborted");
+                };
+
+                //加载异常事件处理，异常后进行reject操作
+                imgCache.onerror = function(){
+                    dfd.reject("error");
+                };
+
+                return function(eleImg, src){
+
+                    dfd.always(function(){
+                      //alert('always end');
+                      //加载完成或加载失败都要终止加载超时监控
+                        endTimeoutWatcher();
+                    }).done(function(src){
+												//alert('done end');
+                        //加载完成后，往图片元素上设置图片
+                        loadImg(eleImg, src);
+                    }).fail(function(msg){
+												//alert('fail end:' + msg);
+                        //加载失败后，往图片元素上设置失败图片
+                        loadImg(eleImg, 'src/image/fail.jpg');
+                    });
+
+                    loadImg(eleImg, 'src/image/loading.gif');
+                    imgCache.src = src;
+
+                    //开始进行超时加载监控
+                    beginTimeoutWatcher();
+
+                    return dfd.promise();
+                };
+            }
+
+
+            //一张一张的连续加载图片
+            //参数：
+            //  srcs: 图片路径数组
+            function doLoadImgs(srcs){
+                var index = 0;
+
+                (function loadOneByOne(){
+                    //退出条件
+                    if(!(s = srcs[index++])) {
+                        return;
+                    }
+
+                    var eleImg = createImgElement();
+                    document.getElementById('imgContainer').appendChild(eleImg);
+
+                    //创建一个加载代理函数
+                    var loadImgProxy = createLoadImgProxy();
+
+                    //在当前图片加载或失败后，递归调用，加载下一张
+                    loadImgProxy(eleImg, s).always(loadOneByOne);
+                })();
+            }
+        </script>
+    </body>
+</html>

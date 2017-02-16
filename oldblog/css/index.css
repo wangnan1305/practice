@@ -1,0 +1,217 @@
+/*主体*/
+.main{
+    width:1000px;
+    margin:0 auto;
+}
+.main .main_left{
+    width:670px;
+    float:left;
+}
+/*轮播*/
+
+#banner {
+    position:relative;
+    width:670px;
+    height:280px;
+    overflow:hidden;
+}
+#banner_list img {
+    border:0px;
+}
+#banner_bg {
+    position:absolute;
+    bottom:0;
+    background-color:#000;
+    height:30px;
+    filter: Alpha(Opacity=30);
+    opacity:0.7;
+    z-index:1000;
+    cursor:pointer;
+    width:670px;
+}
+#banner_info{
+    position:absolute;
+    bottom:0; left:5px;
+    line-height:30px;
+    color:#fff;
+    z-index:1001;
+    text-decoration: none;
+}
+#banner_text {
+    position:absolute;
+    width:120px;
+    z-index:1002;
+    right:3px;
+    bottom:3px;
+}
+#banner ul {
+    position:absolute;
+    list-style-type:none;
+    filter: Alpha(Opacity=75);
+    opacity:0.75;
+    z-index:1002;margin:0;
+    padding:0;
+    bottom:3px;
+    right:5px;
+}
+#banner ul li {
+    padding:3px 8px;
+    margin:0 5px;
+    float:left;
+    display:block;
+    color:#FFF;
+    border-radius: 50%;
+    background-color:#888888;
+    cursor:pointer
+}
+#banner ul li.on{
+    background-color:#F77825;
+}
+#banner_list a{
+    position:absolute;
+
+}
+
+/*文章列表*/
+.article{
+    margin-top:10px;
+}
+.article h2{
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 36px;
+    color: #333;
+    border-bottom: #db6d4c 4px solid;
+}
+.article .blogs{
+    position:relative;
+    height:187px;
+    border-bottom:1px solid #cccccc;
+    padding-bottom: 15px;
+}
+
+.article .blogs figure{
+    float:left;
+    width:25%;
+    overflow:hidden;
+}
+.article .blogs img{
+    display: block;
+    width:100%;
+    padding:25px 0;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.article .blogs img:hover{
+    -moz-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    -webkit-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+    transform:scale(1.1);
+}
+.article .blogs h4{
+    width:480px;
+    height: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding:25px 0 10px 0;
+    margin-left: 190px;
+}
+.article .blogs .newbg a,.article .blogs h4 a{
+    text-decoration: none;
+    font-size:17px;
+    font-weight: bold;
+    color:#474645;
+}
+.article .blogs .newbg a:hover,.article .blogs h4 a:hover{
+    text-decoration: underline;
+}
+.article .blogs p{
+    color:#756F71;
+    line-height: 22px;
+    margin-left: 190px;
+}
+.article .blogs .newbg{
+    margin:20px;
+    background:url(../images/newsbg01.png) no-repeat left center;
+    float:left;
+}
+.article .blogs .newbg a{
+    padding-left: 20px;
+    font-size: 8px;
+    color:#759B08;
+}
+.article .blogs .newbg a:hover{
+    text-decoration: underline;
+}
+.article .blogs .dtime{
+    color:#666666;
+    float:left;
+    background: url(../images/newsbg02.png) no-repeat left center;
+    padding-left:20px;
+    margin:20px 20px 20px 0;
+}
+.article .blogs .all_con{
+    float:right;
+    margin-top:10px;
+    color:#fff;
+    background-color: #31891C;
+    padding:5px 10px;
+    text-decoration: none;
+}
+.main .main_right{
+    width:300px;
+    float:left;
+    margin-left:30px;
+}
+.main .main_right .tab{
+    width:300px;
+}
+.main .main_right .tab h3{
+    float:left;
+    font-weight: normal;
+    font-size: 14px;
+    color:#666;
+    width:75px;
+    padding:5px;
+    cursor:pointer;
+    text-align: center;
+    height:22px;
+    line-height:22px;
+}
+.main .main_right .tab .active{
+    color:#ffffff;
+    background-color: #F77825;
+}
+.main .main_right .tab .tab_con{
+    clear:both;
+    height:150px;
+    display:none;
+    font-size:14px;
+}
+.main .main_right .tab .tab_con ul{
+    background:url(../images/ph2.png) no-repeat 1px 27px;
+    padding:10px 0 0 0;
+}
+.main .main_right .tab .tab_con li{
+    list-style: none;
+    border-bottom: solid 1px #EAEAEA;
+    line-height: 30px;
+    height: 30px;
+    overflow: hidden;
+    font-size: 14px;
+    padding: 10px 0 0 30px;
+}
+.main .main_right .tab .tab_con li:hover{
+    border-bottom:solid 1px #000000;
+}
+.tab .tab_con li a{
+    color:#666;
+    text-decoration: none;
+}
+.tab .tab_con li a:hover{
+    color:black;
+}

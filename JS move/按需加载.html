@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="http://www.zhangxinxu.com/study/js/jquery.scrollLoading.js"></script>
+    <style>
+        *{margin:0;padding:0}
+        #div1{
+            width:522px;
+            margin:0 auto;
+        }
+        ul{
+            width:522px;
+        }
+        li{
+            width:520px;
+            border:1px solid #ccc;
+            margin:10px 0 10px 0;
+            list-style: none;
+        }
+        img{
+            width:520px;
+            height:280px;
+            display: block;
+        }
+    </style>
+    <script>
+
+        /*function lazyLoad(){
+            this.aImg=document.getElementById("div1").getElementsByTagName("img");
+            this.scroll=document.documentElement.scrollTop||document.body.scrollTop;
+        }
+        lazyLoad.prototype={
+            init:function(){
+                var _this=this;
+                for (var i=0;i<this.aImg.length;i++){
+                    if(!this.aImg[i].isLoad && this.getTop(this.aImg[i])<(this.scroll+document.documentElement.clientHeight)){
+                        this.aImg[i].src=this.aImg[i].getAttribute("_src");
+                        this.aImg[i].isLoad=true;
+                    };
+                };
+                window.onscroll=function(){
+
+                    for (var i=0;i<_this.aImg.length;i++){
+                        if(!_this.aImg[i].isLoad && _this.getTop(_this.aImg[i])<(_this.scroll+document.documentElement.clientHeight)){
+                            _this.aImg[i].src=_this.aImg[i].getAttribute("_src");
+                            _this.aImg[i].isLoad=true;
+                        };
+                        console.log('ss');
+                    };
+                };
+            },
+            getTop:function(obj){
+                var iTop=0;
+                while(obj){
+                    iTop+=obj.offsetTop;
+                    obj=obj.offsetParent;
+                }
+                return iTop;
+            }
+        }*/
+
+        window.onload=function(){
+            var aImg=document.getElementById("div1").getElementsByTagName("img");
+            showImg();
+            window.onscroll=showImg;
+            window.onresize=showImg;
+            function showImg(){
+                var scroll=document.documentElement.scrollTop||document.body.scrollTop;
+
+                for (var i=0;i<aImg.length;i++){
+                    console.log(i)
+                    if(!aImg[i].isLoad && getTop(aImg[i])<(scroll+document.documentElement.clientHeight)){
+                        aImg[i].src=aImg[i].getAttribute("_src");
+                        aImg[i].isLoad=true;
+                    };
+                };
+            }
+            function getTop(obj){
+                var iTop=0;
+                while(obj){
+                    iTop+=obj.offsetTop;
+                    obj=obj.offsetParent;
+                }
+                return iTop;
+            }
+        }
+    </script>
+</head>
+
+<body style="height: 2000px">
+<div id="div1">
+    <ul id="ul1">
+        <li><img src="icon-image/loading.gif" _src="images/taobao1.png"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao2.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao3.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao4.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao5.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao6.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao1.png"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao2.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao3.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao4.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao5.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao6.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao1.png"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao2.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao3.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao4.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao5.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao6.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao1.png"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao2.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao3.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao4.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao5.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao6.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao1.png"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao2.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao3.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao4.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao5.jpg"/></li>
+        <li><img src="icon-image/loading.gif" _src="images/taobao6.jpg"/></li>
+    </ul>
+</div>
+
+</body>
+</html>

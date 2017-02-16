@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas{
+            display: block;
+            margin:50px auto;
+        }
+    </style>
+</head>
+<body>
+<canvas></canvas>
+</body>
+<script>
+
+    window.onload= function () {
+        var drawing=document.querySelector("canvas");
+        var cxt=drawing.getContext("2d");
+        drawing.width=500;
+        drawing.height=500;
+        cxt.globalAlpha=1
+        var gradient=cxt.createLinearGradient(0,0,0,90);
+        gradient.addColorStop(0,"red");
+        gradient.addColorStop(0.5,"yellow");
+        gradient.addColorStop(1,"green");
+        cxt.fillStyle=gradient;
+        cxt.fillRect(0,0,10,90);
+        drawRound(cxt,50,50,10,200,200);
+        cxt.beginPath();
+        cxt.moveTo(200,100);
+        cxt.arcTo(400,100,400,400,200);
+        cxt.lineWidth=2;
+        cxt.stroke();
+
+        cxt.beginPath();
+        cxt.moveTo(200,100);
+        cxt.lineTo(400,100);
+        cxt.lineTo(400,300)
+        cxt.lineWidth=5;
+        cxt.strokeStyle="red";
+        cxt.stroke();
+
+
+    }
+    function drawRound(cxt,x,y,R,width,height){
+
+        cxt.save();
+        cxt.translate(x,y);
+        pathJu(cxt,width,height,R);
+        cxt.strokeStyle="black";
+        cxt.lineWidth=2;
+        cxt.stroke();
+        cxt.restore();
+    }
+    function pathJu(cxt,width,height,R){
+        cxt.arc(width-R,R,R,0,Math.PI*1.5,true);
+        cxt.moveTo(width-R,0);
+        cxt.lineTo(R,0);
+        cxt.arc(R,R,R,Math.PI*1.5,Math.PI,true);
+        cxt.moveTo(0,R);
+        cxt.lineTo(0,height-R);
+        cxt.arc(R,height-R,R,Math.PI,Math.PI*0.5,true);
+        cxt.moveTo(R,height);
+        cxt.lineTo(width-R,height);
+        cxt.arc(width-R,height-R,R,Math.PI*0.5,0,true);
+        cxt.moveTo(width,height-R);
+        cxt.lineTo(width,R);
+    }
+</script>
+</html>

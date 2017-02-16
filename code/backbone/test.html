@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+		}
+		.wn-success-btn,.wn-cancel-btn{
+			padding:.3em .8em;
+			border:1px solid #5cb85c;
+			background: #58a linear-gradient(hsla(0,0%,100%,.2),transparent);
+			border-radius: .2em;
+			box-shadow: 0 .05em .25em rgba(0,0,0,.5);
+			color:white;
+			text-shadow: 0 -.05em .25em rgba(0,0,0,.5);
+			font-size: 2em;
+			line-height: 1.5;
+		}
+		.wn-cancel-btn{
+			background-color: #c00;
+		}
+		.wn-success-btn{
+			background-color: #5cb85c;
+		}
+		.wn-success-btn:hover{
+			background-color: #449d44;
+		}
+	</style>
+</head>
+<body>
+<button class="wn-success-btn">
+	Yes
+</button>
+<button class="success-btn">
+	Yes
+</button>
+<button class="cancel-btn">
+	No
+</button>
+
+<ul>
+    <li>foo</li>
+    <li>bar</li>
+</ul>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$( "li" ).each(function( index , el) {
+	  console.log( index );   
+	  console.log( $(el).text())                                      
+	});
+</script>
+</html>

@@ -1,0 +1,184 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>hello-backbonejs</title>
+	<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+	<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+	<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+	<script type="text/template" id="mainPage">
+		<div class="main">
+			<a href="#search">去搜索页</a>
+			<%= main %>
+		</div>
+	</script>
+	<script type="text/template" id="searchPage">
+		<a href="#main">去首页</a>
+		<%= search %>
+	</script>
+	<script type="text/template" id="loadingPage">
+		<div class="wrapper">
+			<p><%= loading %></p>
+		</div>
+	</script>
+	<style type="text/css">
+		html,body,.wrapper{
+			height:100%;
+		}
+		.wrapper{
+			text-align: center;
+		}
+		.wrapper:after{
+			content: '';
+			display: inline-block;
+			vertical-align: middle;
+			height: 100%;
+		}
+		.wrapper p{
+			display: inline-block;
+		}
+		a{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+<section id="container">
+	
+</section>
+<script>
+(function(){
+	var object = {};
+	_.extend(object, Backbone.Events);
+
+	var baseModel = Backbone.Model.extend({
+		defaults:{}
+	});
+
+	var searchView = Backbone.View.extend({
+		tagName:"div",
+		className:"search",
+		
+		template:_.template($("#searchPage").html()),
+		initialize:function () {
+			// body...
+		},
+		render:function () {
+			this.$el.html(this.template(this.model.toJSON()));
+			
+			return this;
+		}
+	});
+
+	var mainView = Backbone.View.extend({
+		tagName:"div",
+		className:"main",
+		
+		template:_.template($("#mainPage").html()),
+		initialize:function () {
+			// body...
+		},
+		render:function () {
+			this.$el.html(this.template(this.model.toJSON()));
+			
+			return this;
+		}
+	});
+
+	var loadingView = Backbone.View.extend({
+		tagName:"section",
+		className:"loading",
+
+		template:_.template($("#loadingPage").html()),
+		initialize:function () {
+			// body...
+		},
+
+		render:function () {
+			this.$el.html(this.template(this.model.toJSON()));
+			return this;
+		}
+	});
+	var AppView = Backbone.View.extend({
+		el:'html',
+		
+		initialize:function () {
+			
+			object.on('newPage',this.openNew,this);
+			object.on('mainPage',this.mainPage,this);
+			this.render();
+		},
+		render:function () {
+			this.container = this.$("section");
+			this.pages = [];
+			this.curview = new loadingView({model:new baseModel({loading:'加载中...'})});
+			this.container.append(this.curview.render().el);
+			// this.curview = new mainView({model:new baseModel({main:"首页"})});
+			// this.container.append(this.curview.render().el);
+		},
+		openNew:function(page){
+			//弹出一个新页面
+			//this.
+			if(this.curview) this.curview.remove();
+			this.curview = page;
+			this.container.append(this.curview.render().el);
+
+		},
+		mainPage:function () {
+			if(this.curview != this.mainview)
+			{
+				console.log('buyiyang')
+				if(!this.mainview)
+				{
+					if(this.curview) this.curview.remove();
+					this.mainview = new mainView({model:new baseModel({main:"主页"})});
+					this.container.append(this.mainview.render().el)
+				}
+				else
+				{
+					this.curview.remove();//上一页面移除
+					this.container.append(this.mainview.render().el);
+					this.curview = this.mainview;
+				}
+			}
+		}
+	});
+
+	var Router = Backbone.Router.extend({
+		routes:{
+			"search":"search",
+			"":"appmain",
+			"main":"main"
+		},
+		search:function () {
+			var page = new searchView({model:new baseModel({search:"搜索页面"})});
+			object.trigger('newPage',page)
+		},
+		main:function () {
+			var page = new mainView({model:new baseModel({main:"主页"})});
+			object.trigger('newPage',page)
+		},
+		appmain:function () {
+			setTimeout(function () {
+				object.trigger('mainPage')
+			},1500)
+		}
+	});
+
+	var appView = new AppView();
+	var router = new Router();//路由
+
+	var history = Backbone.history.start();
+	// object.on("alert",function (msg) {
+	// 	alert("sadasd"+msg);
+	// })
+
+	// object.trigger("alert","an event")
+
+})(jQuery)
+
+</script>
+</body>
+</html>

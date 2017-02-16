@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        window.onload=function(){
+            document.body.onclick=function(){
+                alert('body')
+            };
+            var oDiv=document.getElementById("div1");
+            oDiv.onclick=function(e){
+                e.stopPropagation();
+                alert('odiv')
+            }
+        }
+    </script>
+</head>
+
+<body onLoad="a()">
+<div id="div1">eeeee</div>
+<div id="div2"></div>
+</body>
+</html>

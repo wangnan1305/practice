@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>动态留言本</title>
+    <script src="js/move.js"></script>
+    <style>
+        #ul1{
+            float:right;
+            width:600px;
+            height: 400px;
+            border:1px solid #333;
+            margin-right:50px;
+            padding-top:10px;
+            overflow: auto;
+        }
+        ul li{
+            list-style: none;
+            border-bottom: 1px dashed #666;
+            line-height: 20px;
+            font-size: 16px;
+            margin-right:50px;
+            padding-top:5px;
+            word-break: break-all;
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+
+            function $(id){
+                return document.getElementById(id);
+            }
+            var oText=$("text");
+            var oBtn=$("btn");
+            var aUl=$("ul1");
+            oBtn.onclick=function(){
+
+                var aLi=document.createElement("li");
+                aLi.innerHTML=oText.value;
+                if(oText.value){
+                    if(aUl.children[0]) {
+                        aUl.insertBefore(aLi,aUl.children[0]);
+                    }
+                    else{
+                        aUl.appendChild(aLi);
+                    }
+                }
+                var iHeight=parseInt(getStyle(aLi,'height'));
+                aLi.style.height='0px';
+                aLi.style.opacity='0';
+                aLi.style.filter='alpha(opacity=0)';
+                startMove(aLi,{
+                    height:iHeight,
+                    opacity:100
+                })
+            }
+
+        }
+    </script>
+</head>
+<body>
+<textarea rows="20" cols="50" id="text"></textarea>
+<input type="button" id="btn" value="评论"/>
+<ul id="ul1">
+</ul>
+</body>
+</html>

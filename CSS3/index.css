@@ -1,0 +1,23 @@
+*{padding:0;margin:0}
+.news img{
+    float: left;
+}
+.news .content{
+    
+    height:100px;
+    line-height: 25px;
+    margin-left: 115px;
+    font-family: "宋体";
+}
+.news .content h2{
+    font: bold 16px/25px "宋体";
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.news .content p{
+    font-size: 14px;
+    line-height: 25px;
+    color: #666;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width:100px;
+            height: 100px;
+            background: red;
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        #div2{
+            width:100px;
+            height: 100px;
+            background: greenyellow;
+            position:absolute;
+            left:150px;
+            top:0;
+        }
+        #div3{
+            width:100px;
+            height: 100px;
+            background: indianred;
+            position:absolute;
+            left:300px;
+            top:0;
+        }
+    </style>
+    <script>
+
+        function Drag(id) {
+            this.disX = 0;
+            this.disY = 0;
+            this.oDiv = document.getElementById(id);
+
+        }
+        Drag.prototype={
+            init:function(){
+                var This=this;
+                This.oDiv.onmousedown=function(event){
+                    var event=event||window.event;
+                    This.disX=event.clientX-This.oDiv.offsetLeft;
+                    This.disY=event.clientY-This.oDiv.offsetTop;
+                    This.fnMove();
+                    This.fnUp();
+                    return false;
+                }
+            },
+            fnMove:function(){
+                var This=this;
+                document.onmousemove=function(event){
+                    var event=event||window.event;
+                    This.oDiv.style.left=event.clientX-This.disX+'px';
+                    This.oDiv.style.top=event.clientY-This.disY+'px';
+                }
+            },
+            fnUp:function(){
+                var This=this;
+                This.oDiv.onmouseup=function(){
+                    document.onmousemove=null;
+                    This.oDiv.onmouseup=null;
+                }
+            }
+        }
+        function ChildDrag(id){
+            Drag.call(this,id);
+        }
+        ChildDrag.prototype=new Drag();
+        ChildDrag.constructor=ChildDrag;
+        ChildDrag.prototype.fnMove=function(){  //拖拽限制范围
+            var This=this;
+            document.onmousemove=function(event){
+                var X=event.clientX-This.disX;
+                var Y=event.clientY-This.disY;
+                if(X<0){
+                    X=0;
+                }else if(X>document.documentElement.clientWidth-This.oDiv.offsetWidth){
+                    X=document.documentElement.clientWidth-This.oDiv.offsetWidth;
+                }
+                if(Y<0){
+                    Y=0;
+                }else if(Y>document.documentElement.clientHeight-This.oDiv.offsetHeight){
+                    Y=document.documentElement.clientHeight-This.oDiv.offsetHeight;
+                }
+                console.log(Y)
+                console.log(document.documentElement.clientHeight)
+                var event=event||window.event;
+                This.oDiv.style.left=X+'px';
+                This.oDiv.style.top=Y+'px';
+            }
+        }
+
+        window.onload=function(){
+            var drag=new Drag("div1");
+            drag.init();
+            var drag2=new ChildDrag("div2");
+            drag2.init();
+
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div2"></div>
+</body>
+</html>

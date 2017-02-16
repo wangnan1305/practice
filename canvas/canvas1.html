@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas{display:block;border:1px solid #000;margin:10px auto;}
+    </style>
+</head>
+<script>
+    window.onload=function(){
+        var drawing=document.querySelector("canvas");
+        drawing.width=1800;
+        drawing.height=800;
+        //确定浏览器支持canvas属性
+        if(drawing.getContext){
+            var context=drawing.getContext("2d");
+            var context2=drawing.getContext("2d");
+            var context3=drawing.getContext("2d");
+            var context4=drawing.getContext("2d");
+            /*for (var i=0;i<10;i++){
+                context.beginPath();
+                context.arc(50+i*100,50,30,0,2*Math.PI*(i+1)/10,false);
+                context.fillStyle="red";
+
+                //context.closePath();
+                context.fill();
+                //context.stroke();
+            }*/
+            context2.font="bold 14px Arial";
+            context2.textAlign="center";
+            context2.textBaseline="middle";
+            context2.fillText("1",245,125);
+            context2.fillText("2",275,155);
+            context2.fillText("3",286,200);
+
+            context2.fillText("4",275,245);
+            context2.fillText("5",245,275);
+
+            context2.fillText("6",200,288);
+            context2.fillText("7",155,275);
+            context2.fillText("8",125,245);
+            context2.fillText("9",114,200);
+
+            context2.fillText("10",125,155);
+            context2.fillText("11",155,125);
+            context2.fillText("12",200,112);
+
+            context.beginPath();
+            context.arc(200,200,99,0,2*Math.PI,false);
+            context.closePath();
+            context.strokeStyle="red"
+            context.stroke();
+
+            context.beginPath();
+            context.moveTo(294,200);
+            context.arc(200,200,94,0,2*Math.PI,false);
+            context.closePath();
+            context.strokeStyle="green";
+            context.stroke();
+
+            context4.beginPath();
+            //context3.translate(0,0);
+            //context3.rotate(Math.PI)
+            /*context4.moveTo(200,200);
+            context4.lineTo(140,200);
+            context4.closePath();
+            context4.lineWidth=2;
+            context4.strokeStyle="black";
+            context4.stroke();*/
+            var i=0;
+            context3.translate(200,200);
+
+            setInterval(function(){
+                //context3.clear();
+                context3.beginPath();
+                //context3.rotate((2*Math.PI/60)*(i+1));
+                context3.moveTo(0,0);
+                context3.lineTo(0,-80);
+                //context3.closePath();
+                context3.strokeStyle="blue";
+                context3.stroke();
+
+                console.log(i)
+            },1000)
+
+
+
+
+
+
+
+
+            //context.fillStyle="#ff0000";
+            //context.fill();
+
+
+
+        }else{
+            console.log(drawing.getContext);
+        }
+    }
+</script>
+<body>
+<canvas></canvas>
+</body>
+</html>

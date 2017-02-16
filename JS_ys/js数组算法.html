@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>数组</title>
+</head>
+<body>
+<script type="text/javascript">
+	var arr = [0,0,0,0,1,2,2,2,2,1,1,1,5,5,5,5,5];
+	Array.prototype.unique4 = function(arr){
+    this.array = arr;
+    this.array.sort();
+    var newArray = [arr[0]];
+    for(var i = 1;i<this.array.length;i++){
+        if(this.array[i] != newArray[newArray.length-1]){
+            newArray.push(this.array[i])
+        }
+    }
+    return newArray;
+}
+	// var arr =[];
+	// for(var i = 0;i<100000;i++){
+	// 	arr.push(parseInt(Math.random()*i))
+	// }
+	console.log(arr.unique4(arr))
+
+	// var myarr=[] , unique = [arr[0]] ,hash = {};
+	// var time = new Date().getTime()
+	// //console.log(new Date().getTime())
+	// for(var i=1;i<arr.length;i++){
+	// 	if(unique.indexOf(arr[i]) === -1){
+	// 		unique.push(arr[i])
+	// 	}
+	// }
+	// console.log(unique)
+
+	// for(var i=0;i<arr.length;i++){
+	// 	if(!hash[arr[i]]){
+	// 		hash[arr[i]] = true;
+	// 		unique.push(arr[i]);
+	// 	}
+	// }
+
+	// for(var i = 1;i<arr.length;i++){
+	// 	if(arr.indexOf(arr[i]) == i){
+	// 		unique.push(arr[i])
+	// 	}
+	// }
+	//console.log(unique)
+
+	//console.log(new Date().getTime() - time)
+	// console.log(unique)
+	for(var i=0;i<10;i++){
+	    var idx=parseInt(Math.random()*unique.length)
+	    myarr.push(arr[idx])
+	    unique.splice(idx,1)    
+	}
+	//console.log(myarr)
+</script>
+</body>
+</html>

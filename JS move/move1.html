@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{width:245px;
+            height: 150px;}
+        .outline{
+            border:5px solid red;
+            width:980px;
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+            margin:50px auto;
+        }
+        ul{
+
+            width:980px;
+            height: 150px;
+            position: absolute;
+        }
+        ul li{
+            float: left;
+            list-style: none;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var outline=document.getElementById("outline");
+            var aUl=document.getElementsByTagName("ul")[0];
+            var aLi=document.getElementsByTagName("li");
+            var oPut=document.getElementById("put");
+            var oBack=document.getElementById("back");
+            var speed=2;
+            var timer=null;
+
+            function move(){
+                if(aUl.offsetLeft<-aUl.offsetWidth/2){
+                    aUl.style.left=0+'px';
+                }
+                //alert(aUl.offsetLeft)
+                if(aUl.style.left && aUl.offsetLeft>0){
+                    aUl.style.left=-aUl.offsetWidth/2+'px';
+                }
+
+                aUl.style.left=aUl.offsetLeft+-speed+'px';
+            }
+            timer=setInterval(move,30);
+
+            aUl.onmouseover=function(){
+                clearInterval(timer);
+            }
+
+            aUl.onmouseout=function(){
+                timer=setInterval(move,30);
+            }
+
+            aUl.innerHTML=aUl.innerHTML+aUl.innerHTML;
+            aUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+
+            oPut.onclick=function(){
+                speed=-2;
+            }
+            oBack.onclick=function(){
+                speed=2;
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="向前" id="put"/>
+<input type="button" value="向后" id="back"/>
+<div class="outline" id="outline">
+    <ul>
+        <li><img src="images/p1.jpg"/></li>
+        <li><img src="images/p3.jpg"/></li>
+        <li><img src="images/p4.jpg"/></li>
+        <li><img src="images/p5.jpg"/></li>
+    </ul>
+</div>
+</body>
+</html>

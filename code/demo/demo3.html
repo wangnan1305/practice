@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		a{text-decoration: underline;}
+		.blue{
+			color:blue;
+		}
+		.red{
+			color:red;
+		}
+	</style>
+	<script type="text/javascript">
+		function showPageCommon(config) {  
+		    return function (page, total) {
+		        var str = '<a>' + page + '</a>';
+
+		        for (var i = 1; i <= 3; i++) {
+		            if (page - i > 1) {
+		                str = '<a class="' + config.color + '">' + (page - i) + '</a> ' + str;
+		            }
+		            if (page + i < total) {
+		            	str = str + ' ' + '<a class="'+config.color+'">'+ (page + i) +'</a>';
+		            }
+		        }
+
+		        if (page - 4 > 1) {
+		            str = '... ' + str;
+		        }
+
+		        if (page > 1) {
+		            str = '上一页 ' + 1 + ' ' + str;
+		        }
+
+		        if (page + 4 < total) {
+		            str = str + ' ...';
+		        }
+
+		        if (page < total) {
+		            str = str + ' ' + total + ' 下一页';
+		        }
+
+		        return str;
+	    	}
+		}
+
+		var showPages = showPageCommon({  
+		    color: 'red'
+		});
+
+		var total = 20;  
+		for (var i = 1; i <= total; i++) {  
+		    var ret = showPages(i, total);
+		    document.write(ret);
+		}
+
+		var showPages = showPageCommon({  
+		    color: 'blue'
+		});
+
+		var total = 20;  
+		for (var i = 1; i <= total; i++) {  
+		    var ret = showPages(i, total);
+		    document.write(ret);
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

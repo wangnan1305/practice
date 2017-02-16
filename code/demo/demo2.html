@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+
+var stu = 
+[
+	{id:1,socre:80},
+	{id:2,socre:70},
+	{id:3,socre:60}
+];
+
+stu.forEach(function(item,index,array){   //item是遍历的每个元素，index是索引，array是数组本身
+	item["socre"]+=5;
+	
+});
+console.log(stu);
+</script>
+</body>
+</html>

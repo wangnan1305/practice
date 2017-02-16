@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>taobao面向对象</title>
+
+<style>
+    a{
+        text-decoration: none;
+    }
+    ul,li{
+        margin:0;
+        padding:0;
+        list-style: none;
+    }
+    .out{
+        width:520px;
+        height:280px;
+        margin:20px auto;
+
+    }
+    .div1{
+        width:520px;
+        height: 280px;
+        overflow: hidden;
+        position:relative;
+    }
+    .ul1,.ul2{
+        position:absolute;
+    }
+    .ul1{
+        top:0;
+        left:0;
+    }
+    .ul1 li{
+        float:left;
+        top:0;
+        left:0;
+    }
+    .ul2{
+        bottom:5px;
+        right:30px;
+        z-index: 2;
+    }
+    .ul2 li{
+        display: inline-block;
+        width:20px;
+        height:20px;
+        text-align: center;
+        background: grey;
+        color:#ffffff;
+        border-radius: 50%;
+
+    }
+    .ul2 li:hover{
+        cursor: pointer;
+    }
+    .ul2 .active{
+        color:grey;
+        background: #fff;
+    }
+    .a1{
+        position: absolute;
+        left:45px;
+        bottom:5px;
+        z-index: 2;
+    }
+    .bg{
+        width:520px;
+        height:35px;
+        position:absolute;
+        bottom:0;
+        background: yellow;
+        opacity: 0.6;
+        z-index: 1;
+    }
+    .left,.right{
+        position: absolute;
+        top:120px;
+        width:40px;
+        height:40px;
+        line-height: 40px;
+        background: grey;
+        color:#fff;
+        text-align: center;
+        opacity: 0.6;
+    }
+    .left:hover,.right:hover{
+        opacity: 0.8;
+    }
+    .left{
+        left:0;
+    }
+    .right{
+        right:0;
+    }
+</style>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    //构造函数
+    function Slider(id1,id2,id3){
+        this.oUl=$(id1);
+        this.oUl2=$(id2);
+        this.oDiv1=$(id3);
+        this.oAlt=this.oDiv1.getElementsByClassName("a1")[0];
+        this.oLeft=this.oDiv1.getElementsByClassName("left")[0];
+        this.oRight=this.oDiv1.getElementsByClassName("right")[0];
+        this.aLi=this.oUl.getElementsByTagName("a");
+        this.aLi2=this.oUl2.getElementsByTagName("li");
+        this.len=this.aLi.length;
+        this.iWidth=this.aLi[0].offsetWidth;
+        this.iNow=0;
+        this.timer=null;
+    }
+    Slider.prototype={
+        constructor: Slider,
+
+        init:function(){
+            var This=this;
+            this.oUl.style.width=this.len*this.iWidth+'px';
+            for (var i=0;i<this.len;i++){
+                this.aLi2[i].index=i;
+                this.oAlt.innerHTML=this.aLi[0].children[0].alt;
+                this.aLi2[i].onclick=function(){
+                    for(var i=0;i<This.len;i++){
+                        This.aLi2[i].className='';
+                    }
+                    this.className='active';
+                    This.oAlt.innerHTML=This.aLi[this.index].children[0].alt;
+                    startMove(This.oUl,{
+                        left:-this.index*This.iWidth
+                    })
+                    This.iNow=this.index;
+                };
+            };
+            EventUtil.addHandler(this.oDiv1, "click", function (event) {
+                event = EventUtil.getEvent(event);
+                var target = EventUtil.getTarget(event);
+                switch (target.className) {
+                    case "left":
+                        This.sliderRight();
+                        break;
+                    case "right":
+                        This.sliderLeft();
+                        break;
+                };
+            })
+        },
+
+        sliderLeft:function(){
+            if(this.iNow==5){
+                this.iNow=-1;
+            }
+            for(var i=0;i<this.len;i++){
+                this.aLi2[i].className='';
+            }
+            this.aLi2[this.iNow+1].className='active';
+
+            this.oAlt.innerHTML=this.aLi[this.iNow+1].children[0].alt;
+            startMove(this.oUl,{
+                left:-(++this.iNow)*this.iWidth
+            })
+        },
+
+        sliderRight:function(){
+            if(this.iNow<=0){
+                this.iNow=6;
+            }
+            for(var i=0;i<this.len;i++){
+                this.aLi2[i].className='';
+            }
+            this.aLi2[this.iNow-1].className='active';
+
+            this.oAlt.innerHTML=this.aLi[this.iNow-1].children[0].alt;
+            startMove(this.oUl,{
+                left:-(--this.iNow)*this.iWidth
+            })
+        },
+
+
+        startTimerLeft:function(){
+            var This=this;
+            console.log(This);
+            This.timer=setInterval(function(){
+                This.sliderLeft();
+            },2000);
+            this.oDiv1.onmouseout=function() {
+                This.timer = setInterval(function(){
+                    This.sliderLeft();
+                }, 2000);
+            }
+            this.oDiv1.onmouseover=function() {
+                clearInterval(This.timer);
+            }
+        },
+        startTimerRight:function(){
+            var This=this;
+
+            This.timer=setInterval(function(){
+                This.sliderRight();
+            },2000);
+            this.oDiv1.onmouseout=function() {
+                This.timer = setInterval(function(){
+                    This.sliderRight();
+                }, 2000);
+            }
+            this.oDiv1.onmouseover=function() {
+                clearInterval(This.timer);
+            }
+        }
+    }
+    window.onload=function(){
+        var lunbo=new Slider("ul1","ul2","div1");
+        lunbo.init();
+        lunbo.startTimerLeft();
+
+        var lunbo2=new Slider("ul3","ul4","div2");
+        lunbo2.init();
+        lunbo2.startTimerRight();
+    }
+</script>
+</head>
+<body>
+<div class="out">
+    <div id="div1" class="div1">
+        <ul id="ul1" class="ul1">
+            <li><a href="http://www.baidu.com"><img src="images/taobao1.png" style="width:520px;height:280px;" title="1png" alt="一一"/></a></li>
+            <li><a href="http://www.baidu.com"><img src="images/taobao2.jpg" style="width:520px;height:280px;" title="2png" alt="二二"/></a></li>
+            <li><a href="http://www.baidu.com"><img src="images/taobao3.jpg" style="width:520px;height:280px;" title="3png" alt="三三"/></a></li>
+            <li><a href="http://www.baidu.com"><img src="images/taobao4.jpg" style="width:520px;height:280px;" title="4png" alt="四四"/></a></li>
+            <li><a href="http://www.baidu.com"><img src="images/taobao5.jpg" style="width:520px;height:280px;" title="5png" alt="五五"/></a></li>
+            <li><a href="http://www.baidu.com"><img src="images/taobao6.jpg" style="width:520px;height:280px;" title="6png" alt="六六"/></a></li>
+        </ul>
+        <div id="a1" class="a1"></div>
+        <div id="bg" class="bg"></div>
+        <a href="javascript:" id="left" class="left"><</a>
+        <a href="javascript:" id="right" class="right">></a>
+        <ul id="ul2" class="ul2">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+</div>
+
+<div class="out">
+    <div id="div2" class="div1">
+        <ul id="ul3" class="ul1">
+            <li><a href="http://www.baidu.com"><img src="images/taobao1.png" style="width:520px;height:280px;" title="1png" alt="一一"/></a></li>
+            <li><a href="http://www.baidu.com"><img src="images/taobao2.jpg" style="width:520px;height:280px;" title="2png" alt="二二"/></a></li>
+            <li><a href="http://www.baidu.com"><img src="images/taobao3.jpg" style="width:520px;height:280px;" title="3png" alt="三三"/></a></li>
+            <li><a href="http://www.baidu.com"><img src="images/taobao4.jpg" style="width:520px;height:280px;" title="4png" alt="四四"/></a></li>
+            <li><a href="http://www.baidu.com"><img src="images/taobao5.jpg" style="width:520px;height:280px;" title="5png" alt="五五"/></a></li>
+            <li><a href="http://www.baidu.com"><img src="images/taobao6.jpg" style="width:520px;height:280px;" title="6png" alt="六六"/></a></li>
+        </ul>
+        <div id="a2" class="a1"></div>
+        <div id="bg1" class="bg"></div>
+        <a href="javascript:" id="left1" class="left"><</a>
+        <a href="javascript:" id="right1" class="right">></a>
+        <ul id="ul4" class="ul2">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+</div>
+
+
+<script src="js/move.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

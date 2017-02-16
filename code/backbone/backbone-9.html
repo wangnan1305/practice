@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>hello-backbonejs</title>
+	<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+	<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+	<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+</head>
+<body>
+<script>
+(function(){
+	var Todo = Backbone.Model.extend({
+		defaults:{
+			name:"dll"
+		},
+
+		private:function(){
+			alert('wn&dll')
+		}
+	});
+
+	var Todos = Backbone.Collection.extend({
+		model:Todo,
+		url:'http://book.rdtuijian.com/index',
+		initialize:function(){
+			/*$ajax({
+				url:''
+			})*/
+		},
+
+		private:function(){
+			alert('dllwn')
+		}
+	});
+	/*继承Model*/
+	/*var ExtendTodo = Todo.extend();
+
+	var extendtodo = new ExtendTodo;
+
+	console.log(extendtodo.get('name'));
+
+	extendtodo.private();*/
+
+	/*继承Collection*/
+
+	var ExtendTodos = Todos.extend();
+
+	var extendtodos = new ExtendTodos;
+
+	extendtodos.private();
+
+	/*继承View*/
+
+	/*var todos = new Todos;
+	todos.fetch();
+	console.dir(todos);
+
+	todos.create({name:"dllwn"});
+	var todo2 = todos.models[0];
+	todo2.set('name',"wn")
+
+	todo2.save();*/
+})(jQuery)
+
+</script>
+</body>
+</html>

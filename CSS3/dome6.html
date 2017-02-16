@@ -1,0 +1,108 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>jqeryTab.html</title>
+
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="jquery-1.10.2.js"></script>
+    <style type="text/css">
+        #tab {
+            border: 1px solid #CCCCFF;
+            width: 200px;
+            height: 200px;
+        }
+
+        .header {
+            height: 20px;
+            width: 100%;
+        }
+
+        .liStyle {
+            cursor: pointer;
+            height: 20px;
+            width: 64px;
+            -width: 62px;
+            float: left;
+            border: 1px solid #CCCCFF;
+            background-color: #CCFFFF;
+        }
+
+        .show {
+            background-color: red;
+        }
+
+        .hide {
+            background-color: #CCFFFF;
+        }
+
+        .ulHide {
+            display: none;
+        }
+
+        .ulShow {
+            display: block;
+        }
+
+        ul {
+            list-style: none outside none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            var ary = $("#tab > ul > li").click(function () {
+                $(this).parent().find("li.show").addClass("hide").removeClass("show");
+                $(this).addClass("show").removeClass("hide");
+                $("#tab > div > ul.ulShow").addClass("ulHide").removeClass("ulShow");
+                //$("#tab > div > ul:eq(" + $.inArray(this, ary) + ")").addClass("ulShow").removeClass("ulHide");
+                $("#tab > div > ul:eq(" + $.inArray(this, ary) + ")").addClass(function () {
+                    $.post("url?#", {param: "params"}, function (data) {
+//data是ajax方法返回的数据，也就是要显示的数据。param是提交的参数，url是提交服务器的地址
+                        $(this).html(data);
+                    });
+                    return "ulShow";
+                }).removeClass("ulHide");
+            }).toArray();
+        });
+    </script>
+</head>
+
+<body>
+<div id="tab">
+    <ul class="header">
+        <li class="liStyle show">Java</li>
+        <li class="liStyle">Spring</li>
+        <li class="liStyle">Hibernate</li>
+    </ul>
+    <div class="content">
+        <ul class="ulShow">
+            Java
+            <li>java javaSE</li>
+            <li>java javaME</li>
+            <li>java javaEE</li>
+        </ul>
+        <ul class="ulHide">
+            Spring
+            <li>java springMVC</li>
+            <li>java spring aop</li>
+            <li>java spring Ioc DI</li>
+        </ul>
+        <ul class="ulHide">
+            Hibernate
+            <li>java Hibernate Configuration Transaction</li>
+            <li>java Hibernate Query Criteria</li>
+            <li>java Hibernate Session SessionFactory</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+

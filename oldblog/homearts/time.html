@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background: url(../images/bg2.png) repeat;
+            font-size: 50px;
+
+        }
+    </style>
+    <script>
+        //空位补零函数
+        function strDou(n){
+            if(n<10){
+                return '0'+n;
+            }
+            else{
+                return ''+n;
+            }
+        }
+        window.onload=function(){
+            var aImg=document.getElementsByTagName("img");
+            //var str='211135';
+            function tick(){
+                var oDate=new Date();
+                var str=(strDou(oDate.getHours())+strDou(oDate.getMinutes())+strDou(oDate.getSeconds()));
+                for(var i=0;i<aImg.length;i++){
+                    aImg[i].src='../images/'+str.charAt(i)+'.png'; //charAt()全兼容，可以取字符串的某一位
+                }
+            }
+            setInterval(tick,1000);
+            tick();
+        }
+    </script>
+</head>
+<body>
+<img src=""/>
+<img src=""/>
+：
+<img src=""/>
+<img src=""/>
+：
+<img src=""/>
+<img src=""/>
+</body>
+</html>

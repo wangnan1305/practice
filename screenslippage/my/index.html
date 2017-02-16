@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>全屏滚动</title>
+    <link rel="stylesheet" href="index.css" type="text/css"/>
+</head>
+<body>
+<div id="container" class="container">
+    <div class="selction" id="selction0">
+        <div class="intro">
+            <h1 class="title">switchPage</h1>
+
+            <p>Create Beautiful Fullscreen Scrolling Websites</p>
+        </div>
+    </div>
+    <div class="selction" id="selction1">
+        <div class="intro">
+            <h1 class="title">Example</h1>
+
+            <p>HTML markup example to define 4 sections</p>
+        </div>
+    </div>
+    <div class="selction" id="selction2">
+        <div class="intro">
+            <h1 class="title">Example</h1>
+
+            <p>The plug-in configuration parameters</p>
+        </div>
+    </div>
+    <div class="selction" id="selction3">
+        <div class="intro">
+            <h1 class="title">THE END</h1>
+
+            <p>Everything will be okay in the end. If it's not okay, it's not the end.</p>
+        </div>
+    </div>
+</div>
+
+<script src="jquery-1.11.2.min.js"></script>
+<script src="index.js"></script>
+<script>
+    $(function(){
+        var scroll=new scrollPages({
+            //自定义参数
+            direction : 'vertical',  //horizontal,vertical
+            loop:false,
+            pagination:true
+        })
+    })
+</script>
+</body>
+</html>

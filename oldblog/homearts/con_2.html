@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="../css/shcore.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/shthemedefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/base.css">
+    <link type="text/css" rel="stylesheet" href="../css/content.css">
+    <link type="text/css" rel="stylesheet" href="../css/calendar.css">
+
+    <title>经典的JS问题</title>
+</head>
+<body onLoad="checkCookie()">
+<div id="header">
+    <a href=""><img src="../images/logo.png"/></a>
+    <div id="list_left">
+        <ul>
+            <li><a href="../index.html" id="list_left_one">首页</a></li>
+            <li><a href="#">关于我</a></li>
+            <li><a href="">文章</a></li>
+            <li><a href="../picshow.html">相册</a></li>
+            <li><a href="">音乐</a></li>
+            <li><a href="">留言</a></li>
+        </ul>
+    </div>
+</div>
+<div class="main">
+    <div class="main_left">
+        <div class="title">
+            <h2>经典的js问题 实现点击li能够弹出当前li索引与innerHTML的函数</h2>
+
+            <div class="w">
+                <span class="a">2015-9-11</span>
+                <span class="b">王楠</span>
+                <span class="c">网站</span>
+                <span class="d"></span>
+            </div>
+        </div>
+        <div class="article">
+            <p>先看一段简单的代码：</p>
+            <pre class="brush:php; toolbar: true; auto-links: false;" style="font-size:12px">
+                var aUl = document.getElementsByTagName("ul")[0];
+                var aLi = aUl.getElementsByTagName("li");
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].onclick = function () {
+                        alert(this.innerHTML);
+                    }
+                }
+                <ul>
+                    <li>我是一</li>
+                    <li>我是二</li>
+                    <li>我是三</li>
+                    <li>我是四</li>
+                </ul>
+            </pre>
+            <p>刚开始的时候，有一个疑惑，为什么把this换成aLi[i]，就不能运行了呢，像下面这样：</p>
+            <pre class="brush:php; toolbar: true; auto-links: false;" style="font-size:12px">
+                    var aUl = document.getElementsByTagName("ul")[0];
+                    var aLi = aUl.getElementsByTagName("li");
+                    for (var i = 0; i < aLi.length; i++) {
+                        aLi[i].onclick = function () {
+                            alert(aLi[i].innerHTML);
+                        }
+                    }
+            </pre>
+            <p>逻辑上看，似乎是没有问题的，但是肯定是有问题的，问了一些学长，告诉我说，在发生点击事件之前已经执行了for循环，就是说i是等于4的，点击的时候aLi[4]是不存在的，果不其然当我把代码改成这样以后：</p>
+            <pre class="brush:php; toolbar: true; auto-links: false;" style="font-size:12px">
+                    var aUl = document.getElementsByTagName("ul")[0];
+                    var aLi = aUl.getElementsByTagName("li");
+                    for (var i = 0; i < aLi.length; i++) {
+                        console.log(i);
+                        aLi[i].onclick = function () {
+                            alert(aLi[i].innerHTML);
+                        }
+                    }
+            </pre>
+            <p>运行结果如下图：</p>
+            <img src="../images/con_2_1.PNG"/>
+            <p>到了这里，也终于知道为什么改成aLi[i]无法运行了，问题似乎是解决了，但是当我仔细一想，那么岂不是这样的写法不可能获取当前li标签下的i值吗？无论弹出的内容是哪个li标签下的，i值都等于4。就像下面这样：</p>
+                var aUl = document.getElementsByTagName("ul")[0];
+                var aLi = aUl.getElementsByTagName("li");
+                for (var i = 0; i < aLi.length; i++) {
+                    console.log(i);
+                    aLi[i].onclick = function () {
+                        alert(i + '-----' + this.innerHTML);
+                    }
+                }
+            <p>果不其然，无论点击哪个li，弹出的i值都是4，点击事件的i并不是真正的i值，如下图：</p>
+            <img src="../images/con_2_2.PNG"/>
+            <p>那么到底该怎么做呢，网上搜了半天，说是JS没有块级作用域，查了下JavaScript高级程序设计（第三版书上181页），给出了权威解释：</p>
+            <p style="color:#FF3300">闭包只能取得包含函数中任何变量的最后一个值,也就是上例中的li的索引值i始终等于4</p>
+            <p>书上给出的例子以及解决办法：</p>
+            <pre class="brush:php; toolbar: true; auto-links: false;" style="font-size:12px">
+                    //原例子
+                    function createFunctions(){
+                        var result=new Array();
+                        for (var i=0;i<10;i++){
+                            result[i]=function(){
+                                return i;
+                            };
+                        }
+                    }
+                    //解决办法
+                    function createFunctions(){
+                        var result=new Array();
+
+                        for (var i=0;i<10;i++){
+                            result[i]=function(num){
+                                return function(){
+                                    return num;
+                                };
+                            }(i)
+                        }
+                    }
+            </pre>
+            <p>最后不难写出最后的解决方案</p>
+            <pre class="brush:php; toolbar: true; auto-links: false;" style="font-size:12px">
+                    var aUl = document.getElementsByTagName("ul")[0];
+                    var aLi = aUl.getElementsByTagName("li");
+                    for (var i = 0; i < aLi.length; i++) {
+                        aLi[i].onclick = function (num) {
+                            return function () {
+                                alert(num + '------' + this.innerHTML);
+                            };
+                        }(i);
+                    }
+            </pre>
+        </div>
+    </div>
+    <div class="main_right">
+        <embed src="http://www.liuyuyao.com/flash2261.swf" quality="high"
+               pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"
+               width="300" height="87">
+            <div class="Calendar">
+                <div id="idCalendarPre">&lt;&lt;</div>
+                <div id="idCalendarNext">&gt;&gt;</div>
+                <span id="idCalendarYear"></span>年 <span id="idCalendarMonth"></span>月
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <td>日</td>
+                        <td>一</td>
+                        <td>二</td>
+                        <td>三</td>
+                        <td>四</td>
+                        <td>五</td>
+                        <td>六</td>
+                    </tr>
+                    </thead>
+                    <tbody id="idCalendar">
+                    </tbody>
+                </table>
+            </div>
+
+            <input id="idCalendarPreYear" type="button" value="上一年" />
+            <input id="idCalendarNow" type="button" value="当前月" />
+            <input id="idCalendarNextYear" type="button" value="下一年" />
+
+
+            <div class="tab" id="tab">
+                <h3 class="active">最新文章</h3>
+                <h3>站长推荐</h3>
+                <hr style="height:1px;border:none;border-bottom:1px solid #EAEAEA;"/>
+                <div style="display: block" class="tab_con">
+                    <ul>
+                        <li><a href="">幽灵按钮的实现</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                    </ul>
+                </div>
+                <div class="tab_con">
+                    <ul>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                        <li><a href="">咦咦咦咦咦咦咦一样一样</a></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="footer">
+    <p>Copyright wcxtn.cn WebSite. All Rights Reserved.|鄂ICP备1500</p>
+</div>
+<a style="display: none" href="javascript:;" class="btn_top" id="btn_top"></a>
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/shBrush.js"></script>
+<script type="text/javascript" src="../js/calendar.js"></script>
+
+<script type="text/javascript">
+    var tab = new changeTab();
+    tab.init("tab", "h3", "tab_con");
+
+    SyntaxHighlighter.all();
+
+    //日历初始化
+    var getId = function (id) {
+        return "string" == typeof id ? document.getElementById(id) : id;
+    };
+    var cale = new Calendar("idCalendar", {
+        SelectDay: new Date().setDate(10),
+        onSelectDay: function (o) {
+            o.className = "onSelect";
+        },
+        onToday: function (o) {
+            o.className = "onToday";
+        },
+        onFinish: function () {
+            getId("idCalendarYear").innerHTML = this.Year;
+            getId("idCalendarMonth").innerHTML = this.Month;
+            var flag = [10, 15, 20];
+            for (var i = 0, len = flag.length; i < len; i++) {
+                this.Days[flag[i]].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:" + this.Year + "/" + this.Month + "/" + flag[i] + "');return false;\">" + flag[i] + "</a>";
+            }
+        }
+    });
+    getId("idCalendarPre").onclick = function () {
+        cale.PreMonth();
+    }
+    getId("idCalendarNext").onclick = function () {
+        cale.NextMonth();
+    }
+
+    getId("idCalendarPreYear").onclick = function () {
+        cale.PreYear();
+    }
+    getId("idCalendarNextYear").onclick = function () {
+        cale.NextYear();
+    }
+
+    getId("idCalendarNow").onclick = function () {
+        cale.NowMonth();
+    }
+
+</script>
+</body>
+</html>

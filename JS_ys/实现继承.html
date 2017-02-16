@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var temp = (function() {
+
+        var F = function () {};
+
+        return function (C, P) {
+
+            F.prototype = P.prototype;
+
+            C.prototype = new F();
+
+            C.super = P.prototype;
+
+            C.prototype.constructor = C;
+
+        }
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width:100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+    <script>
+        /*var disX = 0;
+        var disY = 0;
+        var oDiv=null;
+        window.onload = function () {
+            disX = 0;
+            disY = 0;
+            oDiv = document.getElementById("div1");
+            oDiv.onmousedown = fnMoveUp;
+        }
+        function fnMoveUp(event) {
+            var event = event || window.event;
+            disX = event.clientX - oDiv.offsetLeft;
+            disY = event.clientY - oDiv.offsetTop;
+            //注意要绑定到document才可以保证事件在整个窗口文档中都有效，如果只绑定到拖放对象就很容易出现拖太快就脱节的现象。
+            document.onmousemove = fnMove;
+            document.onmouseup=fnUp;
+            return false;
+        }
+        function fnMove(event) {
+            console.log("移动");
+            event = window.event;
+            oDiv.style.left = event.clientX - disX + 'px';
+            oDiv.style.top = event.clientY - disY + 'px';
+        }
+        function fnUp(event){
+            console.log("送起");
+            document.onmousemove=null;
+            document.onmouseup=null;
+        }
+*/
+        //////////DOM0级事件绑定
+        function Drag(id){
+            this.oDiv=document.getElementById(id);
+            this.disX=0;
+            this.disY=0;
+        }
+        Drag.prototype={
+            constructor:Drag,
+            init:function(){
+                var This=this;
+                this.oDiv.onmousedown = function(event){
+                    var event = event || window.event;
+                    This.fnMoveUp(event);
+                    return false;
+                };
+            },
+            fnMoveUp:function(event){
+                var This=this;
+                this.disX = event.clientX - this.oDiv.offsetLeft;
+                this.disY = event.clientY - this.oDiv.offsetTop;
+                //注意要绑定到document才可以保证事件在整个窗口文档中都有效，如果只绑定到拖放对象就很容易出现拖太快就脱节的现象。
+                document.onmousemove = function(event){
+                    event = event||window.event;
+                    This.fnMove(event);
+                };
+                document.onmouseup=this.fnUp;
+
+            },
+            fnMove:function(event){
+                console.log("移动");
+                this.oDiv.style.left = event.clientX - this.disX + 'px';
+                this.oDiv.style.top = event.clientY - this.disY + 'px';
+            },
+            fnUp:function(){
+                console.log("送起");
+                document.onmousemove=null;
+                document.onmouseup=null;
+            }
+
+        }
+
+        window.onload=function(){
+            var drag=new Drag("div1");
+            drag.init();
+            console.log(drag.constructor)
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

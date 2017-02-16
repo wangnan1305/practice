@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Tab</title>
+    <style>
+        *{padding:0;margin:0;border: 0}
+        .tab{
+            margin:20px;
+            font:14px "微软雅黑";
+            width:572px;
+            border:1px solid #999;
+        }
+        .tab .nav{
+            width:572px;
+            height:30px;
+            text-align: center;
+        }
+        .nav h3{
+            width:190px;
+            float: left;
+            height:30px;
+            line-height: 30px;
+            border-left:1px solid #cecece;
+            border-bottom:1px solid #cecece;
+            background-color:#f1f1f1;
+        }
+        .nav .active{
+            border:0;
+            background-color: #fff;
+        }
+        .clearfix:after{
+            content: '.';
+            display: block;
+            height: 0;
+            overflow: hidden;
+            clear:both;
+            visibility: hidden;
+
+        }
+        .tab .con{
+            width:572px;
+            height:100px;
+            background-color: #fff;
+        }
+        .con p{
+            padding:20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="tab">
+    <div class="nav clearfix">
+        <h3 class="active">课程</h3>
+        <h3>学习计划</h3>
+        <h3>技能图谱</h3>
+    </div>
+    <div class="con">
+        <p style="display: block">课程内容</p>
+        <p>学习计划内容</p>
+        <p>技能图谱内容</p>
+    </div>
+</div>
+</body>
+</html>

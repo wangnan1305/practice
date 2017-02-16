@@ -1,0 +1,37 @@
+#page {
+  color: #ccc; }
+
+ul.nav {
+  float: right; }
+  ul.nav li {
+    float: left; }
+    ul.nav li a {
+      color: #111; }
+    ul.nav li.current {
+      font-weight: bold; }
+
+#main p {
+  color: #00ff00;
+  width: 97%; }
+  #main p .redbox {
+    background-color: #ff0000;
+    color: #000000; }
+
+#main {
+  width: 97%; }
+  #main p, #main div {
+    font-size: 2em; }
+    #main p a, #main div a {
+      font-weight: bold; }
+  #main pre {
+    font-size: 3em; }
+
+a {
+  font-weight: bold;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+  body.firefox a {
+    font-weight: normal; }
+
+/*# sourceMappingURL=3.css.map */

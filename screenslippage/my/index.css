@@ -1,0 +1,150 @@
+*{padding:0;margin:0}
+html,body{
+    height:100%;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif,"微软雅黑";
+}
+#container,.selction{
+    height:100%;
+    position:relative;
+}
+
+#selction0{
+    background: #595F9F;
+}
+#selction1{
+    background: #00C26B;
+}
+#selction2{
+    background: #14D1CA;
+}
+#selction3{
+    background: #F7B71F;
+}
+.selction {
+    min-height: 643px;
+
+}
+.selction .intro{
+    position:absolute;
+    top:50%;
+    width:100%;
+    text-align: center;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.selction .intro .title{
+    font-size: 6em;
+}
+.selction .intro p{
+    font-size:2em;
+    margin:0.5em 0 2em 0;
+}
+/*动画*/
+#selction0 .intro .title{
+    animation:selction0 1s ease-in-out;
+
+}
+#selction0 .intro p{
+    animation:selc0 1s ease-in-out;
+}
+@keyframes selction0{
+    0%{
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+    100%{
+        -webkit-transform: translateX(0);
+        -moz-transform: translateX(0);
+        -ms-transform: translateX(0);
+        -o-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+@keyframes selc0{
+    0%{
+        -webkit-transform: translate(100%);
+        -moz-transform: translate(100%);
+        -ms-transform: translate(100%);
+        -o-transform: translate(100%);
+        transform: translate(100%);
+    }
+    100%{
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        -ms-transform: translate(0);
+        -o-transform: translate(0);
+        transform: translate(0);
+    }
+}
+/*#container{width:400%;height:100%}
+.selction{width:25%;height:100%;float: left;}*/
+/*清除浮动*/
+#container .clear:after{
+    content: ".";
+    height:0;
+    visibility: hidden;
+    display: block;
+    clear:both;
+}
+.list_btn{
+    width:15px;
+    position:fixed;
+    top:50%;
+    right:10px;
+    margin-top:-30px;
+}
+.list_btn .ul li{
+    list-style: none;
+    width:10px;
+    height: 10px;
+    border-radius:50%;
+    float: left;
+    background: #fff;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.list_btn .ul .active{
+    width:11px;
+    height:11px;
+    border:2px solid #ffffff;
+    background: none;
+    margin-left:-2.5px;
+}
+/*处理inline—block间距问题*/
+
+/*横向分页的样式*/
+.list_left{
+    position:fixed;
+    left:50%;
+    bottom:10px;
+    margin-left: -33.5px;
+    letter-spacing: -3px;
+}
+.li_left{
+    display: inline-block;
+    list-style: none;
+    width:10px;
+    height: 10px;
+    margin-left:3px;
+    border-radius:50%;
+    /*float: left;*/
+    background: #fff;
+    cursor: pointer;
+    letter-spacing: 0px;
+    *display: inline;              /*IE7下兼容inline-block*/
+    *zoom:1;
+}
+.active {
+    width:11px;
+    height:11px;
+    border:2px solid #ffffff;
+    background: none;
+    margin-bottom:-2px;
+}

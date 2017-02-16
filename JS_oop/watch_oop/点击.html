@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>观察者模式简单应用</title>
+</head>
+<body>
+<p>两个模块，a模块里面有一个按钮，每次点按钮之后b模块里的div中会显示按钮的总点击次数，我们用全局观察者完成。</p>
+
+<button id="btn">点击</button>
+<div id="show"></div>
+<script>
+
+    var Event=(function(){
+        var clientList=[],
+                listen,
+                trigger,
+                remove;
+
+        listen=function(key,fn){
+            if(!clientList[key]){
+                clientList[key]=[];
+            };
+
+            clientList[key].push(fn);
+        };
+
+        trigger=function(){
+            var key=Array.prototype.shift.call(arguments),
+                    fns=clientList[key];
+
+            if(!fns || fns.length===0){
+                return false;
+            };
+
+            for(var i=0,fn;fn=fns[i++];){
+                fn.apply(this,arguments);
+            };
+        };
+
+        remove=function(key,fn){
+            var fns=clientList[key];
+            if(!fns){
+                return false;
+            };
+
+            if(!fn){
+                fns && (fns.length=0);
+            }else{
+                for(var l=fns.length-1;l>=0;l--){
+                    var _fn=fns[l];
+                    if(_fn===fn){
+                        fns.splice(l,1);
+                    }
+                }
+            }
+        };
+
+        return {
+            listen:listen,
+            trigger:trigger,
+            remove:remove
+        }
+    })();
+
+    var a=(function(){
+
+        var count=1;
+        var oBtn=document.getElementById('btn');
+
+        oBtn.addEventListener('click',function(){
+            Event.trigger('add',count++);
+        },false);
+
+    })();
+
+    var b=(function(){
+
+        var oDiv=document.getElementById('show');
+
+        Event.listen('add',function(count){
+            oDiv.innerHTML=count;
+        });
+
+    })();
+
+
+</script>
+</body>
+</html>

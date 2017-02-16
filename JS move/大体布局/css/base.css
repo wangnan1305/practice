@@ -1,0 +1,121 @@
+*{
+    padding:0;
+    margin:0;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+.header{
+    width:980px;
+    margin:10px auto;
+    height:50px;
+}
+.header .logo{
+    float:left;
+}
+.header .username{
+    color:#333;
+    float:right;
+    margin:10px 0 0 0;
+}
+.username a{
+    color:#333;
+    font-size:14px;
+    font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+}
+.username a:hover{
+    cursor: pointer;
+}
+.main{
+    width:980px;
+    margin:0 auto;
+}
+.center{
+    width:678px;
+    float:left;
+}
+.center .tab{
+    width:678px;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+}
+.tab .left{
+    position:absolute;
+    left:0;
+    top:0;
+}
+.center h3{
+    background: #37A703;
+    color:#fff;
+    width:100px;
+    display: inline-block;
+    padding:5px 10px;
+    border-radius: 25px;
+    text-align: center;
+}
+.center h3:hover{
+    cursor: pointer;
+}
+.center .active{
+    background: #E0501E;
+}
+.left .tab_con{
+    float:left;
+    width:678px;
+
+}
+.tab_con ul li{
+    line-height: 40px;
+    padding:40px 0 0 10px;
+}
+.right{
+    float:right;
+    width:200px;
+    margin:10px 0 0 20px;
+}
+.right .find .text{
+    font-size: 12px;
+    padding:2px;
+    color:#333;
+    font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+}
+.right .find .seach{
+    font-size:14px;
+    padding:2px;
+    color:#333;
+}
+.newList{
+    margin-top:15px;
+}
+.newList p{
+    display: inline-block;
+    font-size: 18px;
+    padding:3px 8px;
+    font-family:"微软雅黑", Arial, Helvetica, sans-serif;
+    color:#fff;
+    background:#E0501E;
+}
+.newList .download{
+    width:200px;
+}
+.newList ul{
+    background: url(../images/list.png) no-repeat 1px 18px ;
+}
+.newList ul li{
+    width:200px;
+    height: 30px;
+    line-height: 30px;
+    border-bottom:1px solid #333;
+    padding:10px 0 0 30px;
+}
+.newList ul li :hover{
+    color:black;
+}
+.newList ul li a{
+    padding:5px 0;
+    color:#666;
+}

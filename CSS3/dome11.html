@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CSS3D</title>
+    <style>
+        .mask{
+            perspective:800px;
+            perspective-origin:50% 5%;
+            position: relative;
+            width: 900px;
+            min-height: 200px;
+            margin:50px auto;
+            padding: 150px 50px;
+            background-color: #f0f0f0;
+            box-shadow: inset 0 0 3px rgba(0,0,0,.35);
+        }
+        .container{
+            width: 180px;
+            height: 180px;
+            margin-left: -90px;
+            position: absolute;
+            left: 50%;
+            transform-style:preserve-3d;
+            transition:transform 1s;
+        }
+        .container img{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div class="mask">
+    <div class="container">
+<!--        <img class="p" src="images/wn.png" alt=""/>
+        <img class="p" src="images/wn.png" alt=""/>
+        <img class="p" src="images/wn.png" alt=""/>
+        <img class="p" src="images/wn.png" alt=""/>
+        <img class="p" src="images/wn.png" alt=""/>
+        <img class="p" src="images/wn.png" alt=""/>
+        <img class="p" src="images/wn.png" alt=""/>
+        <img class="p" src="images/wn.png" alt=""/>
+        <img class="p" src="images/wn.png" alt=""/>-->
+    </div>
+</div>
+<script>
+    window.onload=function(){
+
+        (function(){
+
+            //选择器
+            function $(ele){
+                return document.querySelector(ele);
+            }
+            //获取元素样式
+            function getStyle(el,name) {
+                if(window.getComputedStyle) {
+                    return window.getComputedStyle(el, null)[name];
+                }else{
+                    return el.currentStyle[name];
+                }
+            }
+            //获取元素宽高
+            function getWH(el, name) {
+                var val = name === "width" ? el.offsetWidth : el.offsetHeight,
+                        which = name === "width" ? ['Left', 'Right'] : ['Top', 'Bottom'];
+
+                // display is none
+                if(val === 0) {
+                    return 0;
+                }
+
+                for(var i = 0, a; a = which[i++];) {
+                    val -= parseFloat( getStyle(el, "border" + a + "Width") ) || 0;
+                    val -= parseFloat( getStyle(el, "padding" + a) ) || 0;
+                }
+
+                return val;
+            }
+            var html='';
+
+            // 元素
+            var oContainer = $(".container"), index = 0;
+
+            for(var i=0;i<9;i++){
+                html=html+'<img class="p" src="images/wn.png" alt="" />'
+            }
+            oContainer.innerHTML = html;
+
+            var elePic = document.querySelectorAll(".container img"),
+                    rotate = 360 / elePic.length,
+                    picLength=getWH(elePic[0],'width');
+
+            var transZ = 60 / Math.tan((rotate / 2 / 180) * Math.PI);
+
+
+            var transform = function(element, value, key) {
+                key = key || "Transform";
+                ["Moz", "O", "Ms", "Webkit", ""].forEach(function(prefix) {
+                    element.style[prefix + key] = value;
+                });
+            }
+
+            oContainer.addEventListener("click", function() {
+                transform(this, "rotateY("+ (-1 * rotate * ++index) +"deg)");
+            });
+
+            for(var i=0;i<elePic.length;i++) {
+                transform(elePic[i], "rotateY(" + i * rotate + "deg) translateZ(" + (transZ + 20) + "px)");
+            }
+
+        })()
+
+
+    }
+
+</script>
+</body>
+</html>

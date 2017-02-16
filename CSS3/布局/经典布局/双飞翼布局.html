@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>双飞翼布局</title>
+</head>
+<style>
+    *{padding:0;margin:0;}
+    .all{
+        width:960px;
+        margin:0 auto;
+    }
+    .header{
+        height: 100px;
+        background: #666666;
+    }
+    .artice{
+        height: 200px;
+        background: #333333;
+        /*padding:0 150px 0 150px;*/
+        overflow: hidden;
+    }
+    .artice .left{
+        width:150px;
+        /*height:18px;*/
+        float:left;
+        background: #006699;
+        margin-left: -100%;
+        /*position: relative;
+        left:-150px;*/
+        padding-bottom: 9999px;
+        margin-bottom:-9999px;
+    }
+    .artice .right{
+        width:150px;
+        /*height:18px;*/
+        float:left;
+        background: #009900;
+        margin-left:-150px;
+        /*position:relative;
+        right:-150px;*/
+        padding-bottom: 9999px;
+        margin-bottom:-9999px;
+    }
+    .artice .mid{
+        background: indianred;
+        float:left;
+        width:100%;
+        padding-bottom: 9999px;
+        margin-bottom:-9999px;
+    }
+    .artice .mid .inner{
+        margin:0 150px 0 150px;
+    }
+    .footer{
+        height:100px;
+        background: palegreen;
+    }
+</style>
+<body>
+<div class="all">
+    <div class="header">我是头</div>
+    <div class="artice">
+        <div class="mid">
+            <div class="inner">我是中</div>
+        </div>
+        <div class="left">我是左</div>
+        <div class="right">我是右</div>
+    </div>
+    <div class="footer">我是尾</div>
+</div>
+</body>
+</html>

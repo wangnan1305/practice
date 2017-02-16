@@ -1,0 +1,134 @@
+$myColor: #ccc;
+
+#page {
+  color: $myColor;
+}
+
+ul.nav {
+  float: right;
+
+  li {
+    float: left;
+
+    a {
+      color: #111;
+    }
+    &.current {
+      font-weight: bold;
+    }
+  }
+}
+
+#main p{
+  color:#00ff00;
+  width:97%;
+  .redbox{
+    background-color: #ff0000;
+    color: #000000;
+  }
+}
+
+#main{
+  width:97%;
+  p,div{
+    font-size: 2em;
+    a{font-weight: bold;}
+
+  }
+  pre{font-size: 3em}
+}
+
+a{
+  font-weight: bold;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+  body.firefox &{
+    font-weight: normal;
+  }
+}
+
+/*& 在编译时将被替换为父选择符，输出到 CSS 中。
+ 也就是说，如果你有一个深层嵌套的规则，
+ 父选择符也会在 & 被替换之前被完整的解析， 例如：*/
+
+#main{
+  color:black;
+  a{
+    font-weight: bold;
+    &:hover{color:red}
+  }
+}
+
+.funky {
+  font: 2px/3px {
+    family: fantasy;
+    size: 30em;
+    weight: bold;
+  }
+}
+
+@mixin firefox-message($selector){
+  body.firefox #{$selector}:before{
+    content: "Hi,Firefox users!";
+  }
+}
+
+@include firefox-message(".header");
+
+@mixin rounded($a,$b,$c:10px){
+  border-#{$a}-#{$b}-radius: $c;
+  -moz-border-radius-#{$a}-#{$b}: $c;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

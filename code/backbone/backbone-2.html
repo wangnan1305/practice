@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>the5fire-backbone-model</title>
+</head>
+<body>
+</body>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+<script>
+	(function ($) {
+	    var Man = Backbone.Model.extend({
+	    	initialize:function(){
+	    		console.log("create me");
+	    		this.bind('change:age',function(){
+	    			var name = this.get('name'),
+	    				age = this.get('age');
+	    			//alert("你改变了name属性为：" + name + "你改变了age属性为：" + age);
+	    		});
+	    		this.bind('invalid',function(model,error){
+	    			alert(error);
+	    		});
+	    	},
+	    	defaults:{
+	    		name:"wangnan",
+	    		age:15
+	    	},
+	    	validate:function(attributes){
+	    		if(attributes.age<0){
+	    			return "age不能为负数"
+	    		}
+	    	}
+	    })
+	    var man = new Man;
+	    //console.log(man.get('name'));
+	    man.set({name:'',age:10});
+	    man.save();
+
+
+	})(jQuery);
+</script>
+</html>

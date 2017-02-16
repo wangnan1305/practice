@@ -1,0 +1,726 @@
+/* reset */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+body,textarea,input,button,select,keygen,legend{font:12px/1.14 arial,\5b8b\4f53;color:#333;outline:0;}
+body{background:#fff;}
+a,a:hover{color:#333;}
+body{font: 12px/1.14 "Arial","Hiragino Sans GB","Microsoft YaHei", \5fae\8f6f\96c5\9ed1, "Helvetica", "sans-serif";color: #333}
+/*reset结束*/
+
+body{
+    overflow-x:auto;
+    background: #F8F8F8;
+}
+/*头部   header*/
+.head{
+    width: 1200px;
+    height: 22px;
+    margin: 0 auto;
+    padding: 32px 0 36px 0;
+}
+
+.f-fl {
+    float: left;
+}
+
+.top-head{
+    width: 100%;
+    height: 36px;
+    background: #f3f3f3;
+}
+
+.top-advertise{
+    margin:0 auto;
+}
+
+.top-advertise p{
+    float: left;
+    line-height: 36px;
+}
+
+.top-advertise p a{
+    color: #21a557
+}
+
+.top-advertise .top-no-attention{
+    display: inline-block;
+    float: right;
+    line-height: 12px;
+    margin:12px 0;
+    padding-left: 15px;
+    background: url(../image/spirit.png) no-repeat -284px -25px;
+    cursor: pointer;
+}
+
+.h-logo h2 {
+    width: 158px;
+    height: 26px;
+    line-height: 26px;
+    padding-left: 84px;
+    background: url(../image/spirit.png) no-repeat -223px 0;
+    font-size: 22px;
+}
+
+.h-attention {
+    margin-left: 30px;
+    font: 12px/21px SimSun;
+    position: relative;
+}
+
+.h-attention .btn {
+    float: left;
+    width: 54px;
+    height: 21px;
+    padding-left: 22px;
+    color: #fff;
+    border: 0;
+    border-radius: 2px;
+    background: #21a557 url(../image/spirit.png) no-repeat -36px 0;
+    cursor: pointer;
+}
+
+.h-attention .active{
+    width: 106px;
+    height: 21px;
+    padding-left: 22px;
+    border: 1px solid #efefef;
+    background: #fff url(../image/spirit.png) no-repeat -104px 0;
+    border-radius: 2px;
+    color: #333;
+    outline: none;
+    text-align: left;
+}
+
+.h-attention .close-att{
+    position: absolute;
+    top:5px;
+    left:68px;
+    font: 12px/12px SimSun;
+    color: #999;
+    padding: 0 6px;
+    border-left: 1px solid #cccccc;
+}
+
+.h-attention .close-att:hover{
+    color: #21a557;
+    text-decoration: underline;
+}
+
+.h-attention .btn:hover {
+    background: #2fb556 url(../image/spirit.png) no-repeat -36px 0;
+}
+
+.h-attention .fans {
+    margin-left: 14px;
+    color: #666;
+}
+/*登陆弹窗*/
+.h-attention .h-popup{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    z-index:98;
+}
+
+.h-attention .h-popup .bg{
+    width:100%;
+    height: 100%;
+    opacity: 0.7;
+    background: #000;
+    filter:alpha(opacity=70);
+}
+
+.h-attention .h-popup .login-mask{
+    position: fixed;
+    top:50%;
+    left:50%;
+    /*transform:translate(-50%,-50%);*/
+    margin: -144px 0 0 -193px;
+    width:387px;
+    height: 288px;
+    z-index:99;
+    background: #fff;
+}
+.h-popup .login-mask .login-close {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-left: 367px;
+    background: url(../image/spirit.png) no-repeat -18px 0;
+    cursor: pointer;
+}
+
+.h-popup .login-mask h3 {
+    padding: 0 0 10px 40px;
+    font: bold 18px/38px 'Microsoft YaHei';
+    color: #444;
+}
+
+.h-popup .login-mask input {
+    width: 291px;
+    height: 43px;
+    margin: 0 0 30px 40px;
+    background: #fafafa;
+    border: 1px solid #dfdfdf;
+    box-shadow: inset 1px 1px 2px 1px #f1f1f1;
+    font: 16px/43px 'Microsoft YaHei';
+    text-indent: 10px;
+    color: #000;
+}
+
+.h-popup .login-mask input[type=submit] {
+    width: 293px;
+    border: none;
+    box-shadow: 1px 1px 0 1px #d5e3da;
+    margin: 0 0 30px 40px;
+    background: url(../image/spirit.png) no-repeat 0 -37px;
+    cursor: pointer;
+}
+
+.h-list a {
+    float: left;
+    margin-right: 56px;
+    font-size: 16px;
+    color: #666;
+    text-decoration: none;
+}
+
+.h-list a:hover {
+    color:#39a030;
+}
+
+.h-list .search{
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    background: url(../image/spirit.png) no-repeat;
+}
+
+.h-list .search:hover{
+    background: url(../image/spirit.png) no-repeat 0 -18px;
+}
+.f-fr {
+    float: right;
+}
+
+
+/*轮播图*/
+
+.slide{
+    position: relative;
+}
+
+.slide .imgs{
+    overflow: hidden;
+}
+
+.slide .is{
+    position: absolute;
+    bottom:20px;
+    left:644.5px;
+}
+
+.slide .is i{
+    display: block;
+    float: left;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+
+.slide .is .active{
+    background: #333;
+}
+
+/*产品列表*/
+
+.lists{
+    width:1270px;
+    height: 235px;
+    margin:0 auto;
+    margin: 60px auto 0;
+    font-family: 'Microsoft YaHei';
+}
+
+.lists .list{
+    width:339px;
+    height:235px;
+    margin:0 35px;
+    background: #fff;
+}
+
+.lists .list .icon{
+    width:80px;
+    height:229px;
+    margin:8px 20px 0 0;
+}
+
+.lists .list .icon1{
+    background: url(../image/spirit.png) no-repeat 0px -83px;
+}
+
+.lists .list .icon2{
+    background: url(../image/spirit.png) no-repeat -80px -83px;
+}
+
+.lists .list .icon3{
+    background: url(../image/spirit.png) no-repeat -160px -83px;
+}
+
+.list .intro h3{
+    height:22px;
+    line-height: 22px;
+    font-size: 22px;
+    font-weight: normal;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.list .intro p{
+    height: 120px;
+    line-height: 24px;
+    font-size: 14px;
+    color: #666;
+    text-align: justify;
+}
+
+.list .intro a{
+    font-size: 14px;
+    height:14px;
+    line-height: 14px;
+    color:#39a030;
+}
+
+.list .intro a:hover{
+    text-decoration: underline;
+}
+
+.show{
+    width:1616px\0;
+    height: 224px;
+}
+
+.show img{
+    float: left;
+    margin-right: 4px;
+}
+
+.show .spec{
+    margin-right: 0px;
+}
+
+
+
+.column{
+    min-height: 1552px;
+    margin:0 auto;
+    padding-top: 80px;
+}
+
+.column .shop{
+    width:970px\9;
+}
+
+.column .shop .s-tabhd{
+    width:400px;
+    height: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #666;
+    font:20px/50px 'Microsoft YaHei';
+    box-shadow: 1px 1px 1px #dcdcdc;
+}
+
+.column .s-tabhd div{
+    float: left;
+    width:200px;
+    height: 50px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.column .s-tabhd .active{
+    background: #39a030;
+    color:#fff;
+}
+
+.column .shop .clear:after{
+    content: ".";
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+}
+
+.column .s-page{
+    width:343px;
+    height:20px;
+    float: right;
+    font: 14px/20px 'Microsoft YaHei';
+    padding: 30px 38px 100px 0;
+}
+
+.column .s-page a{
+    float: left;
+    padding:0 6px;
+    margin:0 4px;
+    color: #666;
+}
+
+.column .s-page a:hover{
+    background: #9dd8b1;
+    color: #fff;
+}
+.column .s-page .active{
+    background: #9dd8b1;
+    color: #fff;
+}
+
+.column .s-page .prev,.column .s-page .next{
+    display: block;
+    width: 30px;
+    height: 20px;
+    padding:0;
+    margin:0;
+}
+.column .s-page .prev{
+    background: #9dd8b1 url(../image/spirit.png) no-repeat -263px -123px;
+}
+
+.column .s-page .next{
+    background: #9dd8b1 url(../image/spirit.png) no-repeat -263px -143px;
+}
+
+.column .s-content .s-team{
+    position: relative;
+    float: left;
+    width: 225px;
+    height: 228px;
+    margin: 10px 10px 10px 0;
+    background: #fff;
+    box-shadow: 0 1px 1px 1px #e6e6e6;
+    font: 12px/12px 'Microsoft YaHei';
+}
+
+.column .s-content .s-team img{
+    width: 223px;
+    height: 124px;
+    margin: 1px 1px 10px 1px;
+}
+
+.column .s-content .s-team p{
+    width: 214px;
+    line-height: 12px;
+    color: #333;
+    padding-left: 5px;
+}
+
+.column .s-content .s-team div{
+    padding:10px 5px;
+    color: #999;
+}
+
+.column .s-content .s-team span{
+    color: #999;
+    margin-left: 5px;
+    border:1px solid #ddd;
+    border-radius: 2px;
+    padding:0 4px 0 18px;
+    background: url(../image/spirit.png) no-repeat -35px -20px;
+}
+
+.column .s-content .s-team strong{
+    display: block;
+    color:#ff3f00;
+    margin:10px 0 10px 5px;
+}
+
+.column .s-content .s-team .f-hidden{
+    overflow: hidden;
+    word-wrap: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.column .s-content .s-team a{
+    display: none;
+}
+
+.column .s-content .s-team:hover a{
+    display: block;
+    position: absolute;
+    width:461px;
+    min-height:218px;
+    background: #fff;
+    top:-10px;
+    left:-10px;
+    box-shadow: 0px 0px 2px 1px #d3d1d2;
+    padding:10px;
+    z-index: 999;
+}
+
+.column .s-content .s-team a img{
+    float: left;
+}
+
+.column .s-content .s-team a h3{
+    font: 20px/26px 'Microsoft YaHei';
+    margin: 0 0px 12px 233px;
+    color: #333;
+}
+
+.column .s-content .s-team a span{
+    border:0;
+}
+
+.column .s-team a .categoryname{
+    height: 40px;
+    font:12px/20px 'Microsoft YaHei';
+    padding:10px 0 0 233px;
+    color: #666;
+}
+
+.column .s-team a .description{
+    clear: both;
+    width:426px;
+    padding-left: 15px;
+    font:14px/24px 'Microsoft YaHei';
+}
+
+.column .hot{
+    width:226px;
+    margin-left: 20px;
+}
+
+.column .hot .video{
+    width:226px;
+    background: #fff;
+    box-shadow: 0 1px 1px 1px #e6e6e6;
+}
+
+.hot .video h3,.hot .news-scroll h3 {
+    height:55px;
+    font:normal 16px/54px 'Microsoft YaHei';
+    padding-left: 20px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.column .hot .video p{
+    margin-top: 20px;
+    font:14px/32px 'Microsoft YaHei';
+    padding-left: 20px;
+}
+
+.column .video .v-detail{
+    position: relative;
+    width:180px;
+    padding:0 0 20px 20px;
+}
+
+.column .video .v-detail .play{
+    position: absolute;
+    top:31.5px;
+    left:83px;
+    z-index:2;
+    cursor: pointer;
+}
+/*视频弹窗*/
+
+.column .video .mask{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    z-index:1000;
+}
+
+.column .video .popup{
+    position: fixed;
+    top:0;
+    left:198.5px;
+    width:952px;
+    height: 675px;
+    background: #fff;
+    z-index: 1001;
+}
+
+.column .video .popup a{
+    display: block;
+    width:18px;
+    height: 18px;
+    float: right;
+    margin: 15px 10px 0 0;
+    background: url(../image/spirit.png) no-repeat -18px -9px;
+}
+
+.column .video .popup p{
+    float: left;
+    height: 59px;
+    margin: 10px 30px;
+    font: bold 18px/59px 'Microsoft YaHei';
+    padding:0;
+}
+
+.column .video .popup video{
+    margin-left: 30px;
+}
+.hot .news-scroll h3{
+    margin-top:20px;
+    background: #fff;
+}
+
+.hot .news-scroll .news-con{
+    position: relative;
+    background: #fff;
+    height: 902px;
+    overflow: hidden;
+}
+
+.news-scroll .news-con .package{
+    position: absolute;
+    top:0;
+}
+
+.news-scroll .news-con .package a{
+    display: inline-block;
+    height: 50px;
+    margin:20px;
+}
+
+.news-scroll  .package a img{
+    float: left;
+    width:50px;
+    height: 50px;
+}
+
+.news-scroll .package a p{
+    float: left;
+    width: 121px;
+    height: 14px;
+    font: 14px/14px 'Microsoft YaHei';
+    color: #333;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin:0 0 13px 12px;
+}
+
+.news-scroll .news-con a .learn-count{
+    padding-left: 16px;
+    margin-left: 10px;
+    font:12px/12px 'Microsoft YaHei';
+    color: #666;
+    background: url(../image/spirit.png) no-repeat -35px -20px;
+}
+
+/*底部*/
+.out-ft{
+    overflow: hidden;
+    width:100%;
+    background: #2c3339;
+}
+
+.out-ft .footer{
+    width: 1108px;
+    height: 262px;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.out-ft .footer .Copyright{
+    width: 544px;
+    height: 170px;
+    margin-top: 92px;
+}
+
+.footer .Copyright .logo{
+    width: 157px;
+    height: 22px;
+    font-size: 22px;
+    padding-left: 83px;
+    margin-bottom: 23px;
+    color: #39a030;
+    background: url(../image/spirit.png) no-repeat -223px 0;
+}
+
+.footer .Copyright p{
+    font:12.5px/25px 'Microsoft YaHei';
+    color: #fff;
+    opacity: 0.6;
+    filter:alpha(opacity=60);
+}
+
+.footer .friends{
+    width:210px;
+}
+
+.footer .friends,.footer .about,.footer .more{
+    margin-top: 66px;
+    font: 15px/30px 'Microsoft YaHei';
+    opacity: 0.6;
+    filter:alpha(opacity=60);
+}
+.footer .friends p{
+    font-size: 12.5px;
+}
+
+.footer .friends a{
+    display: block;
+    color: #fff;
+}
+
+.footer .friends a:hover,.footer .more a:hover,.footer .about a:hover{
+    text-decoration: underline;
+}
+
+.footer .about{
+    width:134px;
+}
+
+.footer .about p{
+    font-size: 12.5px;
+    color: #fff;
+}
+
+.footer .about a{
+    display: block;
+    color: #fff;
+}
+
+.footer .more p{
+    font-size: 12.5px;
+    color: #fff;
+}
+
+.footer .more a{
+    display: block;
+    color: #fff;
+}
+
+
+

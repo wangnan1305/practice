@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js对象可枚举</title>
+</head>
+<body>
+<script>
+	
+	// var obj = {
+	// 	name:'wn',
+	// 	age:15,
+	// 	jsont:{
+	// 		name:"asd",
+	// 		age:"456"
+	// 	}
+	// }
+	// Object.defineProperty(obj,'id',{
+	// 	value:'不可枚举'
+	// })
+
+	// console.log(obj)
+	// // for(var i in obj){
+	// // 	console.log(i+'='+obj[i])
+	// // }
+	// console.log(Object.keys(obj))
+
+	// function Person(){
+	// 	this.name = "wnnnn";
+	// }
+	// Person.prototype = {
+	// 	job:"develpoer",
+	// 	method:function(){
+
+	// 	}
+	// }
+
+	// var me = new Person();
+
+	// console.log(Object.keys(me)+"　　Object.keys");
+	// for(var i in me){
+	// 	console.log(i)
+	// }
+
+
+	// var obj = {
+	//     name:"wangnan",
+	//     age:22
+	// }
+
+	// Object.defineProperty(obj,'id',{  //通过这个方法创建不可枚举属性
+	//     value:'我是不可枚举的'
+	// })
+
+	// for(var i in obj){
+	//     console.log(i+'='+obj[i])
+	// }
+
+	function Person(){
+	    this.name = "wangnan"
+	}
+
+	Person.prototype = {
+	    age:22,
+	    method:function(){
+	        
+	    }
+	}
+
+	Object.defineProperty(Person,"id",{
+	    value:"我是不可枚举属性"
+	})
+
+	var obj = new Person();
+	// for(var i in obj){
+	//     console.log(i+'='+obj[i])
+	// }
+	console.log(JSON.stringify(obj))
+</script>
+</body>
+</html>

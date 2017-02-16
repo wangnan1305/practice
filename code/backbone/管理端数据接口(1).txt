@@ -1,0 +1,550 @@
+管理端接口:
+一、频道管理(shop_channels)
+字段:
+cid:"频道id",
+uuid:"唯一标识,字符串,不变,比如首页:index,男生页:boy",
+name:"频道名称",
+description:"频道描述",
+status:"频道状态",
+createdate:"创建时间,秒",
+updatedate:"更新时间,秒"
+
+1、增加频道
+接口地址:
+方法:post
+传递数据:
+{
+	uuid:"唯一标识,字符串,不变",
+	name:"频道名称",
+	description:"频道描述",
+	status:"频道状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		cid:"频道id",
+		uuid:"唯一标识,字符串,不变",
+		name:"频道名称",
+		description:"频道描述",
+		status:"频道状态",
+		createdate:"创建时间,秒",
+		updatedate:"更新时间,秒"
+	}
+}
+
+2、更新频道
+接口地址:
+方法:post
+传递数据:
+{
+	uuid:"唯一标识,字符串,不变",
+	name:"频道名称",
+	description:"频道描述",
+	status:"频道状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		cid:"频道id",
+		updatedate:"更新时间,秒"
+	}
+}
+
+3、频道列表
+接口地址:
+方法:get
+传递数据:
+{
+	page:"页码,默认1",
+	pagesize:"页面数量,默认10",
+	status:"频道状态,可选"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	totalsize:"总数",
+	list://频道列表
+	[
+		{
+			cid:"频道id",
+			uuid:"唯一标识,字符串,不变",
+			name:"频道名称",
+			description:"频道描述",
+			status:"频道状态",
+			createdate:"创建时间,秒",
+			updatedate:"更新时间,秒"
+		},...
+	]
+}
+
+二、商品管理(shop_goods)
+字段:
+gid:"商品id",
+typeid:"类型id,可为空",
+name:"商品名称",
+title:"展示的标题",
+subtitle:"副标题",
+cover:"封面图片",
+coverflows:"轮播图片,多张逗号隔开",
+price:"现价",
+original_price:"原价",
+description:"商品概要描述",
+detail:"商品详情,图片模式,多个图片逗号隔开",
+buyurl:"购买链接",
+data:"其他不规则数据,存储为json字符串",
+likes:"认为好数",
+unlikes:"不认为好数",
+comments:"评论数",
+see:"浏览数",
+status:"商品状态",
+createdate:"创建时间,秒",
+updatedate:"更新时间,秒"
+
+1、增加商品
+接口地址:
+方法:post
+传递数据:
+{
+	typeid:"类型id,可为空",
+	name:"商品名称",
+	title:"展示的标题",
+	subtitle:"副标题",
+	cover:"封面图片",
+	coverflows:"轮播图片,多张逗号隔开",
+	price:"现价",
+	original_price:"原价",
+	description:"商品概要描述",
+	detail:"商品详情,图片模式,多个图片逗号隔开",
+	buyurl:"购买链接",
+	data:"其他不规则数据,存储为json字符串",
+	status:"商品状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		gid:"商品id",
+		updatedate:"更新时间,秒"
+	}
+}
+
+2、更新商品
+接口地址:
+方法:post
+传递数据:
+{
+	gid:"商品id",
+	typeid:"类型id,可为空",
+	name:"商品名称",
+	title:"展示的标题",
+	subtitle:"副标题",
+	cover:"封面图片",
+	coverflows:"轮播图片,多张逗号隔开",
+	price:"现价",
+	original_price:"原价",
+	description:"商品概要描述",
+	detail:"商品详情,图片模式,多个图片逗号隔开",
+	buyurl:"购买链接",
+	data:"其他不规则数据,存储为json字符串",
+	status:"商品状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		gid:"商品id",
+		updatedate:"更新时间,秒"
+	}
+}
+
+3、商品列表
+接口地址:
+方法:get
+传递数据:
+{
+	keyword:"关键字,默认为空",
+	page:"页码,默认1",
+	pagesize:"页面数量,默认10",
+	status:"频道状态,可选"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	totalsize:"总数",
+	list://商品列表
+	[
+		{
+			gid:"商品id",
+			typeid:"类型id,可为空",
+			name:"商品名称",
+			title:"展示的标题",
+			subtitle:"副标题",
+			cover:"封面图片",
+			coverflows:"轮播图片,多张逗号隔开",
+			price:"现价",
+			original_price:"原价",
+			description:"商品概要描述",
+			detail:"商品详情,图片模式,多个图片逗号隔开",
+			buyurl:"购买链接",
+			data:"其他不规则数据,存储为json字符串",
+			likes:"认为好数",
+			unlikes:"不认为好数",
+			comments:"评论数",
+			see:"浏览数",
+			status:"商品状态",
+			createdate:"创建时间,秒",
+			updatedate:"更新时间,秒"
+		},...
+	]
+}
+
+三、频道模块数据管理(shop_modules)
+
+(一)、图片轮播模块(shop_coverflow_module)
+唯一标识:coverflow
+字段:
+cid:"频道id",
+mid:"模块数据唯一id",
+gid:"对应商品id,可选",
+cover:"图片地址",
+url:"跳转地址",
+description:"描述",
+status:"模块状态",
+createdate:"创建时间,秒",
+updatedate:"更新时间,秒"
+
+1、增加
+接口地址:
+方法:post
+传递数据:
+{
+	cid:"频道id",
+	gid:"对应商品id,可选",
+	cover:"图片地址",
+	url:"跳转地址",
+	description:"描述",
+	status:"模块状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://信息
+	{
+		mid:"模块数据id",
+		createdate:"创建时间,秒",
+		updatedate:"更新时间,秒"
+	}
+}
+
+2、更新
+接口地址:
+方法:post
+传递数据:
+{
+	cid:"频道id",
+	mid:"模块数据唯一id",
+	gid:"对应商品id,可选",
+	cover:"图片地址",
+	url:"跳转地址",
+	description:"描述",
+	status:"模块状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://信息
+	{
+		mid:"模块数据id",
+		updatedate:"更新时间,秒"
+	}
+}
+
+3、删除
+接口地址:
+方法:post
+传递数据:
+{
+	mid:"模块数据唯一id"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		mid:"模块数据id"
+	}
+}
+
+(二)、爆款模块(shop_recommend_module)
+唯一标识:recommend
+字段:
+cid:"频道id",
+mid:"模块数据唯一id",
+gid:"对应商品id,可选",
+title:"标题",
+price:"价格",
+cover:"图片地址",
+url:"跳转地址",
+description:"描述",
+status:"模块状态",
+createdate:"创建时间,秒",
+updatedate:"更新时间,秒"
+
+1、增加
+接口地址:
+方法:post
+传递数据:
+{
+	cid:"频道id",
+	gid:"对应商品id,可选",
+	title:"标题",
+	price:"价格",
+	cover:"图片地址",
+	url:"跳转地址",
+	description:"描述",
+	status:"模块状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		mid:"模块数据id",
+		createdate:"创建时间,秒",
+		updatedate:"更新时间,秒"
+	}
+}
+
+2、更新
+接口地址:
+方法:post
+传递数据:
+{
+	cid:"频道id",
+	mid:"模块数据唯一id",
+	gid:"对应商品id,可选",
+	title:"标题",
+	price:"价格",
+	cover:"图片地址",
+	url:"跳转地址",
+	description:"描述",
+	status:"模块状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		mid:"模块数据id",
+		updatedate:"更新时间,秒"
+	}
+}
+
+3、删除
+接口地址:
+方法:post
+传递数据:
+{
+	mid:"模块数据唯一id"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		mid:"模块数据id"
+	}
+}
+
+(三)、四宫格模块(shop_fourgrid_module)
+唯一标识:fourgrid
+字段:
+cid:"频道id",
+mid:"模块数据唯一id",
+gid:"对应商品id,可选",
+cover:"图片地址",
+url:"跳转地址",
+description:"描述",
+status:"模块状态",
+createdate:"创建时间,秒",
+updatedate:"更新时间,秒"
+
+1、增加
+接口地址:
+方法:post
+传递数据:
+{
+	cid:"频道id",
+	gid:"对应商品id,可选",
+	cover:"图片地址",
+	url:"跳转地址",
+	description:"描述",
+	status:"模块状态",
+	createdate:"创建时间,秒",
+	updatedate:"更新时间,秒"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		mid:"模块数据id",
+		createdate:"创建时间,秒",
+		updatedate:"更新时间,秒"
+	}
+}
+
+2、更新
+接口地址:
+方法:post
+传递数据:
+{
+	cid:"频道id",
+	mid:"模块数据唯一id",
+	gid:"对应商品id,可选",
+	cover:"图片地址",
+	url:"跳转地址",
+	description:"描述",
+	status:"模块状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		mid:"模块数据id",
+		updatedate:"更新时间,秒"
+	}
+}
+
+3、删除
+接口地址:
+方法:post
+传递数据:
+{
+	mid:"模块数据唯一id"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		mid:"模块数据id"
+	}
+}
+
+(四)、商品列表模块(shop_goodslist_module)
+唯一标识:goodslist
+字段:
+cid:"频道id",
+mid:"模块数据唯一id",
+gid:"对应商品id,可选",
+top:"索引顺序,默认0,升序",
+description:"描述",
+status:"模块状态",
+createdate:"创建时间,秒",
+updatedate:"更新时间,秒"
+
+1、增加
+接口地址:
+方法:post
+传递数据:
+{
+	cid:"频道id",
+	gid:"对应商品id,可选",
+	top:"索引顺序,默认0,升序",
+	from:"来源,天猫还是京东什么的",
+	description:"描述",
+	status:"模块状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		mid:"模块数据id",
+		createdate:"创建时间,秒",
+		updatedate:"更新时间,秒"
+	}
+}
+
+2、更新
+接口地址:
+方法:post
+传递数据:
+{
+	cid:"频道id",
+	mid:"模块数据唯一id",
+	gid:"对应商品id,可选",
+	top:"索引顺序,默认0,升序",
+	from:"来源,天猫还是京东什么的",
+	description:"描述",
+	status:"模块状态"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		mid:"模块数据id",
+		updatedate:"更新时间,秒"
+	}
+}
+
+3、删除
+接口地址:
+方法:post
+传递数据:
+{
+	mid:"模块数据唯一id"
+}
+
+返回数据:
+{
+	code:200,//状态码,200成功,其他出错,返回msg字段提示信息
+	msg:"提示信息",
+	data://完整的频道信息
+	{
+		mid:"模块数据id"
+	}
+}

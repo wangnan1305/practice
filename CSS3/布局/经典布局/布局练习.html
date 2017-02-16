@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>布局练习</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0
+        }
+        #page{
+            width:960px;
+            margin:0 auto;
+        }
+        #page2{
+            width:100%;
+        }
+        nav{
+            width:150px;
+            float:right;
+        }
+        nav a{
+            width:150px;
+            height:50px;
+            line-height: 50px;
+            font-size: 24px;
+            font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+            text-decoration: none;
+        }
+        article .main, article .sub, article .extra {
+            padding-bottom: 9999px;
+            margin-bottom: -9999px;
+        }
+
+        header {
+            height: 100px;
+            background: #666666;
+            clear:both;
+        }
+
+        article {
+            background: #223D7C;
+            height: 200px;
+            overflow: hidden;
+            /*padding: 0 100px 0 150px;*/
+        }
+
+        article .main {
+            width: 100%;
+            float: left;
+            background: darkred;
+        }
+        article .main .inner{
+            margin:0 100px 0 150px;
+        }
+        article .sub {
+            width: 150px;
+            background: indianred;
+            float: left;
+            margin-left: -100%;
+            /*position: relative;
+            left: -150px;*/
+        }
+
+        article .extra {
+            width: 100px;
+            background: darkolivegreen;
+            float: left;
+            margin-left: -100px;
+            /*position: relative;
+            right: -100px;*/
+        }
+
+        footer {
+            height: 100px;
+            background: yellowgreen;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oA=document.querySelector("#togglePageId");
+            oA.onclick=function(){
+                var oDiv=document.querySelector("nav").parentNode;
+                oDiv.id=(oDiv.id=="page")?"page2":"page";
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div id="page">
+    <nav><a href="#" id="togglePageId">自适应布局</a></nav>
+    <header>我是头</header>
+    <article>
+        <div class="main">
+            <div class="inner">我是中间</div>
+        </div>
+        <div class="sub">我是sub</div>
+        <div class="extra">我是extra</div>
+    </article>
+    <footer>我是尾部</footer>
+</div>
+</body>
+</html>

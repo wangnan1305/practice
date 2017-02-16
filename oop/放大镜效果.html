@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>放大镜效果</title>
+    <style>
+        #pic_s{
+            width:245px;
+            height:200px;
+            overflow: hidden;
+            position:relative;
+            top:10px;
+            left:10px;
+        }
+        #pic_s span{
+            width:100px;
+            height:100px;
+            background: yellow;
+            filter:alpha(opacity=50);
+            opacity: 0.5;
+            position:absolute;
+            top:0;
+            left:0;
+            display: none;
+        }
+        #mark{
+            width:245px;
+            height:200px;
+            background: red;
+            filter:alpha(opacity=0);
+            opacity: 0;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+        #pic_b{
+            position:absolute;
+            overflow: hidden;
+            left:350px;
+            top:50px;
+            display: block;
+        }
+        #pic_b img{
+            width:900px;
+            height:735px;
+            position:absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById("pic_s");
+            var aSpan=oDiv.getElementsByTagName("span")[0];
+            var oDiv2=document.getElementById("pic_b");
+            var aImg=oDiv2.getElementsByTagName("img")[0];
+            oDiv.onmouseover=function(){
+                aSpan.style.display='block';
+                oDiv2.style.display='block';
+                oDiv2.style.width=(aSpan.offsetWidth/oDiv.offsetWidth)*aImg.offsetWidth+'px';
+                oDiv2.style.height=(aSpan.offsetHeight/oDiv.offsetHeight)*aImg.offsetHeight+'px';
+
+            };
+            oDiv.onmouseout=function(){
+                aSpan.style.display='none';
+                oDiv2.style.display='none';
+            };
+            oDiv.onmousemove=function(event){
+                var event=event||window.event;
+                var nLeft=event.clientX-(aSpan.offsetWidth/2)-oDiv.offsetLeft;
+                var nTop=event.clientY-(aSpan.offsetHeight/2)-oDiv.offsetTop;
+
+
+                if(nLeft<0){
+                    nLeft=0;
+                }else if(nLeft>(oDiv.offsetWidth-aSpan.offsetWidth)){
+                    nLeft=oDiv.offsetWidth-aSpan.offsetWidth;
+                }
+                if(nTop>(oDiv.offsetHeight-aSpan.offsetHeight)){
+                    nTop=oDiv.offsetHeight-aSpan.offsetHeight;
+                }else if(nTop<0){
+                    nTop=0;
+                }
+                aSpan.style.left=nLeft+'px';
+                aSpan.style.top=nTop+'px';
+
+                var scaleX=nLeft/(oDiv.offsetWidth-aSpan.offsetWidth);
+                var scaleY=nTop/(oDiv.offsetHeight-aSpan.offsetHeight);
+                aImg.style.left=-scaleX*(aImg.offsetWidth-oDiv2.offsetWidth)+'px';
+                aImg.style.top=-scaleY*(aImg.offsetHeight-oDiv2.offsetHeight)+'px';
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="pic_s">
+    <img src="images/01.jpg"/>
+    <span></span>
+    <div id="mark"></div>
+</div>
+<div id="pic_b">
+    <img src="images/01_big.jpg"/>
+</div>
+</body>
+</html>

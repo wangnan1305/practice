@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>apply-call</title>
+</head>
+<body>
+<script>
+	function Person(name,age)  
+    {  
+        this.name=name;  
+        this.age=age;  
+    }  
+    function Student(name,age,grade)  
+    {  
+    	console.log(this.Person);
+        Person.apply(this,arguments);  
+        this.grade=grade;  
+    } 
+
+</script>
+</body>
+</html>
+
+<!-- foo.call(this, arg1,arg2,arg3) == foo.apply(this, arguments)==this.foo(arg1, arg2, arg3) -->

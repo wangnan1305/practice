@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>子集影响父级bug</title>
+    <style>
+        #div1{
+            width:200px;
+            height:200px;
+            background: red;
+            position:relative;
+        }
+        #div2{
+            width:100px;
+            height: 100px;
+            background: yellow;
+            position: absolute;
+
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById("div1");
+            oDiv.onmouseover=function(){
+                document.title+=1;
+            }
+            oDiv.onmouseout=function(){
+                document.title+=2;
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div id="div1">
+    <div id="div2"></div>
+</div>
+</body>
+</html>

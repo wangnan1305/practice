@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="1.txt"></script>
+    <script>
+        alert(a);
+        window.onload=function(){
+
+            var oText=document.getElementById("text");
+            var oBtn=document.getElementById("but");
+            oBtn.onclick=function(){
+                var xhr=new XMLHttpRequest();
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4){
+                        if((xhr.status>=200&&xhr.status<300)||xhr.status==304){
+                            alert(xhr.responseText);
+                        }
+                    }
+                };
+                xhr.open('get','http://api.douban.com/book/subjects?q=javascript&alt=json',true);
+                xhr.send(null);
+            }
+
+        }
+    </script>
+</head>
+<body>
+XMLHttpRequest cannot load http://api.douban.com/book/subjects?q=javascript&alt=json. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost' is therefore not allowed access.
+<input type="button" id="but" value="按钮"/>
+</body>
+</html>

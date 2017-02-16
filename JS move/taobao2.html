@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>taobao2</title>
+
+    <style>
+        a{
+            text-decoration: none;
+        }
+        ul,li{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        #out{
+            width:520px;
+            height:280px;
+            margin:20px auto;
+
+        }
+        #div1{
+            width:520px;
+            height: 280px;
+            overflow: hidden;
+            position:relative;
+        }
+        .ul1,.ul2{
+            position:absolute;
+        }
+        .ul1{
+            top:0;
+            left:0;
+        }
+        .ul1 li{
+            float:left;
+            top:0;
+            left:0;
+        }
+        .ul2{
+            bottom:5px;
+            right:30px;
+            z-index: 2;
+        }
+        .ul2 li{
+            display: inline-block;
+            width:20px;
+            height:20px;
+            text-align: center;
+            background: grey;
+            color:#ffffff;
+            border-radius: 50%;
+
+        }
+        .ul2 li:hover{
+            cursor: pointer;
+        }
+        .ul2 .active{
+            color:grey;
+            background: #fff;
+        }
+        .a{
+            position: absolute;
+            left:45px;
+            bottom:5px;
+            z-index: 2;
+        }
+        #bg{
+            width:520px;
+            height:35px;
+            position:absolute;
+            bottom:0;
+            background: yellow;
+            opacity: 0.6;
+            z-index: 1;
+        }
+        .left,.right{
+            position: absolute;
+            top:120px;
+            width:40px;
+            height:40px;
+            line-height: 40px;
+            background: grey;
+            color:#fff;
+            text-align: center;
+            opacity: 0.6;
+        }
+        .left:hover,.right:hover{
+            opacity: 0.8;
+        }
+        .left{
+            left:0;
+        }
+        .right{
+            right:0;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            function $(id){
+                return document.getElementById(id);
+            }
+
+            var oUl=$("ul1"),
+                    oUl2=$("ul2"),
+                    oAlt=$("a"),
+                    oLeft=$("left"),
+                    oRight=$("right"),
+                    oDiv1=$("div1");
+            var aLi=oUl.getElementsByTagName("a");
+            var aLi2=oUl2.getElementsByTagName("li");
+            var len=aLi.length;
+            var iWidth=aLi[0].offsetWidth;
+            oUl.style.width=iWidth*len+'px';
+            var iNow=0;
+            var timer=null;
+
+
+            for (var i=0;i<len;i++){
+                aLi2[i].index=i;
+                oAlt.innerHTML=aLi[0].children[0].alt;
+                aLi2[i].onclick=function(){
+                    for(var i=0;i<len;i++){
+                        aLi2[i].className='';
+                    }
+                    this.className='active';
+                    oAlt.innerHTML=aLi[this.index].children[0].alt;
+                    startMove(oUl,{
+                        left:-this.index*iWidth
+                    })
+                    iNow=this.index;
+                    console.log(iNow)
+                };
+            }
+
+            function silderLeft(){
+                if(iNow==5){
+                    iNow=-1;
+                }
+                for(var i=0;i<len;i++){
+                    aLi2[i].className='';
+                }
+                aLi2[iNow+1].className='active';
+
+                oAlt.innerHTML=aLi[iNow+1].children[0].alt;
+                startMove(oUl,{
+                    left:-(++iNow)*iWidth
+                })
+            }
+            function silderRight(){
+                if(iNow<=0){
+                    iNow=6;
+                }
+                for(var i=0;i<len;i++){
+                    aLi2[i].className='';
+                }
+                aLi2[iNow-1].className='active';
+
+                oAlt.innerHTML=aLi[iNow-1].children[0].alt;
+                startMove(oUl,{
+                    left:-(--iNow)*iWidth
+                })
+            }
+            timer=setInterval(silderLeft,2000);
+
+            EventUtil.addHandler(oDiv1,"click",function(event){
+                event=EventUtil.getEvent(event);
+                var target=EventUtil.getTarget(event);
+                switch (target.id){
+                    case "left":
+                        function leftClick(){
+                            silderRight();
+                            console.log(iNow);
+                        }
+                        leftClick();
+                        break;
+                    case "right":
+                        function rightClick(){
+                            silderLeft();
+                            console.log(iNow);
+                        }
+                        rightClick();
+                        break;
+                };
+            })
+            /*oLeft.onclick=function(){
+                silderRight();
+                console.log(iNow)
+            }
+
+            oRight.onclick=function() {
+                silderLeft();
+                console.log(iNow)
+            }*/
+
+            oDiv1.onmouseover=function(){
+                clearInterval(timer);
+            }
+            oDiv1.onmouseout=function(){
+                timer=setInterval(silderLeft,2000);
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="out">
+    <div id="div1">
+        <ul id="ul1" class="ul1">
+            <li><a href="http://www.baidu.com"><img src="images/taobao1.png" style="width:520px;height:280px;" title="1png" alt="一一"/></a></li>
+            <li><a href="http://www.qq.com"><img src="images/taobao2.jpg" style="width:520px;height:280px;" title="2png" alt="二二"/></a></li>
+            <li><a href="http://www.xunlei.com"><img src="images/taobao3.jpg" style="width:520px;height:280px;" title="3png" alt="三三"/></a></li>
+            <li><a href="http://www.jd.com"><img src="images/taobao4.jpg" style="width:520px;height:280px;" title="4png" alt="四四"/></a></li>
+            <li><a href="#"><img src="images/taobao5.jpg" style="width:520px;height:280px;" title="5png" alt="五五"/></a></li>
+            <li><a href="#"><img src="images/taobao6.jpg" style="width:520px;height:280px;" title="6png" alt="六六"/></a></li>
+        </ul>
+        <div id="a" class="a"></div>
+        <div id="bg"></div>
+        <a href="javascript:" id="left" class="left"><</a>
+        <a href="javascript:" id="right" class="right">></a>
+        <ul id="ul2" class="ul2">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+</div>
+<script src="js/move.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

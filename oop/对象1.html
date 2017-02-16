@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    window.onload=function(){
+/*
+        var obj={};
+        obj.name='网易';
+        obj.showName=function(){
+            alert(this.name);
+        }
+        obj.showName();*/
+
+        /*function Person(name){
+            var obj={};
+            obj.name=name;
+            obj.showName=function(){
+                alert(this.name)
+            }
+            return obj;
+        }*/
+        /*function Preson(name){
+            this.name=name;
+            this.showName=showName;
+        }
+        function showName() {
+            alert(this.name);
+        }
+        var p1=new Preson("xiaoming");
+        p1.showName();
+        var p2=new Preson("asdsadsa");
+        p2.showName();
+        alert(p2.showName==p1.showName)*/
+
+        //添加到o的作用域执行
+        /*var o={};
+        Preson.call(o,"二二");
+        o.showName();*/
+       /* var a=[1,2,3];
+        var b=a;
+        b.push(4);
+        *//*alert(b);
+        alert(a);*//*
+
+        var a1=[1,2,3];
+        var b1=a1;
+        b1=[1,2,3,4];
+        alert(a1);
+        alert(b1);
+
+        var c=[1,2,3];
+        var d=[1,2,3];
+        alert(c==d);//false
+
+        var f=[1,2,3];
+        var g=f;
+        alert(f==g);//true*/
+
+        //原型
+        /*function person(){
+            person.prototype.name="Nice";
+            person.prototype.age=12;
+            person.prototype.showName= function () {
+                alert(this.name);
+            }
+        }
+        var p1=new person();
+        p1.name="aaa";
+        p1.showName();*/
+
+        //构造函数模式和原型模式
+
+        /*function Person(name,age,job){
+
+            this.name=name;
+            this.name=age;
+            this.name=job;
+            this.friend=["Shelby","Court"];
+
+        }
+
+        Person.prototype = {
+            constructor: Person,
+            showName: function () {
+                alert(this.name);
+            }
+        }
+
+
+        var person1=new Person("a",21,"doctor");
+        var person2=new Person("b",13,"doctor");
+
+        person1.friend.push("van");
+
+        alert(person1.friend);
+        alert(person2.friend);*/
+////////////////////////////////////////////
+        /*function Person(){
+
+        };
+        Person.prototype={
+            constructor:Person,
+            name:"a",
+            age:12,
+            friend:["a","b"],
+            showName:function(){
+                alert(this.name);
+            }
+        }
+        var person1=new Person();
+        var person2=new Person();
+
+        person1.friend.push("c");
+        alert(person1.friend);
+        alert(person2.friend);
+        alert(person1.friend==person2.friend)*/
+
+
+
+
+
+
+    }
+</script>
+<body>
+
+</body>
+</html>

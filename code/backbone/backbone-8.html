@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>hello-backbonejs</title>
+	<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+	<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+	<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+</head>
+<body>
+<script>
+	var Todo = Backbone.Model.extend({
+		defaults:{
+			complated:false
+		}
+	});
+
+	var Todos = Backbone.Collection.extend({
+		model:Todo,
+
+		initialize:function () {
+			this.on('change:complated',function(model){
+				alert('complated '+model.get('complated'))
+			});
+
+			this.on('add',function () {
+				//lert('add')
+			})
+		}
+	});
+
+	var todos = new Todos();
+
+	todos.add(new Todo({complated:true}))
+	todos.add(new Todo({complated:true}))
+	console.dir(todos.models[0].set('complated',false))
+	console.log(todos.length)
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>the5fire-backbone-model</title>
+</head>
+<body>
+</body>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+<script type="text/javascript">
+	var Book = Backbone.Model.extend({
+		initialize:function(){
+
+		},
+		default:{
+			title:"default"
+		}
+	});
+
+	var Bookself = Backbone.Collection.extend({
+		model:Book
+	});
+
+	var book1 = new Book({title:"book1"}),
+		book2 = new Book({title:"book2"}),
+		book3 = new Book({title:"book3"});
+
+	var bookself = new Bookself([book1,book2,book3]);
+	console.log(bookself.length);
+	bookself.each(function(book){
+		console.log(book.get('title'))
+	})
+	bookself.remove(book3);
+	console.log(bookself.length)
+	bookself.each(function(book){
+		console.log(book.get('title'))
+	});
+
+	bookself.url='http://book.rdtuijian.com/hotBook?rand=3';
+	bookself.fetch({
+		success:function(collection,response,options){
+			collection.each(function(book){
+				alert(book.get('title'))
+			})
+		},error:function(collection,response,options){
+			alert("error")
+		}
+	});
+
+	var showAllBooks = function(){
+		bookself.each(function(book){
+			document.writeln(book.get('title'));
+		});
+	};
+	showAllBooks();
+	bookself.bind('reset',showAllBooks);
+</script>
+</html>

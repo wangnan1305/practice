@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>豆瓣</title>
+    <script src="jquery-1.10.2.js"></script>
+    <style>
+        #text {
+            width: 200px;
+            height: 22px;
+            padding: 4px;
+            font-size: 15px;
+            border: 1px solid #666666;
+        }
+
+        #btn {
+            height: 30px;
+            width: 50px;
+        }
+
+        ul {
+            float:left;
+            width:1204px;
+            height:40px;
+            margin-top: 10px;
+            line-height: 25px;
+            text-align: center;
+            clear:both;
+        }
+
+        ul li {
+            float: left;
+            list-style: none;
+            margin:2px;
+        }
+        ul li:hover{
+            cursor:pointer;
+        }
+        ul a {
+            display: inline-block;
+            text-decoration: none;
+            margin-left: -1px;
+            background-color: #fff;
+            line-height: 28px;
+            text-align: center;
+            font-size: 18px;
+            border: 1px solid #dddddd;
+            padding: 3px 7px;
+        }
+
+        .result {
+            float: left;
+            margin: 0 50px;
+            width: 300px;
+            height: 250px;
+            border-bottom: 1px solid #666666
+        }
+    </style>
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        }
+        function create(name) {
+            return document.createElement(name);
+        }
+        function douban(data) {
+            console.log(data);
+
+            var oReList = $("result_list");
+            var oMsg = $("msg");
+            var oUl = $("ul1");
+            var oText = $("text");
+            oMsg.innerHTML = data.title.$t + ':' + data['opensearch:totalResults'].$t;
+
+            //点击搜索后若有原数据，清除元数据，保证页面只加载十个数据
+            var sResult=document.getElementsByClassName("result");
+            if(sResult.length!=0){
+                for(var i=sResult.length-1;i>=0;i--){
+                    oReList.removeChild(sResult[i]);
+                }
+            }
+
+            //创建div，添加数据
+            for (var i = 0; i < data.entry.length; i++) {
+                var oDiv = create("div");
+                oDiv.className = "result";
+                var oH1 = create("h3");
+                oH1.innerHTML = data.entry[i].title.$t;
+                var oImg = create("img");
+                oImg.src = data.entry[i].link[2]['@href'];
+                var oP = create("p");
+
+                oDiv.appendChild(oH1);
+                oDiv.appendChild(oImg);
+                oDiv.appendChild(oP);
+
+                oReList.appendChild(oDiv);
+
+            }
+            var pages = parseInt((data['opensearch:totalResults'].$t) / 10) + 1;
+            var nLi=document.getElementsByTagName("li");
+            //创建li
+            if (nLi.length == 0) {
+                for (var j = 0; j < pages; j++) {
+                    var aLi = create("li");
+                    var aA = create("a");
+                    aA.innerHTML = j;
+                    aA.href = 'javascript:';
+                    aLi.appendChild(aA);
+                    oUl.appendChild(aLi);
+                }
+            }
+            //优化分页
+            if(nLi.length>=33){
+                for(var i=nLi.length-1;i>=33;i--){
+                    nLi[i].style.display='none';
+
+                }
+                var next=create("li");
+                var aA2=create("a");
+                aA2.innerHTML='下一页'
+                aA2.href="javascript:";
+                next.appendChild(aA2);
+                oUl.appendChild(next);
+                var aNext=document.getElementsByClassName("n");
+
+            }
+            //给li绑定事件，动态刷新数据
+            var ALi = document.getElementsByTagName("li");
+            for (var i = 0; i < ALi.length; i++) {
+                ALi[i].onclick = (function (k) {
+                    return function () {
+                        var aResult = document.getElementsByClassName("result");
+                        //alert(aResult.length);
+                        for (var i = aResult.length - 1; i >= 0; i--) {
+                            oReList.removeChild(aResult[i]);
+                        }
+                        var oScript = document.createElement("script");
+                        oScript.src = 'http://api.douban.com/book/subjects?q=' + oText.value + '&alt=xd&callback=douban&start-index=' + (k * 10) + '';
+                        document.body.appendChild(oScript);
+                    }
+                })(i);
+            }
+        }
+        window.onload = function () {
+            var oText = $("text");
+            var oBtn = $("btn");
+
+            document.body.onkeydown = function (e) {
+                if (e.keyCode == 13) {
+                    oBtn.click();
+                }
+            }
+
+            oBtn.onclick = function () {
+                if (oText.value) {
+                    var oScript = document.createElement("script");
+                    oScript.src = 'http://api.douban.com/book/subjects?q=' + oText.value + '&alt=xd&callback=douban&start-index=0';
+                    document.body.appendChild(oScript);
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="text"/>
+<input type="button" id="btn" value="搜索"/>
+
+<div id="msg"></div>
+<hr/>
+<div id="result_list">
+</div>
+<ul id="ul1">
+</ul>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<script language="JavaScript">
+    function $(id){
+        return document.getElementById(id);
+    }
+
+    function show_div(evt) {
+        var od = $('div1');
+        var e = window.event || evt;
+        var o = e.srcElement || e.target;
+        with (od.style) {
+            display = 'block';
+            left = o.offsetLeft + 'px';
+            top = o.offsetTop + o.offsetHeight + 1 + 'px';
+        }
+    }
+
+    function hide_div(evt) {
+        $('div1').style.display = 'none';
+    }
+
+    function control_bubble(oEvent) {
+//取消冒泡
+        oEvent = oEvent || window.event;
+        if (document.all) {
+            oEvent.cancelBubble = true;
+        } else {
+            oEvent.stopPropagation();
+        }
+    };
+
+    function fill_input(oEvent) {
+        $('text1').value = $('div1').innerHTML;
+        control_bubble(oEvent);
+    }
+
+    window.onload = function() {
+        $("text1").onfocus = show_div;
+
+        document.onclick = function() {
+//隐藏层
+            hide_div();
+        };
+
+        $("text1").onclick = control_bubble;
+        $("div1").onclick = fill_input;
+    }
+</script>
+<body>
+<br>
+<input type="text" id="text1" value="">
+<br>
+<div id="div1" align="center"
+     style="background:#666;position:absolute;overflow:auto;display:none;padding:50px;">点击我</div>
+</body>
+</html>

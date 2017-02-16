@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>理工大资料分享平台</title>
+    <link href="css/base.css" type="text/css" rel="stylesheet"/>
+    <script src="js/move.js"></script>
+</head>
+<body>
+<!--页面顶部-->
+<div class="header">
+    <div class="logo">
+        <img style="width:50px;height: 50px;"src=""/>
+    </div>
+    <div class="username">
+        <a class="login" href="javascript:">登录</a> | <a class="reg" href="javascript:">注册</a>
+    </div>
+</div>
+<!--主体-->
+<div class="main">
+    <!--左边内容-->
+    <div class="center" id="center">
+        <h3 class="active">大一</h3>
+        <h3>大二</h3>
+        <h3>大三</h3>
+        <h3>大四</h3>
+        <div class="tab" id="tab">
+            <div class="left" id="left">
+                <div class="tab_con" style="background: #666666">
+                    <ul>
+                        <li><a href="#">文档内容1........</a></li>
+                        <li><a href="#">文档内容1........</a></li>
+                        <li><a href="#">文档内容1........</a></li>
+                        <li><a href="#">文档内容1........</a></li>
+                        <li><a href="#">文档内容1........</a></li>
+                        <li><a href="#">文档内容1........</a></li>
+                    </ul>
+                </div>
+                <div class="tab_con" style="background: yellow">
+                    <ul>
+                        <li><a href="#">文档内容2........</a></li>
+                        <li><a href="#">文档内容2........</a></li>
+                        <li><a href="#">文档内容2........</a></li>
+                        <li><a href="#">文档内容2........</a></li>
+                        <li><a href="#">文档内容2........</a></li>
+                        <li><a href="#">文档内容2........</a></li>
+                    </ul>
+                </div>
+                <div class="tab_con" style="background: yellowgreen">
+                    <ul>
+                        <li><a href="#">文档内容3........</a></li>
+                        <li><a href="#">文档内容3........</a></li>
+                        <li><a href="#">文档内容3........</a></li>
+                        <li><a href="#">文档内容3........</a></li>
+                        <li><a href="#">文档内容3........</a></li>
+                        <li><a href="#">文档内容3........</a></li>
+                    </ul>
+                </div>
+                <div class="tab_con" style="background: pink">
+                    <ul>
+                        <li><a href="#">文档内容4........</a></li>
+                        <li><a href="#">文档内容4........</a></li>
+                        <li><a href="#">文档内容4........</a></li>
+                        <li><a href="#">文档内容4........</a></li>
+                        <li><a href="#">文档内容4........</a></li>
+                        <li><a href="#">文档内容4........</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右边搜索及下载排行-->
+    <div class="right">
+        <div class="find">
+            <input type="text" placeholder="输入关键字" class="text"/>
+            <input type="button" value="搜索" class="seach"/>
+        </div>
+        <div class="newList">
+            <p>下载排行</p>
+            <hr style="width:200px;height:1px;border:none;border-bottom:1px solid #EAEAEA;" />
+            <div class="download">
+                <ul>
+                    <li><a href="#">下载排行量1</a></li>
+                    <li><a href="#">下载排行量2</a></li>
+                    <li><a href="#">下载排行量3</a></li>
+                    <li><a href="#">下载排行量4</a></li>
+                    <li><a href="#">下载排行量5</a></li>
+                    <li><a href="#">下载排行量6</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload=function(){
+        function $(id){
+            return document.getElementById(id);
+        }
+        //页面切换效果
+        var oTab = $("tab"),
+                oLeft = $("left"),
+                aH3 = $("center").getElementsByTagName("h3"),
+                aTabs = oLeft.getElementsByClassName("tab_con"),
+                tabLen=aTabs.length,
+                tabWidth=oLeft.offsetWidth;
+        oLeft.style.width=tabLen*tabWidth+'px';
+
+        for (var i=0;i<tabLen;i++){
+
+            aH3[i].index=i;
+
+            aH3[i].onclick=function(){
+                for(var i=0;i<aH3.length;i++){
+                    aH3[i].className='';
+                }
+                this.className='active';
+
+                startMove(oLeft, {
+                    left : -this.index * tabWidth
+                });
+            }
+
+        }
+
+
+
+
+
+
+
+    }
+</script>
+</body>
+</html>

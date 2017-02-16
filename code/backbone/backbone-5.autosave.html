@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>the5fire-backbone-model</title>
+</head>
+<body>
+<div id="search_container"></div>
+
+<script type="text/template" id="search_template">
+<ul>
+    <% _.each(labels,function(name){ %>
+		<% if (name != 'label2') { %>
+		<li><%=name%></li>
+		<% } else{%>
+		<li><%='label2消失掉'%></li>
+		<% }%>
+	<% }) %>
+</ul>
+</script>
+</body>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+<script type="text/javascript">
+	var SearchView = Backbone.View.extend({
+		el:"#search_container",
+		template:_.template($("#search_template").html()),
+		initialize:function(){
+			var labels = ['label1','label2','label3'];
+			this.render({labels:labels});
+		},
+		render:function(){
+			this.$el.html(this.template())
+		}/*,
+		events:{
+			'click input[type=button]':'doSearch'
+		},
+		doSearch:function(event){
+			alert("Search for "+$("#search_input").val())
+		}*/
+	});
+
+	var emView = new SearchView();
+	
+</script>
+</html>

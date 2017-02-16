@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width:15px;
+            height: 15px;
+            background: red;
+            position:absolute;
+            left:0;
+            top:0;
+            border-radius: 50%;
+        }
+    </style>
+    <script>
+
+        window.onload=function(){
+            var disX=0;
+            var disY=0;
+            var oDiv=document.getElementById("div1");
+            oDiv.onmousedown=function(event){
+                var event=event||window.event;
+                disX=event.clientX-oDiv.offsetLeft;
+                disY=event.clientY-oDiv.offsetTop;
+                document.onmousemove=function(event){
+                    var event=event||window.event;
+                    oDiv.style.left=event.clientX-disX+'px';
+                    oDiv.style.top=event.clientY-disY+'px';
+                }
+                oDiv.onmouseup=function(){
+                    document.onmousemove=null;
+                    oDiv.onmouseup=null;
+                }
+                return false;
+            }
+
+        }
+        /*function Drag(id){
+            this.disX=0;
+            this.disY=0;
+            this.oDiv=document.getElementById(id);
+        }
+        Drag.prototype={
+            init:function(){
+                var This=this;
+                This.oDiv.onmousedown=function(event){
+                    var event=event||window.event;
+                    This.disX=event.clientX-This.oDiv.offsetLeft;
+                    This.disY=event.clientY-This.oDiv.offsetTop;
+                    This.fnMove();
+                    This.fnUp();
+                    return false;
+                }
+            },
+            fnMove:function(){
+                var This=this;
+                document.onmousemove=function(event){
+                    var event=event||window.event;
+                    This.oDiv.style.left=event.clientX-This.disX+'px';
+                    This.oDiv.style.top=event.clientY-This.disY+'px';
+                }
+            },
+            fnUp:function(){
+                var This=this;
+                This.oDiv.onmouseup=function(){
+                    document.onmousemove=null;
+                    This.oDiv.onmouseup=null;
+                }
+            }
+        }
+        window.onload=function(){
+            var drag=new Drag("div1");
+            drag.init();
+        }*/
+    </script>
+
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
