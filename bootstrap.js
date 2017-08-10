@@ -1,5 +1,5 @@
 // bootstrap 的版本號
-var ver = "3";
+var ver = "1";
 
 // 本 bootstrap script 的主要內容
 (function() {
