@@ -26,7 +26,7 @@ function sendBeacon() {
 }
 
 // 這段是為了只在嵌入 bootstrap script 的頁面中執行 sendBeacon，而不在 update.php 中也執行
-if ( "undefined" != typeof(cmdQ) && cmdQ.length && cmdQ[0] === 'sendBeacon' ) {
-  cmdQ = [];  // clear out the commands
+// if ( "undefined" != typeof(cmdQ) && cmdQ.length && cmdQ[0] === 'sendBeacon' ) {
+//   cmdQ = [];  // clear out the commands
   sendBeacon();
-}
+// }
